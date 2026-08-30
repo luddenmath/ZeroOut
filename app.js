@@ -959,51 +959,45 @@ String(seconds).padStart(2, "0")
 
 function updateTimerDisplay() {
 
-if (
-game.timerSeconds === null ||
-game.timerSeconds === undefined
-) {
+  if (
+    game.timerSeconds === null ||
+    game.timerSeconds === undefined
+  ) {
 
+    gameTimerElement.classList.add("hidden");
 
-gameTimerElement.classList.add("hidden");
+    teacherTimerElement.textContent = "";
 
-teacherTimerElement.textContent =
-  "No timer";
+    teacherTimerElement.classList.remove("warning");
 
-return;
+    return;
+  }
 
+  gameTimerElement.classList.remove("hidden");
 
-}
+  gameTimerElement.textContent =
+    formatTime(game.timerSeconds);
 
-gameTimerElement.classList.remove("hidden");
+  teacherTimerElement.textContent =
+    formatTime(game.timerSeconds);
 
-gameTimerElement.textContent =
-formatTime(game.timerSeconds);
+  /*
+  Warning animation during final minute.
+  */
 
-teacherTimerElement.textContent =
-formatTime(game.timerSeconds);
+  if (game.timerSeconds <= 60) {
 
-/*
-Warning animation during final minute.
-*/
+    gameTimerElement.classList.add("warning");
 
-if (game.timerSeconds <= 60) {
+    teacherTimerElement.classList.add("warning");
 
+  } else {
 
-gameTimerElement.classList.add("warning");
+    gameTimerElement.classList.remove("warning");
 
-teacherTimerElement.classList.add("warning");
+    teacherTimerElement.classList.remove("warning");
 
-
-} else {
-
-
-gameTimerElement.classList.remove("warning");
-
-teacherTimerElement.classList.remove("warning");
-
-
-}
+  }
 }
 
 function startGameTimer() {
@@ -1329,54 +1323,54 @@ updateTimerDisplay();
 WINNER
 ========================================================= */
 
-function determineWinner() {
+function determineWinners() {
 
-if (game.teams.length === 0) {
-return null;
-}
+  if (game.teams.length === 0) {
+    return [];
+  }
 
-let winner =
-game.teams[0];
+  const winningScore =
+    Math.min(
+      ...game.teams.map(
+        team => Math.abs(team.score)
+      )
+    );
 
-for (const team of game.teams) {
-
-
-if (
-  Math.abs(team.score) <
-  Math.abs(winner.score)
-) {
-
-  winner = team;
-
-}
-
-
-}
-
-return winner;
+  return game.teams.filter(
+    team =>
+      Math.abs(team.score) === winningScore
+  );
 }
 
 function showWinner() {
 
-const winner =
-determineWinner();
+  const winners =
+    determineWinners();
 
-if (!winner) {
-return;
-}
+  if (winners.length === 0) {
+    return;
+  }
 
-winnerAnimal.textContent =
-winner.emoji;
+  /*
+  Display all tied winners.
+  */
 
-winnerName.textContent =
-winner.name;
+  winnerAnimal.textContent =
+    winners.map(
+      winner => winner.emoji
+    ).join(" ");
 
-winnerScore.textContent =
-formatScore(winner.score);
+  winnerName.textContent =
+    winners.map(
+      winner => winner.name
+    ).join(" & ");
 
-winnerScreen.classList.remove(
-"hidden"
-);
+  winnerScore.textContent =
+    formatScore(winners[0].score);
+
+  winnerScreen.classList.remove(
+    "hidden"
+  );
 }
 
 closeWinner.addEventListener(
