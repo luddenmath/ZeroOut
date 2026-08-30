@@ -1,790 +1,591 @@
+/* =========================================
+   GENERAL
+   ========================================= */
+
 * {
   box-sizing: border-box;
-  }
+}
 
 html,
 body {
-margin: 0;
-padding: 0;
-width: 100%;
-height: 100%;
-font-family: Arial, Helvetica, sans-serif;
-background: #111;
-color: white;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #111;
+  color: white;
 }
 
 button,
 input {
-font: inherit;
+  font: inherit;
 }
 
 button {
-cursor: pointer;
+  cursor: pointer;
 }
 
+
 /* =========================================
-SCOREBOARD
-========================================= */
+   SCOREBOARD
+   ========================================= */
 
 #app {
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 #scoreboard {
-width: 100%;
-min-height: 100%;
-padding: 2vh 3vw;
-
-display: flex;
-flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  padding: 2vh 3vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .game-header {
-display: flex;
-justify-content: center;
-align-items: center;
-
-position: relative;
-
-min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 70px;
 }
 
 .game-header h1 {
-margin: 0;
-
-font-size: clamp(2rem, 5vw, 4rem);
-
-letter-spacing: 0.12em;
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 0.12em;
 }
 
 .game-header .small-button {
-position: absolute;
-right: 0;
+  position: absolute;
+  right: 0;
 }
 
+
 /* =========================================
-TEAM GRID
-========================================= */
+   TEAM GRID
+   ========================================= */
 
 .teams {
-flex: 1;
+  flex: 1;
 
-display: grid;
+  display: grid;
 
-grid-template-columns: repeat(2, 1fr);
+  /*
+    JavaScript changes the number of columns
+    depending on the number of teams.
+  */
+  grid-template-columns: repeat(2, 1fr);
 
-gap: 2vw;
+  gap: 2vw;
 
-align-content: center;
+  align-content: center;
 
-padding: 2vh 0;
+  padding: 2vh 0;
 }
 
 .team-card {
-min-height: 130px;
+  min-height: 130px;
 
-border: 3px solid #444;
+  border: 3px solid #444;
+  border-radius: 20px;
 
-border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  background: #181818;
 
-background: #181818;
-
-transition:
-transform 0.25s ease,
-border-color 0.25s ease,
-background 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
 }
 
 .team-card.highlight {
-transform: scale(1.05);
-
-border-color: white;
-
-background: #292929;
+  transform: scale(1.05);
+  border-color: white;
+  background: #292929;
 }
 
 .team-animal {
-font-size: clamp(2rem, 6vw, 5rem);
-
-line-height: 1;
+  font-size: clamp(2rem, 6vw, 5rem);
+  line-height: 1;
 }
 
 .team-name {
-margin-top: 8px;
-
-font-size: clamp(1rem, 2.5vw, 2rem);
-
-font-weight: bold;
-
-letter-spacing: 0.05em;
+  margin-top: 8px;
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  font-weight: bold;
+  letter-spacing: 0.05em;
 }
 
 .team-score {
-margin-top: 5px;
-
-font-size: clamp(1.5rem, 4vw, 3.5rem);
-
-font-weight: bold;
+  margin-top: 5px;
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  font-weight: bold;
 }
 
+
 /* =========================================
-CURRENT VALUE
-========================================= */
+   CURRENT VALUE
+   ========================================= */
 
 .current-value-area {
-text-align: center;
-
-padding: 2vh 0 3vh;
+  text-align: center;
+  padding: 2vh 0 3vh;
 }
 
 .value-label {
-font-size: clamp(0.7rem, 1.5vw, 1.1rem);
-
-letter-spacing: 0.2em;
-
-color: #aaa;
+  font-size: clamp(0.7rem, 1.5vw, 1.1rem);
+  letter-spacing: 0.2em;
+  color: #aaa;
 }
 
 .current-value {
-font-size: clamp(4rem, 12vw, 9rem);
-
-line-height: 1;
-
-font-weight: bold;
+  font-size: clamp(4rem, 12vw, 9rem);
+  line-height: 1;
+  font-weight: bold;
 }
 
-.timer-display {
-margin-top: 12px;
-
-font-size: clamp(1.5rem, 4vw, 3rem);
-
-font-weight: bold;
-
-letter-spacing: 0.08em;
-}
 
 /* =========================================
-BUTTONS
-========================================= */
+   BUTTONS
+   ========================================= */
 
 .small-button {
-background: #222;
-
-border: 1px solid #555;
-
-color: white;
-
-border-radius: 8px;
-
-padding: 8px 12px;
+  background: #222;
+  border: 1px solid #555;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 12px;
 }
 
 .small-button:hover {
-background: #333;
+  background: #333;
 }
 
 .primary-button,
 .secondary-button,
-.danger-button,
-.finish-button {
-width: 100%;
-
-border-radius: 10px;
-
-padding: 14px 18px;
-
-margin-top: 10px;
-
-font-weight: bold;
+.danger-button {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 .primary-button {
-background: white;
-
-color: black;
-
-border: none;
+  background: white;
+  color: black;
 }
 
 .primary-button:hover {
-background: #ddd;
+  background: #ddd;
 }
 
 .primary-button:disabled {
-opacity: 0.35;
-
-cursor: not-allowed;
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .secondary-button {
-background: #333;
-
-color: white;
-
-border: 1px solid #555;
+  background: #333;
+  color: white;
+  border: 1px solid #555;
 }
 
 .secondary-button:hover {
-background: #444;
+  background: #444;
 }
 
 .danger-button {
-background: #702020;
-
-color: white;
-
-border: none;
+  background: #702020;
+  color: white;
 }
 
 .danger-button:hover {
-background: #902020;
+  background: #902020;
 }
 
-.finish-button {
-background: #555;
-
-color: white;
-
-border: 1px solid #777;
-}
-
-.finish-button:hover {
-background: #666;
-}
-
-.compact-button {
-width: auto;
-
-margin-top: 0;
-
-padding: 9px 12px;
-}
 
 /* =========================================
-CONTROL PANEL
-========================================= */
+   CONTROL PANEL
+   ========================================= */
 
 .control-panel {
-position: fixed;
+  position: fixed;
 
-top: 0;
-right: 0;
+  top: 0;
+  right: 0;
 
-width: min(420px, 100vw);
+  width: min(420px, 100vw);
+  height: 100vh;
 
-height: 100vh;
+  background: #171717;
 
-background: #171717;
+  border-left: 1px solid #444;
 
-border-left: 1px solid #444;
+  padding: 20px;
 
-padding: 20px;
+  overflow-y: auto;
 
-overflow-y: auto;
+  z-index: 100;
 
-z-index: 100;
+  transform: translateX(100%);
 
-transform: translateX(100%);
-
-transition: transform 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .control-panel.open {
-transform: translateX(0);
+  transform: translateX(0);
 }
 
 .control-header {
-display: flex;
-
-justify-content: space-between;
-
-align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .control-header h2 {
-margin: 0;
+  margin: 0;
 }
 
 .control-section {
-margin-top: 25px;
+  margin-top: 25px;
 }
 
 .control-section h3 {
-margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .instruction {
-color: #aaa;
-
-font-size: 0.9rem;
-
-line-height: 1.4;
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
+
 /* =========================================
-ALPHABET
-========================================= */
+   ALPHABET
+   ========================================= */
 
 .alphabet {
-display: grid;
-
-grid-template-columns: repeat(7, 1fr);
-
-gap: 6px;
-
-margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 15px;
 }
 
 .letter-button {
-aspect-ratio: 1;
-
-border-radius: 7px;
-
-border: 1px solid #555;
-
-background: #242424;
-
-color: white;
-
-font-weight: bold;
+  aspect-ratio: 1;
+  border-radius: 7px;
+  border: 1px solid #555;
+  background: #242424;
+  color: white;
+  font-weight: bold;
 }
 
 .letter-button:hover {
-background: #333;
+  background: #333;
 }
 
 .letter-button.selected {
-background: white;
-
-color: black;
-
-border-color: white;
+  background: white;
+  color: black;
+  border-color: white;
 }
 
 .selected-info {
-margin-top: 15px;
-
-color: #aaa;
+  margin-top: 15px;
+  color: #aaa;
 }
 
 .selected-letters {
-display: flex;
-
-flex-wrap: wrap;
-
-gap: 6px;
-
-margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
 }
 
 .selected-letter {
-background: #333;
-
-border-radius: 5px;
-
-padding: 5px 9px;
-
-font-weight: bold;
+  background: #333;
+  border-radius: 5px;
+  padding: 5px 9px;
+  font-weight: bold;
 }
+
 
 /* =========================================
-TIMER SETUP
-========================================= */
-
-.timer-settings {
-margin-top: 25px;
-
-padding-top: 15px;
-
-border-top: 1px solid #333;
-}
-
-.timer-input-row {
-display: flex;
-
-align-items: center;
-
-gap: 8px;
-
-margin-top: 10px;
-}
-
-.timer-input-row input {
-width: 80px;
-
-background: #222;
-
-color: white;
-
-border: 1px solid #555;
-
-border-radius: 6px;
-
-padding: 9px;
-
-text-align: center;
-}
-
-.timer-status {
-margin-top: 8px;
-
-color: #aaa;
-
-font-size: 0.9rem;
-}
-
-/* =========================================
-TEACHER VALUE
-========================================= */
+   TEACHER VALUE
+   ========================================= */
 
 .teacher-value {
-text-align: center;
-
-padding: 10px 0 20px;
+  text-align: center;
+  padding: 10px 0 20px;
 }
 
 .teacher-current-value {
-font-size: 4rem;
-
-font-weight: bold;
-
-margin-top: 5px;
+  font-size: 4rem;
+  font-weight: bold;
+  margin-top: 5px;
 }
+
 
 /* =========================================
-GAME TIMER
-========================================= */
-
-.game-timer-controls {
-padding: 12px 0;
-
-border-top: 1px solid #333;
-
-border-bottom: 1px solid #333;
-
-margin-bottom: 20px;
-}
-
-.timer-control-row {
-display: flex;
-
-align-items: center;
-
-gap: 7px;
-
-margin-top: 10px;
-}
-
-.timer-control-row input {
-width: 65px;
-
-background: #222;
-
-color: white;
-
-border: 1px solid #555;
-
-border-radius: 6px;
-
-padding: 8px;
-
-text-align: center;
-}
-
-/* =========================================
-TEAM BUTTONS
-========================================= */
+   TEAM BUTTONS
+   ========================================= */
 
 .team-buttons {
-display: flex;
-
-flex-direction: column;
-
-gap: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
 .team-select-button {
-display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-justify-content: space-between;
+  width: 100%;
 
-align-items: center;
+  padding: 12px;
 
-width: 100%;
+  background: #242424;
+  border: 1px solid #555;
 
-padding: 12px;
+  border-radius: 8px;
 
-background: #242424;
-
-border: 1px solid #555;
-
-border-radius: 8px;
-
-color: white;
+  color: white;
 }
 
 .team-select-button:hover {
-background: #333;
+  background: #333;
 }
 
 .team-select-button .button-score {
-color: #aaa;
+  color: #aaa;
 }
 
+
 /* =========================================
-MODAL
-========================================= */
+   MODAL
+   ========================================= */
 
 .modal {
-position: fixed;
+  position: fixed;
 
-inset: 0;
+  inset: 0;
 
-background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.75);
 
-display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-justify-content: center;
+  z-index: 200;
 
-align-items: center;
-
-z-index: 200;
-
-padding: 20px;
+  padding: 20px;
 }
 
 .modal-content {
-width: min(500px, 100%);
+  width: min(500px, 100%);
+  max-height: 90vh;
 
-max-height: 90vh;
+  overflow-y: auto;
 
-overflow-y: auto;
+  background: #181818;
 
-background: #181818;
+  border: 1px solid #444;
+  border-radius: 15px;
 
-border: 1px solid #444;
-
-border-radius: 15px;
-
-padding: 20px;
+  padding: 20px;
 }
 
 .modal-header {
-display: flex;
-
-justify-content: space-between;
-
-align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .modal-header h2 {
-margin: 0;
+  margin: 0;
 }
 
 .score-editor {
-margin-top: 15px;
+  margin-top: 15px;
 }
 
 .score-editor label {
-display: block;
-
-margin-bottom: 5px;
-
-font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .score-editor-row {
-display: flex;
-
-align-items: center;
-
-gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .score-editor-animal {
-font-size: 2rem;
+  font-size: 2rem;
 }
 
 .score-editor input {
-flex: 1;
+  flex: 1;
 
-background: #222;
+  background: #222;
+  color: white;
 
-color: white;
+  border: 1px solid #555;
+  border-radius: 6px;
 
-border: 1px solid #555;
+  padding: 10px;
 
-border-radius: 6px;
-
-padding: 10px;
-
-font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .modal-actions {
-display: flex;
-
-gap: 10px;
-
-margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .modal-actions button {
-margin-top: 0;
+  margin-top: 0;
 }
 
+
 /* =========================================
-WINNER
-========================================= */
+   WINNER SCREEN
+   ========================================= */
 
 .winner-screen {
-position: fixed;
+  position: fixed;
+  inset: 0;
 
-inset: 0;
+  background: rgba(0, 0, 0, 0.95);
 
-background: rgba(0, 0, 0, 0.95);
+  z-index: 300;
 
-z-index: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-display: flex;
-
-justify-content: center;
-
-align-items: center;
-
-text-align: center;
+  text-align: center;
 }
 
 .winner-content {
-padding: 30px;
+  padding: 30px;
 }
 
 .winner-title {
-font-size: clamp(2rem, 6vw, 5rem);
-
-letter-spacing: 0.15em;
-
-font-weight: bold;
+  font-size: clamp(2rem, 6vw, 5rem);
+  letter-spacing: 0.15em;
+  font-weight: bold;
 }
 
 .winner-animal {
-font-size: clamp(5rem, 15vw, 10rem);
-
-margin: 20px;
+  font-size: clamp(5rem, 15vw, 10rem);
+  margin: 20px;
 }
 
 .winner-name {
-font-size: clamp(2rem, 6vw, 5rem);
-
-font-weight: bold;
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: bold;
 }
 
 .winner-score {
-font-size: clamp(2rem, 5vw, 4rem);
-
-margin: 10px;
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin: 10px;
 }
 
-.winner-subtitle {
-color: #aaa;
-
-font-size: 1.2rem;
-
-margin-bottom: 15px;
-}
 
 /* =========================================
-UTILITY
-========================================= */
+   UTILITY
+   ========================================= */
 
 .hidden {
-display: none !important;
+  display: none !important;
 }
 
+
 /* =========================================
-MOBILE
-========================================= */
+   MOBILE
+   ========================================= */
 
 @media (max-width: 600px) {
 
-#scoreboard {
-padding: 10px;
+  #scoreboard {
+    padding: 10px;
+  }
+
+  .game-header {
+    min-height: 55px;
+  }
+
+  .game-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .game-header .small-button {
+    font-size: 0;
+    padding: 8px;
+  }
+
+  .game-header .small-button::after {
+    content: "⚙";
+    font-size: 1.2rem;
+  }
+
+  .teams {
+    gap: 8px;
+  }
+
+  .team-card {
+    min-height: 100px;
+    border-radius: 12px;
+  }
+
+  .team-animal {
+    font-size: 2.5rem;
+  }
+
+  .team-name {
+    font-size: 0.9rem;
+  }
+
+  .team-score {
+    font-size: 1.5rem;
+  }
+
+  .current-value {
+    font-size: 4.5rem;
+  }
+
+  .alphabet {
+    grid-template-columns: repeat(7, 1fr);
+  }
 }
 
-.game-header {
-min-height: 55px;
-}
-
-.game-header h1 {
-font-size: 1.8rem;
-}
-
-.game-header .small-button {
-font-size: 0;
-
-```
-padding: 8px;
-```
-
-}
-
-.game-header .small-button::after {
-content: "⚙";
-
-```
-font-size: 1.2rem;
-```
-
-}
-
-.teams {
-gap: 8px;
-}
-
-.team-card {
-min-height: 100px;
-
-```
-border-radius: 12px;
-```
-
-}
-
-.team-animal {
-font-size: 2.5rem;
-}
-
-.team-name {
-font-size: 0.9rem;
-}
-
-.team-score {
-font-size: 1.5rem;
-}
-
-.current-value {
-font-size: 4.5rem;
-}
-
-.alphabet {
-grid-template-columns: repeat(7, 1fr);
-}
-}
 
 /* =========================================
-LARGE CLASSROOM DISPLAY
-========================================= */
+   LARGE CLASSROOM DISPLAY
+   ========================================= */
 
 @media (min-width: 1000px) {
 
-.team-card {
-min-height: 150px;
-}
+  .teams {
+    gap: 2vw;
+  }
+
+  .team-card {
+    min-height: 150px;
+  }
 
 }
