@@ -1127,15 +1127,6 @@ game.teams.length === 0
 return;
 }
 
-const confirmed =
-confirm(
-"Finish the game and determine the winner?"
-);
-
-if (!confirmed) {
-return;
-}
-
 stopGameTimer();
 
 game.started = false;
