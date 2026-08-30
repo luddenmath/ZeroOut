@@ -218,6 +218,26 @@ const db = window.firebaseDB;
 
 let firebaseGameId = null;
 
+async function saveGameToFirebase() {
+
+  if (!firebaseGameId) {
+    return;
+  }
+
+  await set(
+    ref(db, "games/" + firebaseGameId),
+    {
+      started: game.started,
+      currentValue: game.currentValue,
+      lastValue: game.lastValue,
+      lastTeamId: game.lastTeamId,
+      teams: game.teams,
+      timerSeconds: game.timerSeconds,
+      timerRunning: game.timerRunning
+    }
+  );
+}
+
 /* =========================================================
 DOM ELEMENTS
 ========================================================= */
