@@ -63,6 +63,12 @@ button {
   right: 0;
 }
 
+.game-timer {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 10px 0 15px;
+}
 
 /* =========================================
    TEAM GRID
