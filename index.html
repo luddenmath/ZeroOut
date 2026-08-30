@@ -327,7 +327,27 @@
 
   </div>
 
-  <script src="app.js"></script>
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+  import { getDatabase } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAPWLBaAg5DTMlw22599dLRbPDnKFObaMs",
+    authDomain: "zeroout-7dace.firebaseapp.com",
+    projectId: "zeroout-7dace",
+    storageBucket: "zeroout-7dace.firebasestorage.app",
+    messagingSenderId: "611625896840",
+    appId: "1:611625896840:web:afb1b0c5a00d5a0dd21d521c83d",
+    measurementId: "G-K1CFL39EHJ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  window.firebaseDB = db;
+</script>
+
+<script type="module" src="app.js"></script>
 
 </body>
 </html>
