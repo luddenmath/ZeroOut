@@ -333,7 +333,7 @@ alphabetElement.innerHTML = "";
 
 for (const letter of letters) {
 
-```
+
 const button =
   document.createElement("button");
 
@@ -349,7 +349,7 @@ button.addEventListener(
 );
 
 alphabetElement.appendChild(button);
-```
+
 
 }
 }
@@ -361,19 +361,19 @@ selectedLetters.indexOf(letter);
 
 if (index === -1) {
 
-```
+
 selectedLetters.push(letter);
 
 button.classList.add("selected");
-```
+
 
 } else {
 
-```
+
 selectedLetters.splice(index, 1);
 
 button.classList.remove("selected");
-```
+
 
 }
 
@@ -389,7 +389,7 @@ selectedLettersElement.innerHTML = "";
 
 selectedLetters.forEach(letter => {
 
-```
+
 const element =
   document.createElement("span");
 
@@ -400,7 +400,7 @@ element.textContent =
   letter;
 
 selectedLettersElement.appendChild(element);
-```
+
 
 });
 
@@ -513,20 +513,20 @@ setupSeconds;
 
 if (totalSeconds > 0) {
 
-```
+
 game.timerSeconds =
   totalSeconds;
 
 startGameTimer();
-```
+
 
 } else {
 
-```
+
 game.timerSeconds = null;
 
 updateTimerDisplay();
-```
+
 
 }
 }
@@ -541,12 +541,12 @@ let value = 0;
 
 while (value === 0) {
 
-```
+
 value =
   Math.floor(
     Math.random() * 201
   ) - 100;
-```
+
 
 }
 
@@ -660,7 +660,7 @@ teamButtonsElement.innerHTML = "";
 
 game.teams.forEach(team => {
 
-```
+
 const button =
   document.createElement("button");
 
@@ -693,7 +693,7 @@ if (
 }
 
 teamButtonsElement.appendChild(button);
-```
+
 
 });
 
@@ -741,7 +741,7 @@ teamsElement.innerHTML = "";
 
 game.teams.forEach(team => {
 
-```
+
 const card =
   document.createElement("div");
 
@@ -768,7 +768,7 @@ card.innerHTML = `
 `;
 
 teamsElement.appendChild(card);
-```
+
 
 });
 
@@ -807,7 +807,7 @@ teamButtonsElement.innerHTML = "";
 
 game.teams.forEach(team => {
 
-```
+
 const button =
   document.createElement("button");
 
@@ -833,7 +833,7 @@ button.addEventListener(
 );
 
 teamButtonsElement.appendChild(button);
-```
+
 
 });
 }
@@ -906,9 +906,9 @@ card.classList.add("highlight");
 
 setTimeout(() => {
 
-```
+
 card.classList.remove("highlight");
-```
+
 
 }, 700);
 }
@@ -964,14 +964,14 @@ game.timerSeconds === null ||
 game.timerSeconds === undefined
 ) {
 
-```
+
 gameTimerElement.classList.add("hidden");
 
 teacherTimerElement.textContent =
   "No timer";
 
 return;
-```
+
 
 }
 
@@ -989,19 +989,19 @@ Warning animation during final minute.
 
 if (game.timerSeconds <= 60) {
 
-```
+
 gameTimerElement.classList.add("warning");
 
 teacherTimerElement.classList.add("warning");
-```
+
 
 } else {
 
-```
+
 gameTimerElement.classList.remove("warning");
 
 teacherTimerElement.classList.remove("warning");
-```
+
 
 }
 }
@@ -1026,7 +1026,7 @@ updateTimerDisplay();
 timerInterval =
 setInterval(() => {
 
-```
+
   if (!game.started) {
     stopGameTimer();
     return;
@@ -1049,7 +1049,7 @@ setInterval(() => {
   }
 
 }, 1000);
-```
+
 
 }
 
@@ -1057,11 +1057,11 @@ function stopGameTimer() {
 
 if (timerInterval !== null) {
 
-```
+
 clearInterval(timerInterval);
 
 timerInterval = null;
-```
+
 
 }
 
@@ -1164,7 +1164,7 @@ scoreEditors.innerHTML = "";
 
 game.teams.forEach(team => {
 
-```
+
 const editor =
   document.createElement("div");
 
@@ -1194,7 +1194,7 @@ editor.innerHTML = `
 `;
 
 scoreEditors.appendChild(editor);
-```
+
 
 });
 
@@ -1213,7 +1213,7 @@ scoreEditors.querySelectorAll("input");
 
 inputs.forEach(input => {
 
-```
+
 const team =
   game.teams.find(
     t =>
@@ -1232,7 +1232,7 @@ if (Number.isFinite(value)) {
   team.score = value;
 
 }
-```
+
 
 });
 
@@ -1280,7 +1280,7 @@ stopGameTimer();
 
 game = {
 
-```
+
 started: false,
 
 currentValue: null,
@@ -1294,7 +1294,7 @@ teams: [],
 timerSeconds: null,
 
 timerRunning: false
-```
+
 
 };
 
@@ -1304,11 +1304,11 @@ document
 .querySelectorAll(".letter-button")
 .forEach(button => {
 
-```
+
   button.classList.remove("selected");
 
 });
-```
+
 
 setupSection.classList.remove("hidden");
 
@@ -1340,7 +1340,7 @@ game.teams[0];
 
 for (const team of game.teams) {
 
-```
+
 if (
   Math.abs(team.score) <
   Math.abs(winner.score)
@@ -1349,7 +1349,7 @@ if (
   winner = team;
 
 }
-```
+
 
 }
 
@@ -1383,11 +1383,11 @@ closeWinner.addEventListener(
 "click",
 () => {
 
-```
+
 winnerScreen.classList.add(
   "hidden"
 );
-```
+
 
 }
 );
