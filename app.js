@@ -205,6 +205,19 @@ timerRunning: false
 
 let timerInterval = null;
 
+// =========================================================
+// FIREBASE
+// =========================================================
+
+import {
+  ref,
+  set
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+const db = window.firebaseDB;
+
+let firebaseGameId = null;
+
 /* =========================================================
 DOM ELEMENTS
 ========================================================= */
@@ -466,7 +479,7 @@ startGameButton.addEventListener(
 startGame
 );
 
-function startGame() {
+async function startGame() {
 
 if (selectedLetters.length === 0) {
 return;
@@ -484,6 +497,19 @@ game.lastTeamId = null;
 
 game.teams =
 assignAnimals(selectedLetters);
+
+firebaseGameId =
+  Math.random().toString(36).substring(2, 8).toUpperCase();
+
+await set(
+  ref(db, "games/" + firebaseGameId),
+  {
+    started: true,
+    currentValue: null,
+    teams: game.teams
+  }
+);
+  
 
 setupSection.classList.add("hidden");
 
