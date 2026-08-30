@@ -589,3 +589,148 @@ button {
   }
 
 }
+
+
+/* =========================================
+HEADER RIGHT
+========================================= */
+
+.header-right {
+position: absolute;
+right: 0;
+
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+/* =========================================
+GAME TIMER
+========================================= */
+
+.game-timer {
+font-size: clamp(1.2rem, 3vw, 2rem);
+font-weight: bold;
+
+font-variant-numeric: tabular-nums;
+
+min-width: 90px;
+text-align: center;
+
+padding: 6px 12px;
+
+border: 1px solid #555;
+border-radius: 8px;
+
+background: #222;
+}
+
+.game-timer.warning {
+animation: timerPulse 1s infinite;
+}
+
+@keyframes timerPulse {
+50% {
+transform: scale(1.08);
+}
+}
+
+/* =========================================
+TIMER SETUP
+========================================= */
+
+.timer-setup {
+margin-top: 25px;
+}
+
+.optional {
+color: #777;
+font-size: 0.8em;
+font-weight: normal;
+}
+
+.timer-input-row {
+display: flex;
+align-items: center;
+gap: 8px;
+
+margin-top: 10px;
+}
+
+.timer-input-row input {
+width: 100px;
+
+padding: 10px;
+
+background: #222;
+color: white;
+
+border: 1px solid #555;
+border-radius: 6px;
+
+text-align: center;
+}
+
+.timer-input-row span {
+font-weight: bold;
+font-size: 1.4rem;
+}
+
+/* =========================================
+TIMER CONTROL SECTION
+========================================= */
+
+.timer-control-section {
+margin-bottom: 25px;
+}
+
+.timer-display-teacher {
+font-size: 2rem;
+font-weight: bold;
+
+font-variant-numeric: tabular-nums;
+
+text-align: center;
+
+margin: 10px 0;
+}
+
+.timer-display-teacher.warning {
+animation: timerPulse 1s infinite;
+}
+
+/* =========================================
+FINISH GAME
+========================================= */
+
+.finish-button {
+border-color: #777;
+margin-top: 10px;
+}
+
+.finish-button:hover {
+background: #555;
+}
+
+/* =========================================
+MOBILE TIMER
+========================================= */
+
+@media (max-width: 600px) {
+
+.header-right {
+gap: 5px;
+}
+
+.game-timer {
+font-size: 1rem;
+min-width: 65px;
+padding: 5px;
+}
+
+.timer-input-row input {
+width: 80px;
+}
+
+}
+
