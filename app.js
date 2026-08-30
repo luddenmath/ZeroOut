@@ -414,49 +414,47 @@ RANDOM ANIMAL ASSIGNMENT
 
 function assignAnimals(letters) {
 
-const usedAnimals = [];
+  const usedAnimals = [];
 
-return letters.map((letter, index) => {
+  return letters.map((letter, index) => {
 
-```
-const available =
-  animals[letter].filter(
-    animal =>
-      !usedAnimals.includes(animal.name)
-  );
+    const available =
+      animals[letter].filter(
+        animal =>
+          !usedAnimals.includes(animal.name)
+      );
 
-const pool =
-  available.length > 0
-    ? available
-    : animals[letter];
+    const pool =
+      available.length > 0
+        ? available
+        : animals[letter];
 
-const animal =
-  pool[
-    Math.floor(
-      Math.random() * pool.length
-    )
-  ];
+    const animal =
+      pool[
+        Math.floor(
+          Math.random() * pool.length
+        )
+      ];
 
-usedAnimals.push(animal.name);
+    usedAnimals.push(animal.name);
 
-return {
+    return {
 
-  id:
-    `${letter}-${index}-${Date.now()}`,
+      id:
+        `${letter}-${index}-${Date.now()}`,
 
-  letter: letter,
+      letter: letter,
 
-  name: animal.name,
+      name: animal.name,
 
-  emoji: animal.emoji,
+      emoji: animal.emoji,
 
-  score: 0,
+      score: 0,
 
-  position: index
-};
-```
+      position: index
+    };
 
-});
+  });
 }
 
 /* =========================================================
