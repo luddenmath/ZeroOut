@@ -1,1521 +1,1201 @@
 /* =========================================================
-ZERO OUT
-First version with timer + finish game
-========================================================= */
+   ZERO OUT
+   First working version
+   ========================================================= */
+
 
 /* =========================================================
-ANIMAL DATABASE
-========================================================= */
+   ANIMAL DATABASE
+   =========================================================
+
+   For this first version, animals are represented by emoji.
+
+   Later we can replace these with actual animal images.
+   The structure is deliberately set up so that adding images
+   later will be easy.
+*/
 
 const animals = {
 
-A: [
-{ name: "Alligator", emoji: "🐊" },
-{ name: "Ant", emoji: "🐜" },
-{ name: "Antelope", emoji: "🦌" },
-{ name: "Armadillo", emoji: "🦔" },
-{ name: "Axolotl", emoji: "🦎" }
-],
+  A: [
+    { name: "Alligator", emoji: "🐊" },
+    { name: "Ant", emoji: "🐜" },
+    { name: "Antelope", emoji: "🦌" },
+    { name: "Armadillo", emoji: "🦔" },
+    { name: "Axolotl", emoji: "🦎" }
+  ],
 
-B: [
-{ name: "Bear", emoji: "🐻" },
-{ name: "Beaver", emoji: "🦫" },
-{ name: "Bee", emoji: "🐝" },
-{ name: "Buffalo", emoji: "🦬" },
-{ name: "Butterfly", emoji: "🦋" }
-],
+  B: [
+    { name: "Bear", emoji: "🐻" },
+    { name: "Beaver", emoji: "🦫" },
+    { name: "Bee", emoji: "🐝" },
+    { name: "Buffalo", emoji: "🦬" },
+    { name: "Butterfly", emoji: "🦋" }
+  ],
 
-C: [
-{ name: "Cat", emoji: "🐱" },
-{ name: "Cheetah", emoji: "🐆" },
-{ name: "Chicken", emoji: "🐔" },
-{ name: "Crab", emoji: "🦀" },
-{ name: "Crocodile", emoji: "🐊" }
-],
+  C: [
+    { name: "Cat", emoji: "🐱" },
+    { name: "Cheetah", emoji: "🐆" },
+    { name: "Chicken", emoji: "🐔" },
+    { name: "Crab", emoji: "🦀" },
+    { name: "Crocodile", emoji: "🐊" }
+  ],
 
-D: [
-{ name: "Deer", emoji: "🦌" },
-{ name: "Dolphin", emoji: "🐬" },
-{ name: "Donkey", emoji: "🫏" },
-{ name: "Duck", emoji: "🦆" },
-{ name: "Dragonfly", emoji: "🪰" }
-],
+  D: [
+    { name: "Deer", emoji: "🦌" },
+    { name: "Dolphin", emoji: "🐬" },
+    { name: "Donkey", emoji: "🫏" },
+    { name: "Duck", emoji: "🦆" },
+    { name: "Dragonfly", emoji: "🪰" }
+  ],
 
-E: [
-{ name: "Eagle", emoji: "🦅" },
-{ name: "Elephant", emoji: "🐘" },
-{ name: "Elk", emoji: "🦌" },
-{ name: "Eel", emoji: "🐍" }
-],
+  E: [
+    { name: "Eagle", emoji: "🦅" },
+    { name: "Elephant", emoji: "🐘" },
+    { name: "Elk", emoji: "🦌" },
+    { name: "Eel", emoji: "🐍" }
+  ],
 
-F: [
-{ name: "Fox", emoji: "🦊" },
-{ name: "Falcon", emoji: "🦅" },
-{ name: "Frog", emoji: "🐸" },
-{ name: "Flamingo", emoji: "🦩" },
-{ name: "Ferret", emoji: "🦦" }
-],
+  F: [
+    { name: "Fox", emoji: "🦊" },
+    { name: "Falcon", emoji: "🦅" },
+    { name: "Frog", emoji: "🐸" },
+    { name: "Flamingo", emoji: "🦩" },
+    { name: "Ferret", emoji: "🦦" }
+  ],
 
-G: [
-{ name: "Giraffe", emoji: "🦒" },
-{ name: "Goat", emoji: "🐐" },
-{ name: "Gorilla", emoji: "🦍" },
-{ name: "Goose", emoji: "🪿" }
-],
+  G: [
+    { name: "Giraffe", emoji: "🦒" },
+    { name: "Goat", emoji: "🐐" },
+    { name: "Gorilla", emoji: "🦍" },
+    { name: "Goose", emoji: "🪿" }
+  ],
 
-H: [
-{ name: "Hedgehog", emoji: "🦔" },
-{ name: "Hippo", emoji: "🦛" },
-{ name: "Horse", emoji: "🐴" },
-{ name: "Hawk", emoji: "🦅" }
-],
+  H: [
+    { name: "Hedgehog", emoji: "🦔" },
+    { name: "Hippo", emoji: "🦛" },
+    { name: "Horse", emoji: "🐴" },
+    { name: "Hawk", emoji: "🦅" }
+  ],
 
-I: [
-{ name: "Iguana", emoji: "🦎" },
-{ name: "Impala", emoji: "🦌" },
-{ name: "Ibis", emoji: "🐦" }
-],
+  I: [
+    { name: "Iguana", emoji: "🦎" },
+    { name: "Impala", emoji: "🦌" },
+    { name: "Ibis", emoji: "🐦" }
+  ],
 
-J: [
-{ name: "Jaguar", emoji: "🐆" },
-{ name: "Jellyfish", emoji: "🪼" },
-{ name: "Jackal", emoji: "🦊" }
-],
+  J: [
+    { name: "Jaguar", emoji: "🐆" },
+    { name: "Jellyfish", emoji: "🪼" },
+    { name: "Jackal", emoji: "🦊" }
+  ],
 
-K: [
-{ name: "Kangaroo", emoji: "🦘" },
-{ name: "Koala", emoji: "🐨" },
-{ name: "Kingfisher", emoji: "🐦" }
-],
+  K: [
+    { name: "Kangaroo", emoji: "🦘" },
+    { name: "Koala", emoji: "🐨" },
+    { name: "Kiwi", emoji: "🥝" },
+    { name: "Kingfisher", emoji: "🐦" }
+  ],
 
-L: [
-{ name: "Lion", emoji: "🦁" },
-{ name: "Leopard", emoji: "🐆" },
-{ name: "Llama", emoji: "🦙" },
-{ name: "Lobster", emoji: "🦞" }
-],
+  L: [
+    { name: "Lion", emoji: "🦁" },
+    { name: "Leopard", emoji: "🐆" },
+    { name: "Llama", emoji: "🦙" },
+    { name: "Lobster", emoji: "🦞" }
+  ],
 
-M: [
-{ name: "Monkey", emoji: "🐒" },
-{ name: "Moose", emoji: "🫎" },
-{ name: "Mouse", emoji: "🐭" },
-{ name: "Meerkat", emoji: "🦦" }
-],
+  M: [
+    { name: "Monkey", emoji: "🐒" },
+    { name: "Moose", emoji: "🫎" },
+    { name: "Mouse", emoji: "🐭" },
+    { name: "Meerkat", emoji: "🦦" }
+  ],
 
-N: [
-{ name: "Narwhal", emoji: "🦄" },
-{ name: "Newt", emoji: "🦎" },
-{ name: "Nightingale", emoji: "🐦" }
-],
+  N: [
+    { name: "Narwhal", emoji: "🦄" },
+    { name: "Newt", emoji: "🦎" },
+    { name: "Nightingale", emoji: "🐦" }
+  ],
 
-O: [
-{ name: "Owl", emoji: "🦉" },
-{ name: "Octopus", emoji: "🐙" },
-{ name: "Otter", emoji: "🦦" },
-{ name: "Ostrich", emoji: "🦤" }
-],
+  O: [
+    { name: "Owl", emoji: "🦉" },
+    { name: "Octopus", emoji: "🐙" },
+    { name: "Otter", emoji: "🦦" },
+    { name: "Ostrich", emoji: "🦤" }
+  ],
 
-P: [
-{ name: "Panda", emoji: "🐼" },
-{ name: "Penguin", emoji: "🐧" },
-{ name: "Pig", emoji: "🐷" },
-{ name: "Porcupine", emoji: "🦔" }
-],
+  P: [
+    { name: "Panda", emoji: "🐼" },
+    { name: "Penguin", emoji: "🐧" },
+    { name: "Pig", emoji: "🐷" },
+    { name: "Porcupine", emoji: "🦔" }
+  ],
 
-Q: [
-{ name: "Quail", emoji: "🐦" }
-],
+  Q: [
+    { name: "Quail", emoji: "🐦" }
+  ],
 
-R: [
-{ name: "Raccoon", emoji: "🦝" },
-{ name: "Rabbit", emoji: "🐰" },
-{ name: "Raven", emoji: "🐦" },
-{ name: "Reindeer", emoji: "🦌" }
-],
+  R: [
+    { name: "Raccoon", emoji: "🦝" },
+    { name: "Rabbit", emoji: "🐰" },
+    { name: "Raven", emoji: "🐦" },
+    { name: "Reindeer", emoji: "🦌" }
+  ],
 
-S: [
-{ name: "Snake", emoji: "🐍" },
-{ name: "Shark", emoji: "🦈" },
-{ name: "Seal", emoji: "🦭" },
-{ name: "Sloth", emoji: "🦥" },
-{ name: "Squirrel", emoji: "🐿️" }
-],
+  S: [
+    { name: "Snake", emoji: "🐍" },
+    { name: "Shark", emoji: "🦈" },
+    { name: "Seal", emoji: "🦭" },
+    { name: "Sloth", emoji: "🦥" },
+    { name: "Squirrel", emoji: "🐿️" }
+  ],
 
-T: [
-{ name: "Tiger", emoji: "🐯" },
-{ name: "Turtle", emoji: "🐢" },
-{ name: "Toucan", emoji: "🐦" },
-{ name: "Turkey", emoji: "🦃" }
-],
+  T: [
+    { name: "Tiger", emoji: "🐯" },
+    { name: "Turtle", emoji: "🐢" },
+    { name: "Toucan", emoji: "🐦" },
+    { name: "Turkey", emoji: "🦃" }
+  ],
 
-U: [
-{ name: "Urchin", emoji: "🦔" }
-],
+  U: [
+    { name: "Urchin", emoji: "🦔" }
+  ],
 
-V: [
-{ name: "Vulture", emoji: "🦅" },
-{ name: "Viper", emoji: "🐍" }
-],
+  V: [
+    { name: "Vulture", emoji: "🦅" },
+    { name: "Viper", emoji: "🐍" }
+  ],
 
-W: [
-{ name: "Wolf", emoji: "🐺" },
-{ name: "Whale", emoji: "🐋" },
-{ name: "Walrus", emoji: "🦭" },
-{ name: "Wombat", emoji: "🐾" }
-],
+  W: [
+    { name: "Wolf", emoji: "🐺" },
+    { name: "Whale", emoji: "🐋" },
+    { name: "Walrus", emoji: "🦭" },
+    { name: "Wombat", emoji: "🐾" }
+  ],
 
-X: [
-{ name: "Xerus", emoji: "🐿️" }
-],
+  X: [
+    { name: "Xerus", emoji: "🐿️" }
+  ],
 
-Y: [
-{ name: "Yak", emoji: "🐂" },
-{ name: "Yellowhammer", emoji: "🐦" }
-],
+  Y: [
+    { name: "Yak", emoji: "🐂" },
+    { name: "Yellowhammer", emoji: "🐦" }
+  ],
 
-Z: [
-{ name: "Zebra", emoji: "🦓" },
-{ name: "Zebu", emoji: "🐂" }
-]
+  Z: [
+    { name: "Zebra", emoji: "🦓" },
+    { name: "Zebu", emoji: "🐂" }
+  ]
 
 };
 
+
 /* =========================================================
-GAME STATE
-========================================================= */
+   GAME STATE
+   ========================================================= */
 
 let game = {
 
-started: false,
+  started: false,
 
-finished: false,
+  currentValue: null,
 
-currentValue: null,
+  lastValue: null,
 
-lastValue: null,
+  lastTeamId: null,
 
-lastTeamId: null,
-
-teams: [],
-
-timerEnabled: false,
-
-timerSeconds: 0,
-
-timerInterval: null
+  teams: []
 
 };
 
+
 /* =========================================================
-DOM ELEMENTS
-========================================================= */
+   DOM ELEMENTS
+   ========================================================= */
 
 const alphabetElement =
-document.getElementById("alphabet");
+  document.getElementById("alphabet");
 
 const selectedCountElement =
-document.getElementById("selectedCount");
+  document.getElementById("selectedCount");
 
 const selectedLettersElement =
-document.getElementById("selectedLetters");
+  document.getElementById("selectedLetters");
 
 const startGameButton =
-document.getElementById("startGame");
+  document.getElementById("startGame");
 
 const setupSection =
-document.getElementById("setupSection");
+  document.getElementById("setupSection");
 
 const gameControls =
-document.getElementById("gameControls");
+  document.getElementById("gameControls");
 
 const teamsElement =
-document.getElementById("teams");
+  document.getElementById("teams");
 
 const currentValueElement =
-document.getElementById("currentValue");
+  document.getElementById("currentValue");
 
 const teacherCurrentValueElement =
-document.getElementById("teacherCurrentValue");
+  document.getElementById("teacherCurrentValue");
 
 const teamButtonsElement =
-document.getElementById("teamButtons");
+  document.getElementById("teamButtons");
 
 const controlPanel =
-document.getElementById("controlPanel");
+  document.getElementById("controlPanel");
 
 const controlsToggle =
-document.getElementById("controlsToggle");
+  document.getElementById("controlsToggle");
 
 const closeControls =
-document.getElementById("closeControls");
+  document.getElementById("closeControls");
+
+const newValueButton =
+  document.getElementById("newValue");
 
 const reassignButton =
-document.getElementById("reassignButton");
+  document.getElementById("reassignButton");
 
 const editScoresButton =
-document.getElementById("editScoresButton");
-
-const finishGameButton =
-document.getElementById("finishGameButton");
+  document.getElementById("editScoresButton");
 
 const resetGameButton =
-document.getElementById("resetGameButton");
+  document.getElementById("resetGameButton");
 
 const editModal =
-document.getElementById("editModal");
+  document.getElementById("editModal");
 
 const scoreEditors =
-document.getElementById("scoreEditors");
+  document.getElementById("scoreEditors");
 
 const saveScoresButton =
-document.getElementById("saveScores");
+  document.getElementById("saveScores");
 
 const cancelScoreEdit =
-document.getElementById("cancelScoreEdit");
+  document.getElementById("cancelScoreEdit");
 
 const closeEditModal =
-document.getElementById("closeEditModal");
+  document.getElementById("closeEditModal");
 
 const winnerScreen =
-document.getElementById("winnerScreen");
+  document.getElementById("winnerScreen");
 
 const winnerAnimal =
-document.getElementById("winnerAnimal");
+  document.getElementById("winnerAnimal");
 
 const winnerName =
-document.getElementById("winnerName");
+  document.getElementById("winnerName");
 
 const winnerScore =
-document.getElementById("winnerScore");
+  document.getElementById("winnerScore");
 
 const closeWinner =
-document.getElementById("closeWinner");
+  document.getElementById("closeWinner");
 
-const timerMinutes =
-document.getElementById("timerMinutes");
-
-const enableTimer =
-document.getElementById("enableTimer");
-
-const setupTimerStatus =
-document.getElementById("setupTimerStatus");
-
-const gameTimerMinutes =
-document.getElementById("gameTimerMinutes");
-
-const setGameTimer =
-document.getElementById("setGameTimer");
-
-const gameTimerStatus =
-document.getElementById("gameTimerStatus");
-
-const timerDisplay =
-document.getElementById("timerDisplay");
 
 /* =========================================================
-TEAM SELECTION
-========================================================= */
+   TEAM SELECTION
+   ========================================================= */
 
 let selectedLetters = [];
 
+
+/*
+   Create alphabet buttons.
+*/
+
 function createAlphabet() {
 
-const letters =
-"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-alphabetElement.innerHTML = "";
+  alphabetElement.innerHTML = "";
 
-for (const letter of letters) {
+  for (const letter of letters) {
 
-```
-const button =
-  document.createElement("button");
+    const button =
+      document.createElement("button");
 
-button.className =
-  "letter-button";
+    button.className = "letter-button";
 
-button.textContent =
-  letter;
+    button.textContent = letter;
 
-button.dataset.letter =
-  letter;
+    button.dataset.letter = letter;
 
-button.addEventListener(
-  "click",
-  () => toggleLetter(letter, button)
-);
+    button.addEventListener(
+      "click",
+      () => toggleLetter(letter, button)
+    );
 
-alphabetElement.appendChild(button);
-```
-
+    alphabetElement.appendChild(button);
+  }
 }
-}
+
+
+/*
+   Select/deselect a letter.
+
+   Because every letter has only one button,
+   duplicate letters are impossible.
+*/
 
 function toggleLetter(letter, button) {
 
-const index =
-selectedLetters.indexOf(letter);
+  const index =
+    selectedLetters.indexOf(letter);
 
-if (index === -1) {
+  if (index === -1) {
 
-```
-selectedLetters.push(letter);
+    selectedLetters.push(letter);
 
-button.classList.add("selected");
-```
+    button.classList.add("selected");
 
-} else {
+  } else {
 
-```
-selectedLetters.splice(index, 1);
+    selectedLetters.splice(index, 1);
 
-button.classList.remove("selected");
-```
+    button.classList.remove("selected");
+  }
 
+  updateTeamSelectionDisplay();
 }
 
-updateTeamSelectionDisplay();
-}
+
+/*
+   Update setup information.
+*/
 
 function updateTeamSelectionDisplay() {
 
-selectedCountElement.textContent =
-selectedLetters.length;
+  selectedCountElement.textContent =
+    selectedLetters.length;
 
-selectedLettersElement.innerHTML = "";
+  selectedLettersElement.innerHTML = "";
 
-selectedLetters.forEach(letter => {
+  selectedLetters.forEach(letter => {
 
-```
-const element =
-  document.createElement("span");
+    const element =
+      document.createElement("span");
 
-element.className =
-  "selected-letter";
+    element.className = "selected-letter";
 
-element.textContent =
-  letter;
+    element.textContent = letter;
 
-selectedLettersElement.appendChild(
-  element
-);
-```
+    selectedLettersElement.appendChild(element);
+  });
 
-});
-
-startGameButton.disabled =
-selectedLetters.length === 0;
+  startGameButton.disabled =
+    selectedLetters.length === 0;
 }
 
+
 /* =========================================================
-ANIMAL ASSIGNMENT
-========================================================= */
+   RANDOM ANIMAL ASSIGNMENT
+   ========================================================= */
+
+
+/*
+   Randomly select an animal for a letter.
+
+   For now we make sure the same animal name isn't used twice
+   during the same game.
+*/
 
 function assignAnimals(letters) {
 
-const usedAnimals = [];
+  const usedAnimals = [];
 
-return letters.map((letter, index) => {
+  return letters.map((letter, index) => {
 
-```
-const available =
-  animals[letter].filter(
-    animal =>
-      !usedAnimals.includes(animal.name)
-  );
+    const available =
+      animals[letter].filter(
+        animal => !usedAnimals.includes(animal.name)
+      );
 
-const pool =
-  available.length > 0
-    ? available
-    : animals[letter];
+    /*
+       In the unlikely event that the letter only has
+       already-used animals, allow one to be reused.
+    */
 
-const animal =
-  pool[
-    Math.floor(
-      Math.random() * pool.length
-    )
-  ];
+    const pool =
+      available.length > 0
+        ? available
+        : animals[letter];
 
-usedAnimals.push(animal.name);
+    const animal =
+      pool[Math.floor(Math.random() * pool.length)];
 
-return {
+    usedAnimals.push(animal.name);
 
-  id:
-    `${letter}-${index}-${Date.now()}`,
+    return {
 
-  letter,
+      id: `${letter}-${index}-${Date.now()}`,
 
-  name:
-    animal.name,
+      letter: letter,
 
-  emoji:
-    animal.emoji,
+      name: animal.name,
 
-  score: 0,
+      emoji: animal.emoji,
 
-  position: index
+      score: 0,
 
-};
-```
+      /*
+         This is the selection order.
+         It determines the team's position on the scoreboard.
+      */
 
-});
+      position: index
+    };
+  });
 }
+
 
 /* =========================================================
-TIMER SETUP
-========================================================= */
-
-let setupTimerEnabled = false;
-
-enableTimer.addEventListener(
-"click",
-() => {
-
-```
-setupTimerEnabled =
-  !setupTimerEnabled;
-
-if (setupTimerEnabled) {
-
-  const minutes =
-    getMinutes(timerMinutes);
-
-  setupTimerStatus.textContent =
-    `Timer: ${minutes} minute${minutes === 1 ? "" : "s"}`;
-
-  enableTimer.textContent =
-    "REMOVE TIMER";
-
-} else {
-
-  setupTimerStatus.textContent =
-    "No timer";
-
-  enableTimer.textContent =
-    "ADD TIMER";
-}
-```
-
-}
-);
-
-/* =========================================================
-START GAME
-========================================================= */
+   START GAME
+   ========================================================= */
 
 startGameButton.addEventListener(
-"click",
-startGame
+  "click",
+  startGame
 );
+
 
 function startGame() {
 
-if (selectedLetters.length === 0) {
-return;
-}
+  if (selectedLetters.length === 0) {
+    return;
+  }
 
-game.started =
-true;
+  game.started = true;
 
-game.finished =
-false;
+  game.currentValue = null;
 
-game.currentValue =
-null;
+  game.lastValue = null;
 
-game.lastValue =
-null;
+  game.lastTeamId = null;
 
-game.lastTeamId =
-null;
+  game.teams =
+    assignAnimals(selectedLetters);
 
-game.teams =
-assignAnimals(selectedLetters);
+  setupSection.classList.add("hidden");
 
-/*
-Copy the setup timer into the game.
-*/
+  gameControls.classList.remove("hidden");
 
-game.timerEnabled =
-setupTimerEnabled;
+  renderEverything();
 
-if (game.timerEnabled) {
+  /*
+     Generate the first point value immediately.
+  */
 
-```
-game.timerSeconds =
-  getMinutes(timerMinutes) * 60;
-```
-
-} else {
-
-```
-game.timerSeconds = 0;
-```
+  generateNewValue();
 
 }
 
-setupSection.classList.add(
-"hidden"
-);
-
-gameControls.classList.remove(
-"hidden"
-);
-
-renderEverything();
-
-/*
-Start the timer if enabled.
-*/
-
-if (game.timerEnabled) {
-
-```
-startTimer();
-```
-
-}
-
-/*
-Generate the first value.
-*/
-
-generateNewValue();
-
-}
 
 /* =========================================================
-RANDOM POINT VALUE
-========================================================= */
+   RANDOM POINT VALUE
+   ========================================================= */
+
+
+/*
+   Generate an integer from -100 through +100,
+   excluding zero.
+*/
 
 function generatePointValue() {
 
-let value = 0;
+  let value = 0;
 
-while (value === 0) {
+  while (value === 0) {
 
-```
-value =
-  Math.floor(
-    Math.random() * 201
-  ) - 100;
-```
+    value =
+      Math.floor(Math.random() * 201) - 100;
+  }
 
+  return value;
 }
 
-return value;
-}
 
 /*
-Every time a new value is needed,
-immediately generate it.
-
-There is no longer a NEW VALUE button.
+   Generate a new value.
 */
+
+newValueButton.addEventListener(
+  "click",
+  generateNewValue
+);
+
 
 function generateNewValue() {
 
-if (
-!game.started ||
-game.finished
-) {
-return;
+  game.currentValue =
+    generatePointValue();
+
+  game.lastValue = null;
+
+  game.lastTeamId = null;
+
+  reassignButton.disabled = true;
+
+  renderValue();
+
 }
 
-game.currentValue =
-generatePointValue();
-
-game.lastValue =
-null;
-
-game.lastTeamId =
-null;
-
-reassignButton.disabled =
-true;
-
-renderValue();
-}
 
 /* =========================================================
-AWARD POINTS
-========================================================= */
+   AWARD POINTS
+   ========================================================= */
 
 function awardPoints(teamId) {
 
-if (
-!game.started ||
-game.finished ||
-game.currentValue === null
-) {
-return;
+  if (
+    !game.started ||
+    game.currentValue === null
+  ) {
+    return;
+  }
+
+  const team =
+    game.teams.find(
+      t => t.id === teamId
+    );
+
+  if (!team) {
+    return;
+  }
+
+
+  /*
+     Save the transaction so it can be reassigned.
+  */
+
+  game.lastValue =
+    game.currentValue;
+
+  game.lastTeamId =
+    team.id;
+
+
+  /*
+     Apply the points.
+  */
+
+  team.score +=
+    game.currentValue;
+
+
+  /*
+     Remove the current value until
+     a new one is generated.
+  */
+
+  game.currentValue = null;
+
+  reassignButton.disabled = false;
+
+  renderEverything();
+
+  highlightTeam(team.id);
 }
 
-const team =
-game.teams.find(
-t => t.id === teamId
-);
-
-if (!team) {
-return;
-}
-
-/*
-Save this transaction.
-*/
-
-game.lastValue =
-game.currentValue;
-
-game.lastTeamId =
-team.id;
-
-/*
-Award the points.
-*/
-
-team.score +=
-game.currentValue;
-
-/*
-IMPORTANT:
-Immediately generate the next value.
-*/
-
-game.currentValue =
-generatePointValue();
-
-/*
-Reassign now refers to the value
-that was just awarded.
-*/
-
-reassignButton.disabled =
-false;
-
-renderEverything();
-
-highlightTeam(team.id);
-}
 
 /* =========================================================
-REASSIGN LAST VALUE
-========================================================= */
+   REASSIGN LAST VALUE
+   ========================================================= */
 
 reassignButton.addEventListener(
-"click",
-beginReassign
+  "click",
+  beginReassign
 );
+
 
 function beginReassign() {
 
-if (
-game.lastValue === null ||
-game.lastTeamId === null
-) {
-return;
+  if (
+    game.lastValue === null ||
+    game.lastTeamId === null
+  ) {
+    return;
+  }
+
+  /*
+     Create temporary buttons.
+
+     We don't change anything until
+     the teacher selects another team.
+  */
+
+  const value =
+    game.lastValue;
+
+  teamButtonsElement.innerHTML = "";
+
+  game.teams.forEach(team => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "team-select-button";
+
+    button.innerHTML = `
+      <span>
+        ${team.emoji}
+        ${team.name}
+      </span>
+
+      <span class="button-score">
+        ${formatScore(team.score)}
+      </span>
+    `;
+
+    button.addEventListener(
+      "click",
+      () => reassignValue(team.id)
+    );
+
+    /*
+       The team that originally received the value
+       cannot be selected again.
+    */
+
+    if (team.id === game.lastTeamId) {
+
+      button.disabled = true;
+
+      button.style.opacity = "0.35";
+    }
+
+    teamButtonsElement.appendChild(button);
+
+  });
+
 }
 
-const originalTeamId =
-game.lastTeamId;
 
-teamButtonsElement.innerHTML = "";
-
-game.teams.forEach(team => {
-
-```
-const button =
-  document.createElement("button");
-
-button.className =
-  "team-select-button";
-
-button.innerHTML = `
-
-  <span>
-    ${team.emoji}
-    ${team.name}
-  </span>
-
-  <span class="button-score">
-    ${formatScore(team.score)}
-  </span>
-
-`;
-
-button.addEventListener(
-  "click",
-  () => reassignValue(team.id)
-);
-
-if (
-  team.id === originalTeamId
-) {
-
-  button.disabled =
-    true;
-
-  button.style.opacity =
-    "0.35";
-}
-
-teamButtonsElement.appendChild(
-  button
-);
-```
-
-});
-
-}
+/*
+   Move the previous value from the old team
+   to the newly selected team.
+*/
 
 function reassignValue(newTeamId) {
 
-if (
-game.lastValue === null ||
-game.lastTeamId === null
-) {
-return;
+  const oldTeam =
+    game.teams.find(
+      team => team.id === game.lastTeamId
+    );
+
+  const newTeam =
+    game.teams.find(
+      team => team.id === newTeamId
+    );
+
+  if (!oldTeam || !newTeam) {
+    return;
+  }
+
+  /*
+     Remove the points from the original team.
+  */
+
+  oldTeam.score -=
+    game.lastValue;
+
+
+  /*
+     Apply them to the new team.
+  */
+
+  newTeam.score +=
+    game.lastValue;
+
+
+  /*
+     Record the new recipient.
+  */
+
+  game.lastTeamId =
+    newTeam.id;
+
+
+  renderEverything();
+
+  highlightTeam(newTeam.id);
 }
 
-const oldTeam =
-game.teams.find(
-team =>
-team.id === game.lastTeamId
-);
-
-const newTeam =
-game.teams.find(
-team =>
-team.id === newTeamId
-);
-
-if (
-!oldTeam ||
-!newTeam ||
-oldTeam.id === newTeam.id
-) {
-return;
-}
-
-/*
-Remove the previous value from
-the original recipient.
-*/
-
-oldTeam.score -=
-game.lastValue;
-
-/*
-Apply it to the new recipient.
-*/
-
-newTeam.score +=
-game.lastValue;
-
-game.lastTeamId =
-newTeam.id;
-
-renderEverything();
-
-highlightTeam(newTeam.id);
-}
 
 /* =========================================================
-FINISH GAME
-========================================================= */
-
-finishGameButton.addEventListener(
-"click",
-finishGame
-);
-
-function finishGame() {
-
-if (!game.started || game.finished) {
-return;
-}
-
-const confirmed =
-confirm(
-"Finish the game now?"
-);
-
-if (!confirmed) {
-return;
-}
-
-endGame();
-}
-
-function endGame() {
-
-game.finished =
-true;
-
-game.started =
-false;
-
-stopTimer();
-
-game.currentValue =
-null;
-
-renderEverything();
-
-showWinner();
-}
-
-/* =========================================================
-TIMER
-========================================================= */
-
-function getMinutes(input) {
-
-let minutes =
-Number(input.value);
-
-if (
-!Number.isFinite(minutes) ||
-minutes < 1
-) {
-minutes = 1;
-}
-
-if (minutes > 180) {
-minutes = 180;
-}
-
-input.value =
-minutes;
-
-return minutes;
-}
-
-/*
-Set/change timer while game is running.
-*/
-
-setGameTimer.addEventListener(
-"click",
-() => {
-
-```
-if (
-  !game.started ||
-  game.finished
-) {
-  return;
-}
-
-const minutes =
-  getMinutes(gameTimerMinutes);
-
-game.timerEnabled =
-  true;
-
-game.timerSeconds =
-  minutes * 60;
-
-startTimer();
-```
-
-}
-);
-
-/*
-Start/restart the countdown.
-*/
-
-function startTimer() {
-
-stopTimer();
-
-updateTimerDisplay();
-
-game.timerInterval =
-setInterval(
-() => {
-
-```
-    game.timerSeconds--;
-
-    updateTimerDisplay();
-
-    if (
-      game.timerSeconds <= 0
-    ) {
-
-      game.timerSeconds = 0;
-
-      updateTimerDisplay();
-
-      stopTimer();
-
-      endGame();
-
-    }
-
-  },
-  1000
-);
-```
-
-}
-
-/*
-Stop countdown.
-*/
-
-function stopTimer() {
-
-if (
-game.timerInterval !== null
-) {
-
-```
-clearInterval(
-  game.timerInterval
-);
-
-game.timerInterval =
-  null;
-```
-
-}
-}
-
-/*
-Display timer everywhere.
-*/
-
-function updateTimerDisplay() {
-
-if (!game.timerEnabled) {
-
-```
-timerDisplay.classList.add(
-  "hidden"
-);
-
-gameTimerStatus.textContent =
-  "No timer";
-
-return;
-```
-
-}
-
-timerDisplay.classList.remove(
-"hidden"
-);
-
-const minutes =
-Math.floor(
-game.timerSeconds / 60
-);
-
-const seconds =
-game.timerSeconds % 60;
-
-const display =
-`${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-
-timerDisplay.textContent =
-display;
-
-gameTimerStatus.textContent =
-`Time remaining: ${display}`;
-}
-
-/* =========================================================
-SCOREBOARD
-========================================================= */
+   RENDER SCOREBOARD
+   ========================================================= */
 
 function renderScoreboard() {
 
-teamsElement.innerHTML = "";
+  teamsElement.innerHTML = "";
 
-game.teams.forEach(team => {
+  game.teams.forEach(team => {
 
-```
-const card =
-  document.createElement("div");
+    const card =
+      document.createElement("div");
 
-card.className =
-  "team-card";
+    card.className = "team-card";
 
-card.dataset.teamId =
-  team.id;
+    card.dataset.teamId =
+      team.id;
 
-card.innerHTML = `
+    card.innerHTML = `
 
-  <div class="team-animal">
-    ${team.emoji}
-  </div>
+      <div class="team-animal">
+        ${team.emoji}
+      </div>
 
-  <div class="team-name">
-    ${team.name}
-  </div>
+      <div class="team-name">
+        ${team.name}
+      </div>
 
-  <div class="team-score">
-    ${formatScore(team.score)}
-  </div>
+      <div class="team-score">
+        ${formatScore(team.score)}
+      </div>
 
-`;
+    `;
 
-teamsElement.appendChild(
-  card
-);
-```
+    teamsElement.appendChild(card);
+  });
 
-});
 
-const count =
-game.teams.length;
+  /*
+     Adjust the grid based on the number of teams.
+  */
 
-let columns = 2;
+  const count =
+    game.teams.length;
 
-if (count === 1) {
-columns = 1;
+  let columns = 2;
+
+  if (count === 1) {
+    columns = 1;
+  }
+
+  else if (count === 2) {
+    columns = 2;
+  }
+
+  else if (count <= 4) {
+    columns = 2;
+  }
+
+  else if (count <= 6) {
+    columns = 3;
+  }
+
+  else if (count <= 9) {
+    columns = 3;
+  }
+
+  else {
+    columns = 4;
+  }
+
+  teamsElement.style.gridTemplateColumns =
+    `repeat(${columns}, 1fr)`;
 }
 
-else if (count <= 4) {
-columns = 2;
-}
-
-else if (count <= 9) {
-columns = 3;
-}
-
-else {
-columns = 4;
-}
-
-teamsElement.style.gridTemplateColumns =
-`repeat(${columns}, 1fr)`;
-}
 
 /* =========================================================
-TEACHER TEAM BUTTONS
-========================================================= */
+   RENDER TEACHER TEAM BUTTONS
+   ========================================================= */
 
 function renderTeamButtons() {
 
-teamButtonsElement.innerHTML = "";
+  teamButtonsElement.innerHTML = "";
 
-game.teams.forEach(team => {
+  game.teams.forEach(team => {
 
-```
-const button =
-  document.createElement("button");
+    const button =
+      document.createElement("button");
 
-button.className =
-  "team-select-button";
+    button.className =
+      "team-select-button";
 
-button.innerHTML = `
+    button.innerHTML = `
 
-  <span>
-    ${team.emoji}
-    ${team.name}
-  </span>
+      <span>
+        ${team.emoji}
+        ${team.name}
+      </span>
 
-  <span class="button-score">
-    ${formatScore(team.score)}
-  </span>
+      <span class="button-score">
+        ${formatScore(team.score)}
+      </span>
 
-`;
+    `;
 
-button.addEventListener(
-  "click",
-  () => awardPoints(team.id)
-);
+    button.addEventListener(
+      "click",
+      () => awardPoints(team.id)
+    );
 
-teamButtonsElement.appendChild(
-  button
-);
-```
+    teamButtonsElement.appendChild(button);
 
-});
+  });
 }
 
+
 /* =========================================================
-VALUE DISPLAY
-========================================================= */
+   RENDER VALUE
+   ========================================================= */
 
 function renderValue() {
 
-const display =
-game.currentValue === null
-? "—"
-: formatScore(
-game.currentValue
-);
+  const value =
+    game.currentValue;
 
-currentValueElement.textContent =
-display;
+  const display =
+    value === null
+      ? "—"
+      : formatScore(value);
 
-teacherCurrentValueElement.textContent =
-display;
+  currentValueElement.textContent =
+    display;
 
-updateTimerDisplay();
+  teacherCurrentValueElement.textContent =
+    display;
 }
 
+
 /* =========================================================
-RENDER EVERYTHING
-========================================================= */
+   RENDER EVERYTHING
+   ========================================================= */
 
 function renderEverything() {
 
-renderScoreboard();
+  renderScoreboard();
 
-renderTeamButtons();
+  renderTeamButtons();
 
-renderValue();
+  renderValue();
+
 }
 
+
 /* =========================================================
-SCORE FORMATTING
-========================================================= */
+   SCORE FORMATTING
+   ========================================================= */
 
 function formatScore(value) {
 
-if (value > 0) {
-return `+${value}`;
+  if (value > 0) {
+    return `+${value}`;
+  }
+
+  return String(value);
 }
 
-return String(value);
-}
 
 /* =========================================================
-HIGHLIGHT TEAM
-========================================================= */
+   HIGHLIGHT TEAM
+   ========================================================= */
 
 function highlightTeam(teamId) {
 
-const card =
-document.querySelector(
-`.team-card[data-team-id="${teamId}"]`
-);
+  const card =
+    document.querySelector(
+      `.team-card[data-team-id="${teamId}"]`
+    );
 
-if (!card) {
-return;
+  if (!card) {
+    return;
+  }
+
+  card.classList.add("highlight");
+
+  setTimeout(() => {
+
+    card.classList.remove("highlight");
+
+  }, 700);
 }
 
-card.classList.add(
-"highlight"
-);
-
-setTimeout(
-() => {
-card.classList.remove(
-"highlight"
-);
-},
-700
-);
-}
 
 /* =========================================================
-CONTROL PANEL
-========================================================= */
+   CONTROL PANEL
+   ========================================================= */
 
 controlsToggle.addEventListener(
-"click",
-() => {
-controlPanel.classList.add(
-"open"
+  "click",
+  () => {
+    controlPanel.classList.add("open");
+  }
 );
-}
-);
+
 
 closeControls.addEventListener(
-"click",
-() => {
-controlPanel.classList.remove(
-"open"
+  "click",
+  () => {
+    controlPanel.classList.remove("open");
+  }
 );
-}
-);
+
 
 /* =========================================================
-EDIT SCORES
-========================================================= */
+   EDIT SCORES
+   ========================================================= */
 
 editScoresButton.addEventListener(
-"click",
-openScoreEditor
+  "click",
+  openScoreEditor
 );
+
 
 function openScoreEditor() {
 
-scoreEditors.innerHTML = "";
+  scoreEditors.innerHTML = "";
 
-game.teams.forEach(team => {
+  game.teams.forEach(team => {
 
-```
-const editor =
-  document.createElement("div");
+    const editor =
+      document.createElement("div");
 
-editor.className =
-  "score-editor";
+    editor.className =
+      "score-editor";
 
-editor.innerHTML = `
+    editor.innerHTML = `
 
-  <label>
-    ${team.name}
-  </label>
+      <label>
+        ${team.name}
+      </label>
 
-  <div class="score-editor-row">
+      <div class="score-editor-row">
 
-    <div class="score-editor-animal">
-      ${team.emoji}
-    </div>
+        <div class="score-editor-animal">
+          ${team.emoji}
+        </div>
 
-    <input
-      type="number"
-      data-team-id="${team.id}"
-      value="${team.score}"
-    >
+        <input
+          type="number"
+          data-team-id="${team.id}"
+          value="${team.score}"
+        >
 
-  </div>
+      </div>
 
-`;
+    `;
 
-scoreEditors.appendChild(
-  editor
-);
-```
+    scoreEditors.appendChild(editor);
 
-});
+  });
 
-editModal.classList.remove(
-"hidden"
-);
+  editModal.classList.remove("hidden");
 }
 
+
+/*
+   Save manually edited scores.
+*/
+
 saveScoresButton.addEventListener(
-"click",
-saveEditedScores
+  "click",
+  saveEditedScores
 );
+
 
 function saveEditedScores() {
 
-const inputs =
-scoreEditors.querySelectorAll(
-"input"
-);
+  const inputs =
+    scoreEditors.querySelectorAll("input");
 
-inputs.forEach(input => {
+  inputs.forEach(input => {
 
-```
-const team =
-  game.teams.find(
-    t =>
-      t.id === input.dataset.teamId
-  );
+    const team =
+      game.teams.find(
+        t => t.id === input.dataset.teamId
+      );
 
-if (!team) {
-  return;
+    if (!team) {
+      return;
+    }
+
+    const value =
+      Number(input.value);
+
+    if (Number.isFinite(value)) {
+
+      team.score = value;
+
+    }
+
+  });
+
+  closeScoreEditor();
+
+  renderEverything();
 }
 
-const value =
-  Number(input.value);
 
-if (
-  Number.isFinite(value)
-) {
-
-  team.score =
-    value;
-}
-```
-
-});
-
-closeScoreEditor();
-
-renderEverything();
-}
+/*
+   Close score editor.
+*/
 
 function closeScoreEditor() {
 
-editModal.classList.add(
-"hidden"
-);
+  editModal.classList.add("hidden");
 }
 
+
 closeEditModal.addEventListener(
-"click",
-closeScoreEditor
+  "click",
+  closeScoreEditor
 );
+
 
 cancelScoreEdit.addEventListener(
-"click",
-closeScoreEditor
+  "click",
+  closeScoreEditor
 );
+
 
 /* =========================================================
-NEW GAME
-========================================================= */
+   NEW GAME
+   ========================================================= */
 
 resetGameButton.addEventListener(
-"click",
-resetGame
+  "click",
+  resetGame
 );
+
 
 function resetGame() {
 
-const confirmed =
-confirm(
-"Start a new game? The current game will be lost."
-);
+  const confirmed =
+    confirm(
+      "Start a new game? The current game will be lost."
+    );
 
-if (!confirmed) {
-return;
+  if (!confirmed) {
+    return;
+  }
+
+  game = {
+
+    started: false,
+
+    currentValue: null,
+
+    lastValue: null,
+
+    lastTeamId: null,
+
+    teams: []
+
+  };
+
+  selectedLetters = [];
+
+  /*
+     Reset alphabet buttons.
+  */
+
+  document
+    .querySelectorAll(".letter-button")
+    .forEach(button => {
+
+      button.classList.remove("selected");
+
+    });
+
+
+  setupSection.classList.remove("hidden");
+
+  gameControls.classList.add("hidden");
+
+  reassignButton.disabled = true;
+
+  updateTeamSelectionDisplay();
+
+  teamsElement.innerHTML = "";
+
+  renderValue();
+
 }
 
-stopTimer();
-
-game = {
-
-```
-started: false,
-
-finished: false,
-
-currentValue: null,
-
-lastValue: null,
-
-lastTeamId: null,
-
-teams: [],
-
-timerEnabled: false,
-
-timerSeconds: 0,
-
-timerInterval: null
-```
-
-};
-
-selectedLetters = [];
-
-setupTimerEnabled = false;
-
-document
-.querySelectorAll(
-".letter-button"
-)
-.forEach(button => {
-
-```
-  button.classList.remove(
-    "selected"
-  );
-
-});
-```
-
-enableTimer.textContent =
-"ADD TIMER";
-
-setupTimerStatus.textContent =
-"No timer";
-
-setupSection.classList.remove(
-"hidden"
-);
-
-gameControls.classList.add(
-"hidden"
-);
-
-reassignButton.disabled =
-true;
-
-teamsElement.innerHTML = "";
-
-updateTeamSelectionDisplay();
-
-renderValue();
-}
 
 /* =========================================================
-WINNER
-========================================================= */
+   WINNER
+   =========================================================
+
+   This first version includes the winner system but does
+   not automatically trigger it because we haven't yet
+   defined how the teacher signals that the game is over.
+
+   We can add a FINISH GAME button later.
+*/
 
 function determineWinner() {
 
-if (
-game.teams.length === 0
-) {
-return null;
+  if (game.teams.length === 0) {
+    return null;
+  }
+
+  let winner =
+    game.teams[0];
+
+  for (const team of game.teams) {
+
+    if (
+      Math.abs(team.score) <
+      Math.abs(winner.score)
+    ) {
+
+      winner = team;
+
+    }
+
+  }
+
+  return winner;
 }
 
-let winner =
-game.teams[0];
-
-for (
-const team of game.teams
-) {
-
-```
-if (
-  Math.abs(team.score) <
-  Math.abs(winner.score)
-) {
-
-  winner =
-    team;
-}
-```
-
-}
-
-return winner;
-}
 
 function showWinner() {
 
-const winner =
-determineWinner();
+  const winner =
+    determineWinner();
 
-if (!winner) {
-return;
+  if (!winner) {
+    return;
+  }
+
+  winnerAnimal.textContent =
+    winner.emoji;
+
+  winnerName.textContent =
+    winner.name;
+
+  winnerScore.textContent =
+    formatScore(winner.score);
+
+  winnerScreen.classList.remove(
+    "hidden"
+  );
+
 }
 
-winnerAnimal.textContent =
-winner.emoji;
-
-winnerName.textContent =
-winner.name;
-
-winnerScore.textContent =
-formatScore(winner.score);
-
-winnerScreen.classList.remove(
-"hidden"
-);
-}
 
 closeWinner.addEventListener(
-"click",
-() => {
+  "click",
+  () => {
 
-```
-winnerScreen.classList.add(
-  "hidden"
-);
-```
+    winnerScreen.classList.add(
+      "hidden"
+    );
 
-}
+  }
 );
+
 
 /* =========================================================
-INITIALIZATION
-========================================================= */
+   INITIALIZATION
+   ========================================================= */
 
 createAlphabet();
 
