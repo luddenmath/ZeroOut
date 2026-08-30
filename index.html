@@ -1,204 +1,350 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zero Out v1.1</title>
+  <title>Zero Out v1.0</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- ============================= -->
-  <!-- MAIN APPLICATION -->
-  <!-- ============================= -->
-
   <div id="app">
 
-    <!-- SCOREBOARD -->
-    <main id="scoreboard">
+```
+<!-- ============================= -->
+<!-- SCOREBOARD -->
+<!-- ============================= -->
 
-      <header class="game-header">
-        <h1>ZERO OUT</h1>
-        <button id="controlsToggle" class="small-button">
-          ⚙ Controls
-        </button>
-      </header>
+<main id="scoreboard">
 
-      <section id="teams" class="teams">
-        <!-- Teams are inserted by JavaScript -->
-      </section>
+  <header class="game-header">
+    <h1>ZERO OUT</h1>
 
-      <section class="current-value-area">
-        <div class="value-label">CURRENT VALUE</div>
-        <div id="currentValue" class="current-value">—</div>
-      </section>
+    <button id="controlsToggle" class="small-button">
+      ⚙ Controls
+    </button>
+  </header>
 
-    </main>
+  <section id="teams" class="teams">
+    <!-- Teams inserted by JavaScript -->
+  </section>
+
+  <section class="current-value-area">
+
+    <div class="value-label">
+      CURRENT VALUE
+    </div>
+
+    <div id="currentValue" class="current-value">
+      —
+    </div>
+
+    <div id="timerDisplay" class="timer-display hidden">
+      00:00
+    </div>
+
+  </section>
+
+</main>
 
 
-    <!-- ============================= -->
-    <!-- TEACHER CONTROL PANEL -->
-    <!-- ============================= -->
+<!-- ============================= -->
+<!-- TEACHER CONTROL PANEL -->
+<!-- ============================= -->
 
-    <aside id="controlPanel" class="control-panel">
+<aside id="controlPanel" class="control-panel">
 
-      <div class="control-header">
-        <h2>Teacher Controls</h2>
+  <div class="control-header">
 
-        <button id="closeControls" class="small-button">
-          ✕
-        </button>
+    <h2>Teacher Controls</h2>
+
+    <button id="closeControls" class="small-button">
+      ✕
+    </button>
+
+  </div>
+
+
+  <!-- ============================= -->
+  <!-- SETUP -->
+  <!-- ============================= -->
+
+  <section id="setupSection" class="control-section">
+
+    <h3>Choose Teams</h3>
+
+    <p class="instruction">
+      Select one letter for each team.
+      Each letter can only be used once.
+    </p>
+
+    <div id="alphabet" class="alphabet"></div>
+
+    <div class="selected-info">
+      Teams selected:
+      <strong id="selectedCount">0</strong>
+    </div>
+
+    <div id="selectedLetters" class="selected-letters"></div>
+
+
+    <!-- TIMER SETUP -->
+
+    <div class="timer-settings">
+
+      <h3>Game Timer</h3>
+
+      <p class="instruction">
+        Optional. The game can also be ended manually.
+      </p>
+
+      <div class="timer-input-row">
+
+        <input
+          id="timerMinutes"
+          type="number"
+          min="1"
+          max="180"
+          value="10"
+        >
+
+        <span>minutes</span>
+
       </div>
 
+      <button
+        id="enableTimer"
+        class="secondary-button"
+      >
+        ADD TIMER
+      </button>
 
-      <!-- ============================= -->
-      <!-- SETUP -->
-      <!-- ============================= -->
+      <div
+        id="setupTimerStatus"
+        class="timer-status"
+      >
+        No timer
+      </div>
 
-      <section id="setupSection" class="control-section">
+    </div>
 
-        <h3>Choose Teams</h3>
 
-        <p class="instruction">
-          Select one letter for each team.
-          Each letter can only be used once.
-        </p>
+    <button
+      id="startGame"
+      class="primary-button"
+      disabled
+    >
+      START GAME
+    </button>
 
-        <div id="alphabet" class="alphabet">
-          <!-- Alphabet buttons inserted by JavaScript -->
-        </div>
+  </section>
 
-        <div class="selected-info">
-          Teams selected:
-          <strong id="selectedCount">0</strong>
-        </div>
 
-        <div id="selectedLetters" class="selected-letters">
-          <!-- Selected letters -->
-        </div>
+  <!-- ============================= -->
+  <!-- GAME CONTROLS -->
+  <!-- ============================= -->
 
-        <button id="startGame" class="primary-button" disabled>
-          START GAME
+  <section id="gameControls" class="control-section hidden">
+
+    <div class="teacher-value">
+
+      <div class="value-label">
+        CURRENT VALUE
+      </div>
+
+      <div
+        id="teacherCurrentValue"
+        class="teacher-current-value"
+      >
+        —
+      </div>
+
+    </div>
+
+
+    <!-- TIMER CONTROLS -->
+
+    <div class="game-timer-controls">
+
+      <div class="timer-status">
+        <span id="gameTimerStatus">
+          No timer
+        </span>
+      </div>
+
+      <div class="timer-control-row">
+
+        <input
+          id="gameTimerMinutes"
+          type="number"
+          min="1"
+          max="180"
+          value="10"
+        >
+
+        <span>minutes</span>
+
+        <button
+          id="setGameTimer"
+          class="secondary-button compact-button"
+        >
+          SET TIMER
         </button>
-
-      </section>
-
-
-      <!-- ============================= -->
-      <!-- GAME CONTROLS -->
-      <!-- ============================= -->
-
-      <section id="gameControls" class="control-section hidden">
-
-        <div class="teacher-value">
-          <div class="value-label">CURRENT VALUE</div>
-          <div id="teacherCurrentValue" class="teacher-current-value">
-            —
-          </div>
-        </div>
-
-
-        <h3>Who gets the points?</h3>
-
-        <div id="teamButtons" class="team-buttons">
-          <!-- Team buttons inserted by JavaScript -->
-        </div>
-
-
-        <button id="newValue" class="primary-button">
-          NEW VALUE
-        </button>
-
-
-        <button id="reassignButton" class="secondary-button" disabled>
-          REASSIGN LAST VALUE
-        </button>
-
-
-        <button id="editScoresButton" class="secondary-button">
-          EDIT TEAM SCORES
-        </button>
-
-
-        <button id="resetGameButton" class="danger-button">
-          NEW GAME
-        </button>
-
-      </section>
-
-    </aside>
-
-
-    <!-- ============================= -->
-    <!-- EDIT SCORES MODAL -->
-    <!-- ============================= -->
-
-    <div id="editModal" class="modal hidden">
-
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h2>Edit Team Scores</h2>
-
-          <button id="closeEditModal" class="small-button">
-            ✕
-          </button>
-        </div>
-
-        <div id="scoreEditors">
-          <!-- Score inputs inserted by JavaScript -->
-        </div>
-
-        <div class="modal-actions">
-          <button id="cancelScoreEdit" class="secondary-button">
-            CANCEL
-          </button>
-
-          <button id="saveScores" class="primary-button">
-            SAVE SCORES
-          </button>
-        </div>
 
       </div>
 
     </div>
 
 
-    <!-- ============================= -->
-    <!-- WINNER SCREEN -->
-    <!-- ============================= -->
+    <h3>Who gets the points?</h3>
 
-    <div id="winnerScreen" class="winner-screen hidden">
+    <div
+      id="teamButtons"
+      class="team-buttons"
+    ></div>
 
-      <div class="winner-content">
 
-        <div class="winner-title">
-          GAME OVER
-        </div>
+    <button
+      id="reassignButton"
+      class="secondary-button"
+      disabled
+    >
+      REASSIGN LAST VALUE
+    </button>
 
-        <div id="winnerAnimal" class="winner-animal">
-          🏆
-        </div>
 
-        <div id="winnerName" class="winner-name">
-          Winner
-        </div>
+    <button
+      id="editScoresButton"
+      class="secondary-button"
+    >
+      EDIT TEAM SCORES
+    </button>
 
-        <div id="winnerScore" class="winner-score">
-          0
-        </div>
 
-        <button id="closeWinner" class="primary-button">
-          CLOSE
-        </button>
+    <button
+      id="finishGameButton"
+      class="finish-button"
+    >
+      FINISH GAME
+    </button>
 
-      </div>
+
+    <button
+      id="resetGameButton"
+      class="danger-button"
+    >
+      NEW GAME
+    </button>
+
+  </section>
+
+</aside>
+
+
+<!-- ============================= -->
+<!-- EDIT SCORES MODAL -->
+<!-- ============================= -->
+
+<div
+  id="editModal"
+  class="modal hidden"
+>
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h2>Edit Team Scores</h2>
+
+      <button
+        id="closeEditModal"
+        class="small-button"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <div id="scoreEditors"></div>
+
+    <div class="modal-actions">
+
+      <button
+        id="cancelScoreEdit"
+        class="secondary-button"
+      >
+        CANCEL
+      </button>
+
+      <button
+        id="saveScores"
+        class="primary-button"
+      >
+        SAVE SCORES
+      </button>
 
     </div>
 
   </div>
 
+</div>
+
+
+<!-- ============================= -->
+<!-- WINNER SCREEN -->
+<!-- ============================= -->
+
+<div
+  id="winnerScreen"
+  class="winner-screen hidden"
+>
+
+  <div class="winner-content">
+
+    <div class="winner-title">
+      GAME OVER
+    </div>
+
+    <div
+      id="winnerAnimal"
+      class="winner-animal"
+    >
+      🏆
+    </div>
+
+    <div
+      id="winnerName"
+      class="winner-name"
+    >
+      Winner
+    </div>
+
+    <div
+      id="winnerScore"
+      class="winner-score"
+    >
+      0
+    </div>
+
+    <div class="winner-subtitle">
+      Closest to zero!
+    </div>
+
+    <button
+      id="closeWinner"
+      class="primary-button"
+    >
+      CLOSE
+    </button>
+
+  </div>
+
+</div>
+```
+
+  </div>
 
   <script src="app.js"></script>
 
