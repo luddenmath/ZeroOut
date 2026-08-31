@@ -54,100 +54,158 @@
       font-size: 0.9rem;
     }
 
-    /* CURRENT VALUE */
+    .game-code strong {
+      color: white;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+    }
+
+    /* =========================================
+       SECTIONS
+       ========================================= */
+
+    .section {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+    }
+
+    .instruction {
+      color: #aaa;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    /* =========================================
+       TEAM SETUP
+       ========================================= */
+
+    #setupSection {
+      background: #181818;
+      border: 1px solid #444;
+      border-radius: 15px;
+      padding: 20px;
+    }
+
+    #setupSection.hidden {
+      display: none;
+    }
+
+    .alphabet {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 15px;
+    }
+
+    .letter-button {
+      aspect-ratio: 1;
+      border-radius: 7px;
+      border: 1px solid #555;
+      background: #242424;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .letter-button:hover {
+      background: #333;
+    }
+
+    .letter-button.selected {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    .selected-info {
+      margin-top: 15px;
+      color: #aaa;
+    }
+
+    .selected-letters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .selected-letter {
+      background: #333;
+      border-radius: 5px;
+      padding: 5px 9px;
+      font-weight: bold;
+    }
+
+    /* =========================================
+       CURRENT VALUE
+       ========================================= */
 
     .current-value {
       text-align: center;
-
       background: #181818;
-
       border: 1px solid #444;
       border-radius: 15px;
-
       padding: 20px;
-
       margin-bottom: 20px;
     }
 
     .label {
       color: #aaa;
-
       font-size: 0.8rem;
-
       letter-spacing: 0.15em;
     }
 
     #currentValue {
       font-size: 5rem;
-
       font-weight: bold;
-
       line-height: 1.1;
-
       margin-top: 5px;
     }
 
-    /* TEAMS */
+    /* =========================================
+       TEAMS
+       ========================================= */
 
     .teams {
       display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
 
     .team-button {
-
       display: flex;
-
       justify-content: space-between;
-
       align-items: center;
-
       width: 100%;
-
       background: #181818;
-
       border: 2px solid #444;
-
       border-radius: 12px;
-
       padding: 15px 20px;
-
       color: white;
-
       cursor: pointer;
-
       text-align: left;
-
       transition:
         background 0.15s,
         border-color 0.15s;
-
     }
 
     .team-button:hover {
-
       background: #292929;
-
       border-color: #777;
-
     }
 
     .team-left {
-
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
       font-size: 1.2rem;
-
       font-weight: bold;
-
     }
 
     .animal {
@@ -155,188 +213,126 @@
     }
 
     .score {
-
       font-size: 1.5rem;
-
       font-weight: bold;
-
       white-space: nowrap;
-
     }
 
-    /* CONTROL SECTIONS */
-
-    .section {
-
-      margin-top: 25px;
-
-      padding-top: 20px;
-
-      border-top: 1px solid #333;
-
-    }
-
-    .section h2 {
-
-      margin: 0 0 12px;
-
-      font-size: 1.1rem;
-
-    }
-
-    /* BUTTONS */
+    /* =========================================
+       BUTTONS
+       ========================================= */
 
     button {
-
       font: inherit;
-
     }
 
     .control-button {
-
       width: 100%;
-
       padding: 13px 15px;
-
       margin-top: 8px;
-
       border-radius: 9px;
-
       border: 1px solid #555;
-
       background: #242424;
-
       color: white;
-
       font-weight: bold;
-
       cursor: pointer;
-
     }
 
     .control-button:hover {
-
       background: #333;
+    }
 
+    .control-button:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
     }
 
     .primary {
-
       background: white;
-
       color: black;
-
       border-color: white;
-
     }
 
     .primary:hover {
-
       background: #ddd;
-
     }
 
     .danger {
-
       background: #702020;
-
     }
 
     .danger:hover {
-
       background: #902020;
-
     }
 
-    /* TIMER */
+    /* =========================================
+       TIMER
+       ========================================= */
 
     .timer-display {
-
       text-align: center;
-
       font-size: 2.5rem;
-
       font-weight: bold;
-
-      font-variant-numeric:
-        tabular-nums;
-
+      font-variant-numeric: tabular-nums;
       min-height: 50px;
-
       margin-bottom: 10px;
-
     }
 
     .timer-display.warning {
-
-      animation:
-        timerPulse 1s infinite;
-
+      animation: timerPulse 1s infinite;
     }
 
     @keyframes timerPulse {
-
       50% {
         transform: scale(1.05);
       }
-
     }
 
     .timer-input-row {
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       gap: 8px;
-
     }
 
     .timer-input-row input {
-
       width: 100px;
-
       padding: 10px;
-
       background: #222;
-
       color: white;
-
       border: 1px solid #555;
-
       border-radius: 6px;
-
       text-align: center;
-
       font-size: 1.1rem;
-
     }
 
     .timer-input-row span {
-
       font-size: 1.4rem;
-
       font-weight: bold;
-
     }
 
-    /* STATUS */
+    /* =========================================
+       STATUS
+       ========================================= */
 
     #status {
-
       text-align: center;
-
       color: #777;
-
       margin-top: 20px;
-
       font-size: 0.85rem;
-
     }
 
-    /* MOBILE */
+    /* =========================================
+       GAME AREA
+       ========================================= */
+
+    #gameSection.hidden {
+      display: none;
+    }
+
+    /* =========================================
+       MOBILE
+       ========================================= */
 
     @media (max-width: 600px) {
 
@@ -360,6 +356,10 @@
         font-size: 4rem;
       }
 
+      .alphabet {
+        grid-template-columns: repeat(7, 1fr);
+      }
+
     }
 
   </style>
@@ -371,8 +371,9 @@
 
 <div id="teacherApp">
 
-
-  <!-- HEADER -->
+  <!-- =========================================
+       HEADER
+       ========================================= -->
 
   <header>
 
@@ -386,151 +387,196 @@
   </header>
 
 
-  <!-- CURRENT VALUE -->
+  <!-- =========================================
+       GAME SETUP
+       ========================================= -->
 
-  <section class="current-value">
+  <section id="setupSection">
 
-    <div class="label">
-      CURRENT VALUE
-    </div>
+    <h2>Choose Teams</h2>
 
-    <div id="currentValue">
-      —
-    </div>
-
-  </section>
-
-
-  <!-- TEAMS -->
-
-  <section>
+    <p class="instruction">
+      Select one letter for each team.
+      Each letter can only be used once.
+    </p>
 
     <div
-      id="teams"
-      class="teams">
+      id="alphabet"
+      class="alphabet">
     </div>
 
-  </section>
+    <div class="selected-info">
 
+      Teams selected:
+      <strong id="selectedCount">0</strong>
 
-  <!-- GAME CONTROLS -->
-
-  <section class="section">
-
-    <h2>Game Controls</h2>
-
-<button
-  id="createGame"
-  class="control-button primary">
-
-  CREATE NEW GAME
-
-</button>
-    
-    <button
-      id="newValue"
-      class="control-button primary">
-
-      NEW VALUE
-
-    </button>
-
-
-    <button
-      id="reassign"
-      class="control-button">
-
-      REASSIGN LAST VALUE
-
-    </button>
-
-  </section>
-
-
-  <!-- TIMER -->
-
-  <section class="section">
-
-    <h2>Game Timer</h2>
+    </div>
 
     <div
-      id="timerDisplay"
-      class="timer-display">
+      id="selectedLetters"
+      class="selected-letters">
     </div>
 
-
-    <div class="timer-input-row">
-
-      <input
-        id="timerMinutes"
-        type="number"
-        min="0"
-        max="999"
-        placeholder="Minutes"
-      >
-
-      <span>:</span>
-
-      <input
-        id="timerSeconds"
-        type="number"
-        min="0"
-        max="59"
-        placeholder="Seconds"
-      >
-
-    </div>
-
-
     <button
-      id="setTimer"
-      class="control-button">
+      id="createGame"
+      class="control-button primary"
+      disabled>
 
-      SET / START TIMER
-
-    </button>
-
-
-    <button
-      id="stopTimer"
-      class="control-button">
-
-      STOP TIMER
+      CREATE NEW GAME
 
     </button>
 
   </section>
 
 
-  <!-- GAME END -->
+  <!-- =========================================
+       GAME
+       ========================================= -->
 
-  <section class="section">
-
-    <h2>Game</h2>
-
-
-    <button
-      id="finishGame"
-      class="control-button">
-
-      FINISH GAME
-
-    </button>
+  <section
+    id="gameSection"
+    class="hidden">
 
 
-    <button
-      id="newGame"
-      class="control-button danger">
+    <!-- CURRENT VALUE -->
 
-      NEW GAME
+    <section class="current-value">
 
-    </button>
+      <div class="label">
+        CURRENT VALUE
+      </div>
+
+      <div id="currentValue">
+        —
+      </div>
+
+    </section>
+
+
+    <!-- TEAMS -->
+
+    <section>
+
+      <div
+        id="teams"
+        class="teams">
+      </div>
+
+    </section>
+
+
+    <!-- GAME CONTROLS -->
+
+    <section class="section">
+
+      <h2>Game Controls</h2>
+
+      <button
+        id="newValue"
+        class="control-button primary">
+
+        NEW VALUE
+
+      </button>
+
+
+      <button
+        id="reassign"
+        class="control-button">
+
+        REASSIGN LAST VALUE
+
+      </button>
+
+    </section>
+
+
+    <!-- TIMER -->
+
+    <section class="section">
+
+      <h2>Game Timer</h2>
+
+      <div
+        id="timerDisplay"
+        class="timer-display">
+      </div>
+
+
+      <div class="timer-input-row">
+
+        <input
+          id="timerMinutes"
+          type="number"
+          min="0"
+          max="999"
+          placeholder="Minutes"
+        >
+
+        <span>:</span>
+
+        <input
+          id="timerSeconds"
+          type="number"
+          min="0"
+          max="59"
+          placeholder="Seconds"
+        >
+
+      </div>
+
+
+      <button
+        id="setTimer"
+        class="control-button">
+
+        SET / START TIMER
+
+      </button>
+
+
+      <button
+        id="stopTimer"
+        class="control-button">
+
+        STOP TIMER
+
+      </button>
+
+    </section>
+
+
+    <!-- GAME END -->
+
+    <section class="section">
+
+      <h2>Game</h2>
+
+
+      <button
+        id="finishGame"
+        class="control-button">
+
+        FINISH GAME
+
+      </button>
+
+
+      <button
+        id="newGame"
+        class="control-button danger">
+
+        NEW GAME
+
+      </button>
+
+    </section>
 
   </section>
 
 
   <div id="status">
-    Connecting to Firebase...
+    Select teams to create a game.
   </div>
 
 
@@ -538,7 +584,6 @@
 
 
 <script type="module">
-
 
 /* =========================================================
    FIREBASE
@@ -566,7 +611,7 @@ from
 const firebaseConfig = {
 
   apiKey:
-    "AIzaSyAPWLBaAg5DTMlw22599dLRbPDnKFObaMs",
+    "AIzaSyAPW8...22599dLRbPDnKFObaMs",
 
   authDomain:
     "zeroout-7dace.firebaseapp.com",
@@ -598,15 +643,570 @@ getDatabase(app);
 
 
 /* =========================================================
-   GAME ID
+   ANIMAL DATABASE
    ========================================================= */
 
-let gameId = null;
-let gameRef = null;
+const animals = {
+
+  A: [
+    { name: "Alligator", emoji: "🐊" },
+    { name: "Ant", emoji: "🐜" },
+    { name: "Antelope", emoji: "🦌" },
+    { name: "Armadillo", emoji: "🦔" },
+    { name: "Axolotl", emoji: "🦎" }
+  ],
+
+  B: [
+    { name: "Bear", emoji: "🐻" },
+    { name: "Beaver", emoji: "🦫" },
+    { name: "Bee", emoji: "🐝" },
+    { name: "Buffalo", emoji: "🦬" },
+    { name: "Butterfly", emoji: "🦋" }
+  ],
+
+  C: [
+    { name: "Cat", emoji: "🐱" },
+    { name: "Cheetah", emoji: "🐆" },
+    { name: "Chicken", emoji: "🐔" },
+    { name: "Crab", emoji: "🦀" },
+    { name: "Crocodile", emoji: "🐊" }
+  ],
+
+  D: [
+    { name: "Deer", emoji: "🦌" },
+    { name: "Dolphin", emoji: "🐬" },
+    { name: "Donkey", emoji: "🫏" },
+    { name: "Duck", emoji: "🦆" },
+    { name: "Dragonfly", emoji: "🪰" }
+  ],
+
+  E: [
+    { name: "Eagle", emoji: "🦅" },
+    { name: "Elephant", emoji: "🐘" },
+    { name: "Elk", emoji: "🦌" },
+    { name: "Eel", emoji: "🐍" }
+  ],
+
+  F: [
+    { name: "Fox", emoji: "🦊" },
+    { name: "Falcon", emoji: "🦅" },
+    { name: "Frog", emoji: "🐸" },
+    { name: "Flamingo", emoji: "🦩" },
+    { name: "Ferret", emoji: "🦦" }
+  ],
+
+  G: [
+    { name: "Giraffe", emoji: "🦒" },
+    { name: "Goat", emoji: "🐐" },
+    { name: "Gorilla", emoji: "🦍" },
+    { name: "Goose", emoji: "🪿" }
+  ],
+
+  H: [
+    { name: "Hedgehog", emoji: "🦔" },
+    { name: "Hippo", emoji: "🦛" },
+    { name: "Horse", emoji: "🐴" },
+    { name: "Hawk", emoji: "🦅" }
+  ],
+
+  I: [
+    { name: "Iguana", emoji: "🦎" },
+    { name: "Impala", emoji: "🦌" },
+    { name: "Ibis", emoji: "🐦" }
+  ],
+
+  J: [
+    { name: "Jaguar", emoji: "🐆" },
+    { name: "Jellyfish", emoji: "🪼" },
+    { name: "Jackal", emoji: "🦊" }
+  ],
+
+  K: [
+    { name: "Kangaroo", emoji: "🦘" },
+    { name: "Koala", emoji: "🐨" },
+    { name: "Kiwi", emoji: "🥝" },
+    { name: "Kingfisher", emoji: "🐦" }
+  ],
+
+  L: [
+    { name: "Lion", emoji: "🦁" },
+    { name: "Leopard", emoji: "🐆" },
+    { name: "Llama", emoji: "🦙" },
+    { name: "Lobster", emoji: "🦞" }
+  ],
+
+  M: [
+    { name: "Monkey", emoji: "🐒" },
+    { name: "Moose", emoji: "🫎" },
+    { name: "Mouse", emoji: "🐭" },
+    { name: "Meerkat", emoji: "🦦" }
+  ],
+
+  N: [
+    { name: "Narwhal", emoji: "🦄" },
+    { name: "Newt", emoji: "🦎" },
+    { name: "Nightingale", emoji: "🐦" }
+  ],
+
+  O: [
+    { name: "Owl", emoji: "🦉" },
+    { name: "Octopus", emoji: "🐙" },
+    { name: "Otter", emoji: "🦦" },
+    { name: "Ostrich", emoji: "🦤" }
+  ],
+
+  P: [
+    { name: "Panda", emoji: "🐼" },
+    { name: "Penguin", emoji: "🐧" },
+    { name: "Pig", emoji: "🐷" },
+    { name: "Porcupine", emoji: "🦔" }
+  ],
+
+  Q: [
+    { name: "Quail", emoji: "🐦" }
+  ],
+
+  R: [
+    { name: "Raccoon", emoji: "🦝" },
+    { name: "Rabbit", emoji: "🐰" },
+    { name: "Raven", emoji: "🐦" },
+    { name: "Reindeer", emoji: "🦌" }
+  ],
+
+  S: [
+    { name: "Snake", emoji: "🐍" },
+    { name: "Shark", emoji: "🦈" },
+    { name: "Seal", emoji: "🦭" },
+    { name: "Sloth", emoji: "🦥" },
+    { name: "Squirrel", emoji: "🐿️" }
+  ],
+
+  T: [
+    { name: "Tiger", emoji: "🐯" },
+    { name: "Turtle", emoji: "🐢" },
+    { name: "Toucan", emoji: "🐦" },
+    { name: "Turkey", emoji: "🦃" }
+  ],
+
+  U: [
+    { name: "Urchin", emoji: "🦔" }
+  ],
+
+  V: [
+    { name: "Vulture", emoji: "🦅" },
+    { name: "Viper", emoji: "🐍" }
+  ],
+
+  W: [
+    { name: "Wolf", emoji: "🐺" },
+    { name: "Whale", emoji: "🐋" },
+    { name: "Walrus", emoji: "🦭" },
+    { name: "Wombat", emoji: "🐾" }
+  ],
+
+  X: [
+    { name: "Xerus", emoji: "🐿️" }
+  ],
+
+  Y: [
+    { name: "Yak", emoji: "🐂" },
+    { name: "Yellowhammer", emoji: "🐦" }
+  ],
+
+  Z: [
+    { name: "Zebra", emoji: "🦓" },
+    { name: "Zebu", emoji: "🐂" }
+  ]
+
+};
 
 
 /* =========================================================
-   GENERATE GAME CODE
+   LOCAL STATE
+   ========================================================= */
+
+let selectedLetters = [];
+
+let gameId = null;
+
+let gameRef = null;
+
+let game = null;
+
+let timerInterval = null;
+
+let unsubscribeGame = null;
+
+
+/* =========================================================
+   DOM
+   ========================================================= */
+
+const setupSection =
+  document.getElementById("setupSection");
+
+const gameSection =
+  document.getElementById("gameSection");
+
+const alphabet =
+  document.getElementById("alphabet");
+
+const selectedCount =
+  document.getElementById("selectedCount");
+
+const selectedLettersElement =
+  document.getElementById("selectedLetters");
+
+const createGameButton =
+  document.getElementById("createGame");
+
+const gameCodeElement =
+  document.getElementById("gameCode");
+
+const statusElement =
+  document.getElementById("status");
+
+
+/* =========================================================
+   TEAM SELECTION
+   ========================================================= */
+
+function createAlphabet() {
+
+  alphabet.innerHTML = "";
+
+  const letters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+
+  for (const letter of letters) {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "letter-button";
+
+    button.textContent =
+      letter;
+
+    button.addEventListener(
+      "click",
+      () => toggleLetter(letter, button)
+    );
+
+    alphabet.appendChild(button);
+
+  }
+
+}
+
+
+function toggleLetter(letter, button) {
+
+  const index =
+    selectedLetters.indexOf(letter);
+
+
+  if (index === -1) {
+
+    selectedLetters.push(letter);
+
+    button.classList.add("selected");
+
+  }
+
+  else {
+
+    selectedLetters.splice(index, 1);
+
+    button.classList.remove("selected");
+
+  }
+
+
+  updateTeamSelection();
+
+}
+
+
+function updateTeamSelection() {
+
+  selectedCount.textContent =
+    selectedLetters.length;
+
+
+  selectedLettersElement.innerHTML = "";
+
+
+  selectedLetters.forEach(letter => {
+
+    const element =
+      document.createElement("span");
+
+    element.className =
+      "selected-letter";
+
+    element.textContent =
+      letter;
+
+    selectedLettersElement.appendChild(
+      element
+    );
+
+  });
+
+
+  createGameButton.disabled =
+    selectedLetters.length === 0;
+
+}
+
+
+/* =========================================================
+   ANIMAL ASSIGNMENT
+   ========================================================= */
+
+function assignAnimals(letters) {
+
+  const usedAnimals = [];
+
+
+  return letters.map(
+    (letter, index) => {
+
+      const available =
+        animals[letter].filter(
+          animal =>
+            !usedAnimals.includes(
+              animal.name
+            )
+        );
+
+
+      const pool =
+        available.length > 0
+          ? available
+          : animals[letter];
+
+
+      const animal =
+        pool[
+          Math.floor(
+            Math.random() * pool.length
+          )
+        ];
+
+
+      usedAnimals.push(
+        animal.name
+      );
+
+
+      return {
+
+        id:
+          `${letter}-${index}-${Date.now()}`,
+
+        letter,
+
+        name:
+          animal.name,
+
+        emoji:
+          animal.emoji,
+
+        score: 0,
+
+        position: index
+
+      };
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CREATE GAME
+   ========================================================= */
+
+createGameButton.addEventListener(
+  "click",
+  createGame
+);
+
+
+async function createGame() {
+
+  if (selectedLetters.length === 0) {
+    return;
+  }
+
+
+  createGameButton.disabled = true;
+
+  statusElement.textContent =
+    "Creating game...";
+
+
+  try {
+
+    /*
+      Generate a unique game code.
+    */
+
+    let newGameId;
+
+    let existing;
+
+
+    do {
+
+      newGameId =
+        generateGameCode();
+
+      existing =
+        await get(
+          ref(
+            db,
+            "games/" + newGameId
+          )
+        );
+
+    }
+
+    while (existing.exists());
+
+
+    gameId =
+      newGameId;
+
+
+    gameRef =
+      ref(
+        db,
+        "games/" + gameId
+      );
+
+
+    /*
+      Create the teams.
+    */
+
+    const teams =
+      assignAnimals(
+        selectedLetters
+      );
+
+
+    /*
+      Generate the first value.
+    */
+
+    const firstValue =
+      generatePointValue();
+
+
+    /*
+      Create the complete playable
+      game in Firebase.
+    */
+
+    const initialGame = {
+
+      started: true,
+
+      currentValue:
+        firstValue,
+
+      lastValue: null,
+
+      lastTeamId: null,
+
+      teams,
+
+      timerSeconds: null,
+
+      timerRunning: false
+
+    };
+
+
+    await set(
+      gameRef,
+      initialGame
+    );
+
+
+    /*
+      Verify that Firebase actually
+      contains the game.
+    */
+
+    const check =
+      await get(gameRef);
+
+
+    console.log(
+      "CREATED GAME:",
+      check.val()
+    );
+
+
+    /*
+      Start listening.
+    */
+
+    listenToGame();
+
+
+    /*
+      Show the game.
+    */
+
+    gameCodeElement.textContent =
+      gameId;
+
+
+    setupSection.classList.add(
+      "hidden"
+    );
+
+    gameSection.classList.remove(
+      "hidden"
+    );
+
+
+    statusElement.textContent =
+      "Game created. Give this code to your students.";
+
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Failed to create game:",
+      error
+    );
+
+
+    statusElement.textContent =
+      "Could not create the game.";
+
+
+    createGameButton.disabled =
+      false;
+
+  }
+
+}
+
+
+/* =========================================================
+   GAME CODE
    ========================================================= */
 
 function generateGameCode() {
@@ -616,136 +1216,28 @@ function generateGameCode() {
 
   let code = "";
 
+
   for (let i = 0; i < 6; i++) {
 
     code +=
       characters[
         Math.floor(
-          Math.random() * characters.length
+          Math.random() *
+          characters.length
         )
       ];
 
   }
 
+
   return code;
 
 }
-
-  /* =========================================================
-   CREATE GAME
-   ========================================================= */
-
-document
-  .getElementById("createGame")
-  .addEventListener(
-    "click",
-    createGame
-  );
-
-
-async function createGame() {
-
-  const button =
-    document.getElementById(
-      "createGame"
-    );
-
-  button.disabled = true;
-
-  document.getElementById(
-    "status"
-  ).textContent =
-    "Creating game...";
-
-
-  /*
-    Generate a new six-character code.
-  */
-
-  gameId =
-    generateGameCode();
-
-
-  /*
-    Create the Firebase reference.
-  */
-
-  gameRef =
-    ref(
-      db,
-      "games/" + gameId
-    );
-
-
-  /*
-    Initial game state.
-  */
-
-  await set(
-    gameRef,
-    {
-      started: false,
-
-      currentValue: null,
-
-      lastValue: null,
-
-      lastTeamId: null,
-
-      teams: [],
-
-      timerSeconds: null,
-
-      timerRunning: false
-    }
-  );
-
-
-  const check = await get(gameRef);
-console.log("CREATED GAME:", check.val());
-
-  /*
-    Display the code.
-  */
-
-  document.getElementById(
-    "gameCode"
-  ).textContent =
-    gameId;
-
-
-  document.getElementById(
-    "status"
-  ).textContent =
-    "Game created. Give this code to your students.";
-
-
-  /*
-    Start listening to this game.
-  */
-
-  listenToGame();
-
-
-  button.disabled = false;
-
-}
-
-/* =========================================================
-   LOCAL DISPLAY STATE
-   ========================================================= */
-
-let game = null;
-
-let timerInterval = null;
 
 
 /* =========================================================
    FIREBASE LISTENER
    ========================================================= */
-
-let unsubscribeGame = null;
-
 
 function listenToGame() {
 
@@ -770,9 +1262,7 @@ function listenToGame() {
 
         if (!game) {
 
-          document.getElementById(
-            "status"
-          ).textContent =
+          statusElement.textContent =
             "Game not found.";
 
           return;
@@ -780,9 +1270,7 @@ function listenToGame() {
         }
 
 
-        document.getElementById(
-          "status"
-        ).textContent =
+        statusElement.textContent =
           "Connected";
 
 
@@ -792,6 +1280,7 @@ function listenToGame() {
     );
 
 }
+
 
 /* =========================================================
    RENDER
@@ -821,11 +1310,13 @@ function renderValue() {
 
 
   if (
+    !game ||
     game.currentValue === null ||
     game.currentValue === undefined
   ) {
 
-    element.textContent = "—";
+    element.textContent =
+      "—";
 
     return;
 
@@ -855,54 +1346,62 @@ function renderTeams() {
   container.innerHTML = "";
 
 
-if (!Array.isArray(game.teams)) {
-  return;
-}
+  if (
+    !game ||
+    !Array.isArray(game.teams)
+  ) {
 
-game.teams.forEach(team => {
+    return;
 
-    const button =
-      document.createElement(
-        "button"
+  }
+
+
+  game.teams.forEach(
+    team => {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.className =
+        "team-button";
+
+
+      button.innerHTML = `
+
+        <div class="team-left">
+
+          <span class="animal">
+            ${team.emoji}
+          </span>
+
+          <span>
+            ${team.name}
+          </span>
+
+        </div>
+
+        <div class="score">
+          ${formatScore(team.score)}
+        </div>
+
+      `;
+
+
+      button.addEventListener(
+        "click",
+        () => awardPoints(team.id)
       );
 
 
-    button.className =
-      "team-button";
+      container.appendChild(
+        button
+      );
 
-
-    button.innerHTML = `
-
-      <div class="team-left">
-
-        <span class="animal">
-          ${team.emoji}
-        </span>
-
-        <span>
-          ${team.name}
-        </span>
-
-      </div>
-
-      <div class="score">
-        ${formatScore(team.score)}
-      </div>
-
-    `;
-
-
-    button.addEventListener(
-      "click",
-      () => awardPoints(team.id)
-    );
-
-
-    container.appendChild(
-      button
-    );
-
-  });
+    }
+  );
 
 }
 
@@ -917,9 +1416,12 @@ async function awardPoints(teamId) {
     !game ||
     !game.started ||
     game.currentValue === null ||
-    game.currentValue === undefined
+    game.currentValue === undefined ||
+    !Array.isArray(game.teams)
   ) {
+
     return;
+
   }
 
 
@@ -950,34 +1452,39 @@ async function awardPoints(teamId) {
 
   const updates = {};
 
+
   updates[
     "games/" +
     gameId +
     "/teams/" +
     teamIndex +
     "/score"
-  ] = newScore;
+  ] =
+    newScore;
 
 
   updates[
     "games/" +
     gameId +
     "/lastValue"
-  ] = value;
+  ] =
+    value;
 
 
   updates[
     "games/" +
     gameId +
     "/lastTeamId"
-  ] = teamId;
+  ] =
+    teamId;
 
 
   updates[
     "games/" +
     gameId +
     "/currentValue"
-  ] = nextValue;
+  ] =
+    nextValue;
 
 
   await update(
@@ -998,8 +1505,13 @@ document
     "click",
     async () => {
 
-      if (!game || !game.started) {
+      if (
+        !game ||
+        !game.started
+      ) {
+
         return;
+
       }
 
 
@@ -1010,11 +1522,16 @@ document
       await update(
         gameRef,
         {
-          currentValue: value,
 
-          lastValue: null,
+          currentValue:
+            value,
 
-          lastTeamId: null
+          lastValue:
+            null,
+
+          lastTeamId:
+            null
+
         }
       );
 
@@ -1038,11 +1555,14 @@ async function reassignLastValue() {
 
   if (
     !game ||
+    !Array.isArray(game.teams) ||
     game.lastValue === null ||
     game.lastValue === undefined ||
     !game.lastTeamId
   ) {
+
     return;
+
   }
 
 
@@ -1061,11 +1581,6 @@ async function reassignLastValue() {
     return;
   }
 
-
-  /*
-    Ask which team should receive
-    the value.
-  */
 
   const choices =
     game.teams
@@ -1106,7 +1621,9 @@ async function reassignLastValue() {
     choice < 0 ||
     choice >= availableTeams.length
   ) {
+
     return;
+
   }
 
 
@@ -1124,10 +1641,6 @@ async function reassignLastValue() {
   const updates = {};
 
 
-  /*
-    Remove from old team.
-  */
-
   updates[
     "games/" +
     gameId +
@@ -1138,10 +1651,6 @@ async function reassignLastValue() {
     game.teams[oldIndex].score -
     value;
 
-
-  /*
-    Add to new team.
-  */
 
   updates[
     "games/" +
@@ -1207,6 +1716,7 @@ function renderTimer() {
 
 
   if (
+    !game ||
     game.timerSeconds === null ||
     game.timerSeconds === undefined
   ) {
@@ -1263,6 +1773,11 @@ document
 
 async function startTimer() {
 
+  if (!game || !game.started) {
+    return;
+  }
+
+
   const minutes =
     Number(
       document.getElementById(
@@ -1292,7 +1807,13 @@ async function startTimer() {
   await update(
     gameRef,
     {
-      timerSeconds: total
+
+      timerSeconds:
+        total,
+
+      timerRunning:
+        true
+
     }
   );
 
@@ -1328,9 +1849,12 @@ function startLocalTimer() {
 
         if (
           game.timerSeconds === null ||
-          game.timerSeconds === undefined
+          game.timerSeconds === undefined ||
+          !game.timerRunning
         ) {
+
           return;
+
         }
 
 
@@ -1356,7 +1880,13 @@ function startLocalTimer() {
         await update(
           gameRef,
           {
-            timerSeconds: next
+
+            timerSeconds:
+              next,
+
+            timerRunning:
+              next > 0
+
           }
         );
 
@@ -1394,10 +1924,21 @@ async function stopTimer() {
   }
 
 
+  if (!gameRef) {
+    return;
+  }
+
+
   await update(
     gameRef,
     {
-      timerSeconds: null
+
+      timerSeconds:
+        null,
+
+      timerRunning:
+        false
+
     }
   );
 
@@ -1428,7 +1969,9 @@ async function finishGame() {
       "Finish the game?"
     )
   ) {
+
     return;
+
   }
 
 
@@ -1448,9 +1991,16 @@ async function finishGame() {
   await update(
     gameRef,
     {
-      started: false,
 
-      timerSeconds: null
+      started:
+        false,
+
+      timerSeconds:
+        null,
+
+      timerRunning:
+        false
+
     }
   );
 
@@ -1465,14 +2015,86 @@ document
   .getElementById("newGame")
   .addEventListener(
     "click",
-    () => {
-
-      alert(
-        "We'll build the new-game setup next."
-      );
-
-    }
+    startNewGame
   );
+
+
+function startNewGame() {
+
+  if (
+    !confirm(
+      "Start a new game?"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    timerInterval !== null
+  ) {
+
+    clearInterval(
+      timerInterval
+    );
+
+    timerInterval = null;
+
+  }
+
+
+  if (unsubscribeGame) {
+
+    unsubscribeGame();
+
+    unsubscribeGame = null;
+
+  }
+
+
+  game = null;
+
+  gameId = null;
+
+  gameRef = null;
+
+  selectedLetters = [];
+
+
+  document
+    .querySelectorAll(
+      ".letter-button"
+    )
+    .forEach(
+      button =>
+        button.classList.remove(
+          "selected"
+        )
+    );
+
+
+  gameCodeElement.textContent =
+    "—";
+
+
+  setupSection.classList.remove(
+    "hidden"
+  );
+
+  gameSection.classList.add(
+    "hidden"
+  );
+
+
+  updateTeamSelection();
+
+
+  statusElement.textContent =
+    "Select teams to create a game.";
+
+}
 
 
 /* =========================================================
@@ -1512,6 +2134,14 @@ function formatTime(totalSeconds) {
 
 }
 
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+createAlphabet();
+
+updateTeamSelection();
 
 </script>
 
