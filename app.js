@@ -676,6 +676,8 @@ generatePointValue();
 
 reassignButton.disabled = false;
 
+saveGameToFirebase();
+  
 renderEverything();
 
 highlightTeam(team.id);
