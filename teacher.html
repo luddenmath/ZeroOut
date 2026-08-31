@@ -1921,7 +1921,6 @@ function startLocalTimer() {
 
   }
 
-
   timerInterval =
     setInterval(
       async () => {
@@ -1930,6 +1929,30 @@ function startLocalTimer() {
           return;
         }
 
+        /*
+        Check for zero FIRST.
+        */
+
+        if (
+          game.timerSeconds !== null &&
+          game.timerSeconds !== undefined &&
+          game.timerSeconds <= 0
+        ) {
+
+          clearInterval(
+            timerInterval
+          );
+
+          timerInterval = null;
+
+          await finishGame();
+
+          return;
+        }
+
+        /*
+        Nothing to do if the timer isn't running.
+        */
 
         if (
           game.timerSeconds === null ||
@@ -1941,25 +1964,8 @@ function startLocalTimer() {
 
         }
 
-
-        if (
-          game.timerSeconds <= 0
-        ) {
-
-          clearInterval(
-            timerInterval
-          );
-
-          timerInterval = null;
-
-          return;
-
-        }
-
-
         const next =
           game.timerSeconds - 1;
-
 
         await update(
           gameRef,
@@ -1977,7 +1983,6 @@ function startLocalTimer() {
       },
       1000
     );
-
 }
 
 
