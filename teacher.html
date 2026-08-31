@@ -555,7 +555,8 @@ import {
   getDatabase,
   ref,
   onValue,
-  update
+  update,
+  get
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
@@ -698,6 +699,9 @@ async function createGame() {
     }
   );
 
+
+  const check = await get(gameRef);
+console.log("CREATED GAME:", check.val());
 
   /*
     Display the code.
@@ -850,12 +854,11 @@ function renderTeams() {
   container.innerHTML = "";
 
 
-  if (!game.teams) {
-    return;
-  }
+if (!Array.isArray(game.teams)) {
+  return;
+}
 
-
-  game.teams.forEach(team => {
+game.teams.forEach(team => {
 
     const button =
       document.createElement(
