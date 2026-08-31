@@ -556,7 +556,8 @@ import {
   ref,
   onValue,
   update,
-  get
+  get,
+  set
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
@@ -680,7 +681,7 @@ async function createGame() {
     Initial game state.
   */
 
-  await update(
+  await set(
     gameRef,
     {
       started: false,
