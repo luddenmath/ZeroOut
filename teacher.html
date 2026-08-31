@@ -419,6 +419,14 @@
 
     <h2>Game Controls</h2>
 
+<button
+  id="createGame"
+  class="control-button primary">
+
+  CREATE NEW GAME
+
+</button>
+    
     <button
       id="newValue"
       class="control-button primary">
@@ -591,26 +599,132 @@ getDatabase(app);
    GAME ID
    ========================================================= */
 
-/*
-   For now we are using your existing game.
-
-   X43PVA
-*/
-
-const gameId = "X43PVA";
+let gameId = null;
+let gameRef = null;
 
 
-const gameRef =
-ref(
-  db,
-  "games/" + gameId
-);
+/* =========================================================
+   GENERATE GAME CODE
+   ========================================================= */
+
+function generateGameCode() {
+
+  const characters =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+  let code = "";
+
+  for (let i = 0; i < 6; i++) {
+
+    code +=
+      characters[
+        Math.floor(
+          Math.random() * characters.length
+        )
+      ];
+
+  }
+
+  return code;
+
+}
+
+  /* =========================================================
+   CREATE GAME
+   ========================================================= */
+
+document
+  .getElementById("createGame")
+  .addEventListener(
+    "click",
+    createGame
+  );
 
 
-document.getElementById(
-  "gameCode"
-).textContent = gameId;
+async function createGame() {
 
+  const button =
+    document.getElementById(
+      "createGame"
+    );
+
+  button.disabled = true;
+
+  document.getElementById(
+    "status"
+  ).textContent =
+    "Creating game...";
+
+
+  /*
+    Generate a new six-character code.
+  */
+
+  gameId =
+    generateGameCode();
+
+
+  /*
+    Create the Firebase reference.
+  */
+
+  gameRef =
+    ref(
+      db,
+      "games/" + gameId
+    );
+
+
+  /*
+    Initial game state.
+  */
+
+  await update(
+    gameRef,
+    {
+      started: false,
+
+      currentValue: null,
+
+      lastValue: null,
+
+      lastTeamId: null,
+
+      teams: [],
+
+      timerSeconds: null,
+
+      timerRunning: false
+    }
+  );
+
+
+  /*
+    Display the code.
+  */
+
+  document.getElementById(
+    "gameCode"
+  ).textContent =
+    gameId;
+
+
+  document.getElementById(
+    "status"
+  ).textContent =
+    "Game created. Give this code to your students.";
+
+
+  /*
+    Start listening to this game.
+  */
+
+  listenToGame();
+
+
+  button.disabled = false;
+
+}
 
 /* =========================================================
    LOCAL DISPLAY STATE
@@ -625,36 +739,54 @@ let timerInterval = null;
    FIREBASE LISTENER
    ========================================================= */
 
-onValue(
-  gameRef,
-  snapshot => {
-
-    game =
-      snapshot.val();
-
-    if (!game) {
-
-      document.getElementById(
-        "status"
-      ).textContent =
-        "Game not found.";
-
-      return;
-
-    }
+let unsubscribeGame = null;
 
 
-    document.getElementById(
-      "status"
-    ).textContent =
-      "Connected";
+function listenToGame() {
 
-
-    renderGame();
-
+  if (!gameRef) {
+    return;
   }
-);
 
+
+  if (unsubscribeGame) {
+    unsubscribeGame();
+  }
+
+
+  unsubscribeGame =
+    onValue(
+      gameRef,
+      snapshot => {
+
+        game =
+          snapshot.val();
+
+
+        if (!game) {
+
+          document.getElementById(
+            "status"
+          ).textContent =
+            "Game not found.";
+
+          return;
+
+        }
+
+
+        document.getElementById(
+          "status"
+        ).textContent =
+          "Connected";
+
+
+        renderGame();
+
+      }
+    );
+
+}
 
 /* =========================================================
    RENDER
