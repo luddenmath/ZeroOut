@@ -362,6 +362,54 @@
 
     }
 
+    /* =========================================
+   WINNER SCREEN
+   ========================================= */
+
+.winner-screen {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.95);
+
+  z-index: 300;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.winner-content {
+  padding: 30px;
+}
+
+.winner-title {
+  font-size: clamp(2rem, 6vw, 5rem);
+  letter-spacing: 0.15em;
+  font-weight: bold;
+}
+
+.winner-animal {
+  font-size: clamp(5rem, 15vw, 10rem);
+  margin: 20px;
+}
+
+.winner-name {
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: bold;
+}
+
+.winner-score {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin: 10px;
+}
+
+.hidden {
+  display: none !important;
+}
+
   </style>
 
 </head>
