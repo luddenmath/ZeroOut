@@ -211,12 +211,16 @@ let timerInterval = null;
 
 import {
   ref,
-  set
+  set,
+  onValue,
+  get
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
 const db = window.firebaseDB;
 
 let firebaseGameId = null;
+
+let gameListener = null;
 
 async function saveGameToFirebase() {
 
@@ -256,9 +260,185 @@ async function saveGameToFirebase() {
   );
 }
 
+
+/* =========================================================
+STUDENT GAME CODE CONNECTION
+========================================================= */
+
+joinGameButton.addEventListener(
+  "click",
+  joinGame
+);
+
+
+gameCodeInput.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Enter") {
+      joinGame();
+    }
+
+  }
+);
+
+
+async function joinGame() {
+
+  const code =
+    gameCodeInput.value
+      .trim()
+      .toUpperCase();
+
+
+  gameCodeError.textContent = "";
+
+
+  /*
+    Basic code validation.
+  */
+
+  if (!/^[A-Z0-9]{6}$/.test(code)) {
+
+    gameCodeError.textContent =
+      "Enter the 6-character game code.";
+
+    return;
+
+  }
+
+
+  joinGameButton.disabled = true;
+
+  joinGameButton.textContent =
+    "CONNECTING...";
+
+
+  try {
+
+    const gameRef =
+      ref(
+        db,
+        "games/" + code
+      );
+
+
+    /*
+      Check whether the game exists.
+    */
+
+    const snapshot =
+      await get(gameRef);
+
+
+    if (!snapshot.exists()) {
+
+      gameCodeError.textContent =
+        "Game not found. Check the code and try again.";
+
+      joinGameButton.disabled = false;
+
+      joinGameButton.textContent =
+        "JOIN GAME";
+
+      return;
+
+    }
+
+
+    /*
+      Remember the game code.
+    */
+
+    firebaseGameId =
+      code;
+
+
+    /*
+      Hide the code screen.
+    */
+
+    gameCodeScreen.classList.add(
+      "hidden"
+    );
+
+
+    /*
+      Listen for all future changes.
+    */
+
+    if (gameListener) {
+      gameListener();
+    }
+
+
+    gameListener =
+      onValue(
+        gameRef,
+        snapshot => {
+
+          const firebaseGame =
+            snapshot.val();
+
+
+          if (!firebaseGame) {
+            return;
+          }
+
+
+          /*
+            Update local game state.
+          */
+
+          game =
+            firebaseGame;
+
+
+          /*
+            Render the scoreboard.
+          */
+
+          renderEverything();
+
+        }
+      );
+
+
+  } catch (error) {
+
+    console.error(
+      "Failed to join game:",
+      error
+    );
+
+    gameCodeError.textContent =
+      "Could not connect to the game.";
+
+  }
+
+
+  joinGameButton.disabled = false;
+
+  joinGameButton.textContent =
+    "JOIN GAME";
+
+}
+
 /* =========================================================
 DOM ELEMENTS
 ========================================================= */
+
+const gameCodeScreen =
+document.getElementById("gameCodeScreen");
+
+const gameCodeInput =
+document.getElementById("gameCodeInput");
+
+const joinGameButton =
+document.getElementById("joinGameButton");
+
+const gameCodeError =
+document.getElementById("gameCodeError");
 
 const alphabetElement =
 document.getElementById("alphabet");
