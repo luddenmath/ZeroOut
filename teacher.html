@@ -968,6 +968,28 @@ function assignAnimals(letters) {
 }
 
 
+
+  /* =========================================================
+   RANDOM VALUE
+========================================================= */
+
+function generatePointValue() {
+
+  let value = 0;
+
+  while (value === 0) {
+
+    value =
+      Math.floor(
+        Math.random() * 201
+      ) - 100;
+
+  }
+
+  return value;
+
+}
+
 /* =========================================================
    GENERATE GAME CODE
 ========================================================= */
