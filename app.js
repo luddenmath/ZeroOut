@@ -216,7 +216,7 @@ import {
 
 const db = window.firebaseDB;
 
-let firebaseGameId = null;
+let firebaseGameId = window.zeroOutGameId || null;
 
 async function saveGameToFirebase() {
 
