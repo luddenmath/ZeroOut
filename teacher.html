@@ -2047,18 +2047,6 @@ async function finishGame() {
     return;
   }
 
-
-  if (
-    !confirm(
-      "Finish the game?"
-    )
-  ) {
-
-    return;
-
-  }
-
-
   if (
     timerInterval !== null
   ) {
@@ -2071,25 +2059,102 @@ async function finishGame() {
 
   }
 
-
   await update(
     gameRef,
     {
+      started: false,
 
-      started:
-        false,
+      timerSeconds: null,
 
-      timerSeconds:
-        null,
-
-      timerRunning:
-        false
-
+      timerRunning: false
     }
+  );
+
+  showWinner();
+
+}
+
+
+  /* =========================================================
+   WINNER
+   ========================================================= */
+
+function determineWinners() {
+
+  if (
+    !game ||
+    !Array.isArray(game.teams) ||
+    game.teams.length === 0
+  ) {
+    return [];
+  }
+
+  const winningScore =
+    Math.min(
+      ...game.teams.map(
+        team => Math.abs(team.score)
+      )
+    );
+
+  return game.teams.filter(
+    team =>
+      Math.abs(team.score) === winningScore
   );
 
 }
 
+
+function showWinner() {
+
+  const winners =
+    determineWinners();
+
+  if (winners.length === 0) {
+    return;
+  }
+
+  document.getElementById(
+    "winnerAnimal"
+  ).textContent =
+    winners
+      .map(winner => winner.emoji)
+      .join(" ");
+
+  document.getElementById(
+    "winnerName"
+  ).textContent =
+    winners
+      .map(winner => winner.name)
+      .join(" & ");
+
+  document.getElementById(
+    "winnerScore"
+  ).textContent =
+    formatScore(
+      winners[0].score
+    );
+
+  document.getElementById(
+    "winnerScreen"
+  ).classList.remove(
+    "hidden"
+  );
+
+}
+
+
+document
+  .getElementById("closeWinner")
+  .addEventListener(
+    "click",
+    () => {
+
+      document
+        .getElementById("winnerScreen")
+        .classList.add("hidden");
+
+    }
+  );
 
 /* =========================================================
    NEW GAME
