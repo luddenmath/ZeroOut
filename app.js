@@ -472,36 +472,53 @@ async function joinGame() {
     }
 
 
-    gameListener =
-      onValue(
-        gameRef,
-        snapshot => {
+gameListener =
+  onValue(
+    gameRef,
+    snapshot => {
 
-          const firebaseGame =
-            snapshot.val();
+      const firebaseGame =
+        snapshot.val();
 
+      if (!firebaseGame) {
+        return;
+      }
 
-          if (!firebaseGame) {
-            return;
-          }
+      /*
+        Remember whether the game was
+        previously running.
+      */
 
+      const wasStarted =
+        game.started;
 
-          /*
-            Update local game state.
-          */
+      /*
+        Update local game state.
+      */
 
-          game =
-            firebaseGame;
+      game =
+        firebaseGame;
 
+      /*
+        Render the scoreboard.
+      */
 
-          /*
-            Render the scoreboard.
-          */
+      renderEverything();
 
-          renderEverything();
+      /*
+        If the teacher just ended the game,
+        show the winner screen.
+      */
 
-        }
-      );
+      if (
+        wasStarted === true &&
+        game.started === false
+      ) {
+        showWinner();
+      }
+
+    }
+  );
 
 
   } catch (error) {
@@ -1387,7 +1404,7 @@ finishGameButton.addEventListener(
 finishGame
 );
 
-function finishGame() {
+async function finishGame() {
 
 if (
 !game.started ||
@@ -1399,6 +1416,8 @@ return;
 stopGameTimer();
 
 game.started = false;
+
+await saveGameToFirebase();
 
 showWinner();
 }
