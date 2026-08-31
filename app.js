@@ -261,6 +261,106 @@ async function saveGameToFirebase() {
 }
 
 
+
+
+/* =========================================================
+DOM ELEMENTS
+========================================================= */
+
+const gameCodeScreen =
+document.getElementById("gameCodeScreen");
+
+const gameCodeInput =
+document.getElementById("gameCodeInput");
+
+const joinGameButton =
+document.getElementById("joinGameButton");
+
+const gameCodeError =
+document.getElementById("gameCodeError");
+
+const alphabetElement =
+document.getElementById("alphabet");
+
+const selectedCountElement =
+document.getElementById("selectedCount");
+
+const selectedLettersElement =
+document.getElementById("selectedLetters");
+
+const startGameButton =
+document.getElementById("startGame");
+
+const setupSection =
+document.getElementById("setupSection");
+
+const gameControls =
+document.getElementById("gameControls");
+
+const teamsElement =
+document.getElementById("teams");
+
+const currentValueElement =
+document.getElementById("currentValue");
+
+const teacherCurrentValueElement =
+document.getElementById("teacherCurrentValue");
+
+const teamButtonsElement =
+document.getElementById("teamButtons");
+
+const controlPanel =
+document.getElementById("controlPanel");
+
+const controlsToggle =
+document.getElementById("controlsToggle");
+
+const closeControls =
+document.getElementById("closeControls");
+
+const newValueButton =
+document.getElementById("newValue");
+
+const reassignButton =
+document.getElementById("reassignButton");
+
+const editScoresButton =
+document.getElementById("editScoresButton");
+
+const resetGameButton =
+document.getElementById("resetGameButton");
+
+const editModal =
+document.getElementById("editModal");
+
+const scoreEditors =
+document.getElementById("scoreEditors");
+
+const saveScoresButton =
+document.getElementById("saveScores");
+
+const cancelScoreEdit =
+document.getElementById("cancelScoreEdit");
+
+const closeEditModal =
+document.getElementById("closeEditModal");
+
+const winnerScreen =
+document.getElementById("winnerScreen");
+
+const winnerAnimal =
+document.getElementById("winnerAnimal");
+
+const winnerName =
+document.getElementById("winnerName");
+
+const winnerScore =
+document.getElementById("winnerScore");
+
+const closeWinner =
+document.getElementById("closeWinner");
+
+
 /* =========================================================
 STUDENT GAME CODE CONNECTION
 ========================================================= */
@@ -424,102 +524,6 @@ async function joinGame() {
 
 }
 
-/* =========================================================
-DOM ELEMENTS
-========================================================= */
-
-const gameCodeScreen =
-document.getElementById("gameCodeScreen");
-
-const gameCodeInput =
-document.getElementById("gameCodeInput");
-
-const joinGameButton =
-document.getElementById("joinGameButton");
-
-const gameCodeError =
-document.getElementById("gameCodeError");
-
-const alphabetElement =
-document.getElementById("alphabet");
-
-const selectedCountElement =
-document.getElementById("selectedCount");
-
-const selectedLettersElement =
-document.getElementById("selectedLetters");
-
-const startGameButton =
-document.getElementById("startGame");
-
-const setupSection =
-document.getElementById("setupSection");
-
-const gameControls =
-document.getElementById("gameControls");
-
-const teamsElement =
-document.getElementById("teams");
-
-const currentValueElement =
-document.getElementById("currentValue");
-
-const teacherCurrentValueElement =
-document.getElementById("teacherCurrentValue");
-
-const teamButtonsElement =
-document.getElementById("teamButtons");
-
-const controlPanel =
-document.getElementById("controlPanel");
-
-const controlsToggle =
-document.getElementById("controlsToggle");
-
-const closeControls =
-document.getElementById("closeControls");
-
-const newValueButton =
-document.getElementById("newValue");
-
-const reassignButton =
-document.getElementById("reassignButton");
-
-const editScoresButton =
-document.getElementById("editScoresButton");
-
-const resetGameButton =
-document.getElementById("resetGameButton");
-
-const editModal =
-document.getElementById("editModal");
-
-const scoreEditors =
-document.getElementById("scoreEditors");
-
-const saveScoresButton =
-document.getElementById("saveScores");
-
-const cancelScoreEdit =
-document.getElementById("cancelScoreEdit");
-
-const closeEditModal =
-document.getElementById("closeEditModal");
-
-const winnerScreen =
-document.getElementById("winnerScreen");
-
-const winnerAnimal =
-document.getElementById("winnerAnimal");
-
-const winnerName =
-document.getElementById("winnerName");
-
-const winnerScore =
-document.getElementById("winnerScore");
-
-const closeWinner =
-document.getElementById("closeWinner");
 
 /* TIMER ELEMENTS */
 
