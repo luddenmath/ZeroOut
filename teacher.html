@@ -32,7 +32,7 @@
     }
 
     #teacherApp {
-      width: min(700px, 100%);
+      width: min(750px, 100%);
       margin: 0 auto;
     }
 
@@ -54,53 +54,100 @@
       font-size: 0.9rem;
     }
 
+    /* CURRENT VALUE */
+
     .current-value {
       text-align: center;
+
       background: #181818;
+
       border: 1px solid #444;
       border-radius: 15px;
+
       padding: 20px;
+
       margin-bottom: 20px;
     }
 
     .label {
       color: #aaa;
+
       font-size: 0.8rem;
+
       letter-spacing: 0.15em;
     }
 
     #currentValue {
       font-size: 5rem;
+
       font-weight: bold;
+
       line-height: 1.1;
+
       margin-top: 5px;
     }
 
+    /* TEAMS */
+
     .teams {
       display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 10px;
     }
 
-    .team {
+    .team-button {
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
+      width: 100%;
 
       background: #181818;
 
       border: 2px solid #444;
+
       border-radius: 12px;
 
       padding: 15px 20px;
+
+      color: white;
+
+      cursor: pointer;
+
+      text-align: left;
+
+      transition:
+        background 0.15s,
+        border-color 0.15s;
+
+    }
+
+    .team-button:hover {
+
+      background: #292929;
+
+      border-color: #777;
+
     }
 
     .team-left {
+
       display: flex;
+
       align-items: center;
+
       gap: 12px;
 
-      font-size: 1.3rem;
+      font-size: 1.2rem;
+
       font-weight: bold;
+
     }
 
     .animal {
@@ -108,41 +155,211 @@
     }
 
     .score {
-      font-size: 1.8rem;
+
+      font-size: 1.5rem;
+
       font-weight: bold;
+
+      white-space: nowrap;
+
     }
 
-    .controls {
+    /* CONTROL SECTIONS */
+
+    .section {
+
       margin-top: 25px;
-      display: grid;
-      gap: 10px;
+
+      padding-top: 20px;
+
+      border-top: 1px solid #333;
+
     }
+
+    .section h2 {
+
+      margin: 0 0 12px;
+
+      font-size: 1.1rem;
+
+    }
+
+    /* BUTTONS */
 
     button {
-      width: 100%;
-      padding: 15px;
 
-      border-radius: 10px;
+      font: inherit;
+
+    }
+
+    .control-button {
+
+      width: 100%;
+
+      padding: 13px 15px;
+
+      margin-top: 8px;
+
+      border-radius: 9px;
+
       border: 1px solid #555;
 
       background: #242424;
+
       color: white;
 
-      font-size: 1rem;
       font-weight: bold;
 
       cursor: pointer;
+
     }
 
-    button:hover {
+    .control-button:hover {
+
       background: #333;
+
     }
+
+    .primary {
+
+      background: white;
+
+      color: black;
+
+      border-color: white;
+
+    }
+
+    .primary:hover {
+
+      background: #ddd;
+
+    }
+
+    .danger {
+
+      background: #702020;
+
+    }
+
+    .danger:hover {
+
+      background: #902020;
+
+    }
+
+    /* TIMER */
+
+    .timer-display {
+
+      text-align: center;
+
+      font-size: 2.5rem;
+
+      font-weight: bold;
+
+      font-variant-numeric:
+        tabular-nums;
+
+      min-height: 50px;
+
+      margin-bottom: 10px;
+
+    }
+
+    .timer-display.warning {
+
+      animation:
+        timerPulse 1s infinite;
+
+    }
+
+    @keyframes timerPulse {
+
+      50% {
+        transform: scale(1.05);
+      }
+
+    }
+
+    .timer-input-row {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 8px;
+
+    }
+
+    .timer-input-row input {
+
+      width: 100px;
+
+      padding: 10px;
+
+      background: #222;
+
+      color: white;
+
+      border: 1px solid #555;
+
+      border-radius: 6px;
+
+      text-align: center;
+
+      font-size: 1.1rem;
+
+    }
+
+    .timer-input-row span {
+
+      font-size: 1.4rem;
+
+      font-weight: bold;
+
+    }
+
+    /* STATUS */
 
     #status {
+
       text-align: center;
+
       color: #777;
-      margin-top: 15px;
+
+      margin-top: 20px;
+
       font-size: 0.85rem;
+
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      body {
+        padding: 10px;
+      }
+
+      header {
+        align-items: flex-start;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .teams {
+        grid-template-columns: 1fr;
+      }
+
+      #currentValue {
+        font-size: 4rem;
+      }
+
     }
 
   </style>
@@ -152,277 +369,1015 @@
 
 <body>
 
-  <div id="teacherApp">
-
-    <header>
-
-      <h1>ZERO OUT</h1>
-
-      <div class="game-code">
-        Game: <strong id="gameCode">—</strong>
-      </div>
-
-    </header>
+<div id="teacherApp">
 
 
-    <section class="current-value">
+  <!-- HEADER -->
 
-      <div class="label">
-        CURRENT VALUE
-      </div>
+  <header>
 
-      <div id="currentValue">
-        —
-      </div>
+    <h1>ZERO OUT</h1>
 
-    </section>
-
-
-    <section
-      id="teams"
-      class="teams"
-    >
-      <!-- Teams appear here -->
-    </section>
-
-
-    <section class="controls">
-
-      <button>
-        NEW VALUE
-      </button>
-
-      <button>
-        REASSIGN LAST VALUE
-      </button>
-
-      <button>
-        FINISH GAME
-      </button>
-
-    </section>
-
-
-    <div id="status">
-      Connecting to Firebase...
+    <div class="game-code">
+      Game:
+      <strong id="gameCode">—</strong>
     </div>
 
+  </header>
+
+
+  <!-- CURRENT VALUE -->
+
+  <section class="current-value">
+
+    <div class="label">
+      CURRENT VALUE
+    </div>
+
+    <div id="currentValue">
+      —
+    </div>
+
+  </section>
+
+
+  <!-- TEAMS -->
+
+  <section>
+
+    <div
+      id="teams"
+      class="teams">
+    </div>
+
+  </section>
+
+
+  <!-- GAME CONTROLS -->
+
+  <section class="section">
+
+    <h2>Game Controls</h2>
+
+    <button
+      id="newValue"
+      class="control-button primary">
+
+      NEW VALUE
+
+    </button>
+
+
+    <button
+      id="reassign"
+      class="control-button">
+
+      REASSIGN LAST VALUE
+
+    </button>
+
+  </section>
+
+
+  <!-- TIMER -->
+
+  <section class="section">
+
+    <h2>Game Timer</h2>
+
+    <div
+      id="timerDisplay"
+      class="timer-display">
+    </div>
+
+
+    <div class="timer-input-row">
+
+      <input
+        id="timerMinutes"
+        type="number"
+        min="0"
+        max="999"
+        placeholder="Minutes"
+      >
+
+      <span>:</span>
+
+      <input
+        id="timerSeconds"
+        type="number"
+        min="0"
+        max="59"
+        placeholder="Seconds"
+      >
+
+    </div>
+
+
+    <button
+      id="setTimer"
+      class="control-button">
+
+      SET / START TIMER
+
+    </button>
+
+
+    <button
+      id="stopTimer"
+      class="control-button">
+
+      STOP TIMER
+
+    </button>
+
+  </section>
+
+
+  <!-- GAME END -->
+
+  <section class="section">
+
+    <h2>Game</h2>
+
+
+    <button
+      id="finishGame"
+      class="control-button">
+
+      FINISH GAME
+
+    </button>
+
+
+    <button
+      id="newGame"
+      class="control-button danger">
+
+      NEW GAME
+
+    </button>
+
+  </section>
+
+
+  <div id="status">
+    Connecting to Firebase...
   </div>
 
 
-  <script type="module">
+</div>
 
-    import {
-      initializeApp
+
+<script type="module">
+
+
+/* =========================================================
+   FIREBASE
+   ========================================================= */
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+  getDatabase,
+  ref,
+  onValue,
+  update
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyAPWLBaAg5DTMlw22599dLRbPDnKFObaMs",
+
+  authDomain:
+    "zeroout-7dace.firebaseapp.com",
+
+  projectId:
+    "zeroout-7dace",
+
+  storageBucket:
+    "zeroout-7dace.firebasestorage.app",
+
+  messagingSenderId:
+    "611625896840",
+
+  appId:
+    "1:611625896840:web:afb1b0c5a00d5a0dd21d521c83d",
+
+  measurementId:
+    "G-K1CFL39EHJ"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const db =
+getDatabase(app);
+
+
+/* =========================================================
+   GAME ID
+   ========================================================= */
+
+/*
+   For now we are using your existing game.
+
+   X43PVA
+*/
+
+const gameId = "X43PVA";
+
+
+const gameRef =
+ref(
+  db,
+  "games/" + gameId
+);
+
+
+document.getElementById(
+  "gameCode"
+).textContent = gameId;
+
+
+/* =========================================================
+   LOCAL DISPLAY STATE
+   ========================================================= */
+
+let game = null;
+
+let timerInterval = null;
+
+
+/* =========================================================
+   FIREBASE LISTENER
+   ========================================================= */
+
+onValue(
+  gameRef,
+  snapshot => {
+
+    game =
+      snapshot.val();
+
+    if (!game) {
+
+      document.getElementById(
+        "status"
+      ).textContent =
+        "Game not found.";
+
+      return;
+
     }
-    from
-      "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-
-    import {
-      getDatabase,
-      ref,
-      onValue
-    }
-    from
-      "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
-
-
-    const firebaseConfig = {
-
-      apiKey:
-        "AIzaSyAPWLBaAg5DTMlw22599dLRbPDnKFObaMs",
-
-      authDomain:
-        "zeroout-7dace.firebaseapp.com",
-
-      projectId:
-        "zeroout-7dace",
-
-      storageBucket:
-        "zeroout-7dace.firebasestorage.app",
-
-      messagingSenderId:
-        "611625896840",
-
-      appId:
-        "1:611625896840:web:afb1b0c5a00d5a00d5a0dd21d521c83d",
-
-      measurementId:
-        "G-K1CFL39EHJ"
-
-    };
-
-
-    const app =
-      initializeApp(firebaseConfig);
-
-
-    const db =
-      getDatabase(app);
-
-
-    /*
-      TEMPORARY GAME ID
-
-      We're using the game you already created:
-
-      X43PVA
-    */
-
-    const gameId = "X43PVA";
 
 
     document.getElementById(
-      "gameCode"
-    ).textContent = gameId;
+      "status"
+    ).textContent =
+      "Connected";
 
 
-    /*
-      Listen for changes to the game.
-    */
+    renderGame();
 
-    const gameRef =
-      ref(
-        db,
-        "games/" + gameId
+  }
+);
+
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function renderGame() {
+
+  renderValue();
+
+  renderTeams();
+
+  renderTimer();
+
+}
+
+
+/* =========================================================
+   CURRENT VALUE
+   ========================================================= */
+
+function renderValue() {
+
+  const element =
+    document.getElementById(
+      "currentValue"
+    );
+
+
+  if (
+    game.currentValue === null ||
+    game.currentValue === undefined
+  ) {
+
+    element.textContent = "—";
+
+    return;
+
+  }
+
+
+  element.textContent =
+    formatScore(
+      game.currentValue
+    );
+
+}
+
+
+/* =========================================================
+   TEAMS
+   ========================================================= */
+
+function renderTeams() {
+
+  const container =
+    document.getElementById(
+      "teams"
+    );
+
+
+  container.innerHTML = "";
+
+
+  if (!game.teams) {
+    return;
+  }
+
+
+  game.teams.forEach(team => {
+
+    const button =
+      document.createElement(
+        "button"
       );
 
 
-    onValue(
-      gameRef,
-      snapshot => {
+    button.className =
+      "team-button";
 
-        const game =
-          snapshot.val();
 
+    button.innerHTML = `
+
+      <div class="team-left">
+
+        <span class="animal">
+          ${team.emoji}
+        </span>
+
+        <span>
+          ${team.name}
+        </span>
+
+      </div>
+
+      <div class="score">
+        ${formatScore(team.score)}
+      </div>
+
+    `;
+
+
+    button.addEventListener(
+      "click",
+      () => awardPoints(team.id)
+    );
+
+
+    container.appendChild(
+      button
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   AWARD POINTS
+   ========================================================= */
+
+async function awardPoints(teamId) {
+
+  if (
+    !game ||
+    !game.started ||
+    game.currentValue === null ||
+    game.currentValue === undefined
+  ) {
+    return;
+  }
+
+
+  const teamIndex =
+    game.teams.findIndex(
+      team =>
+        team.id === teamId
+    );
+
+
+  if (teamIndex === -1) {
+    return;
+  }
+
+
+  const value =
+    game.currentValue;
+
+
+  const newScore =
+    game.teams[teamIndex].score +
+    value;
+
+
+  const nextValue =
+    generatePointValue();
+
+
+  const updates = {};
+
+  updates[
+    "games/" +
+    gameId +
+    "/teams/" +
+    teamIndex +
+    "/score"
+  ] = newScore;
+
+
+  updates[
+    "games/" +
+    gameId +
+    "/lastValue"
+  ] = value;
+
+
+  updates[
+    "games/" +
+    gameId +
+    "/lastTeamId"
+  ] = teamId;
+
+
+  updates[
+    "games/" +
+    gameId +
+    "/currentValue"
+  ] = nextValue;
+
+
+  await update(
+    ref(db),
+    updates
+  );
+
+}
+
+
+/* =========================================================
+   NEW VALUE
+   ========================================================= */
+
+document
+  .getElementById("newValue")
+  .addEventListener(
+    "click",
+    async () => {
+
+      if (!game || !game.started) {
+        return;
+      }
+
+
+      const value =
+        generatePointValue();
+
+
+      await update(
+        gameRef,
+        {
+          currentValue: value,
+
+          lastValue: null,
+
+          lastTeamId: null
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   REASSIGN LAST VALUE
+   ========================================================= */
+
+document
+  .getElementById("reassign")
+  .addEventListener(
+    "click",
+    reassignLastValue
+  );
+
+
+async function reassignLastValue() {
+
+  if (
+    !game ||
+    game.lastValue === null ||
+    game.lastValue === undefined ||
+    !game.lastTeamId
+  ) {
+    return;
+  }
+
+
+  const value =
+    game.lastValue;
+
+
+  const oldIndex =
+    game.teams.findIndex(
+      team =>
+        team.id === game.lastTeamId
+    );
+
+
+  if (oldIndex === -1) {
+    return;
+  }
+
+
+  /*
+    Ask which team should receive
+    the value.
+  */
+
+  const choices =
+    game.teams
+      .filter(
+        team =>
+          team.id !== game.lastTeamId
+      )
+      .map(
+        (team, index) =>
+          `${index + 1}. ${team.emoji} ${team.name}`
+      )
+      .join("\n");
+
+
+  const answer =
+    prompt(
+      `Reassign ${formatScore(value)} to:\n\n${choices}\n\nEnter the team number:`
+    );
+
+
+  if (!answer) {
+    return;
+  }
+
+
+  const choice =
+    Number(answer) - 1;
+
+
+  const availableTeams =
+    game.teams.filter(
+      team =>
+        team.id !== game.lastTeamId
+    );
+
+
+  if (
+    choice < 0 ||
+    choice >= availableTeams.length
+  ) {
+    return;
+  }
+
+
+  const newTeam =
+    availableTeams[choice];
+
+
+  const newIndex =
+    game.teams.findIndex(
+      team =>
+        team.id === newTeam.id
+    );
+
+
+  const updates = {};
+
+
+  /*
+    Remove from old team.
+  */
+
+  updates[
+    "games/" +
+    gameId +
+    "/teams/" +
+    oldIndex +
+    "/score"
+  ] =
+    game.teams[oldIndex].score -
+    value;
+
+
+  /*
+    Add to new team.
+  */
+
+  updates[
+    "games/" +
+    gameId +
+    "/teams/" +
+    newIndex +
+    "/score"
+  ] =
+    game.teams[newIndex].score +
+    value;
+
+
+  updates[
+    "games/" +
+    gameId +
+    "/lastTeamId"
+  ] =
+    newTeam.id;
+
+
+  await update(
+    ref(db),
+    updates
+  );
+
+}
+
+
+/* =========================================================
+   RANDOM VALUE
+   ========================================================= */
+
+function generatePointValue() {
+
+  let value = 0;
+
+
+  while (value === 0) {
+
+    value =
+      Math.floor(
+        Math.random() * 201
+      ) - 100;
+
+  }
+
+
+  return value;
+
+}
+
+
+/* =========================================================
+   TIMER
+   ========================================================= */
+
+function renderTimer() {
+
+  const element =
+    document.getElementById(
+      "timerDisplay"
+    );
+
+
+  if (
+    game.timerSeconds === null ||
+    game.timerSeconds === undefined
+  ) {
+
+    element.textContent = "";
+
+    element.classList.remove(
+      "warning"
+    );
+
+    return;
+
+  }
+
+
+  element.textContent =
+    formatTime(
+      game.timerSeconds
+    );
+
+
+  if (
+    game.timerSeconds <= 60
+  ) {
+
+    element.classList.add(
+      "warning"
+    );
+
+  }
+
+  else {
+
+    element.classList.remove(
+      "warning"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   START TIMER
+   ========================================================= */
+
+document
+  .getElementById("setTimer")
+  .addEventListener(
+    "click",
+    startTimer
+  );
+
+
+async function startTimer() {
+
+  const minutes =
+    Number(
+      document.getElementById(
+        "timerMinutes"
+      ).value
+    ) || 0;
+
+
+  const seconds =
+    Number(
+      document.getElementById(
+        "timerSeconds"
+      ).value
+    ) || 0;
+
+
+  const total =
+    minutes * 60 +
+    seconds;
+
+
+  if (total <= 0) {
+    return;
+  }
+
+
+  await update(
+    gameRef,
+    {
+      timerSeconds: total
+    }
+  );
+
+
+  startLocalTimer();
+
+}
+
+
+/* =========================================================
+   LOCAL TIMER
+   ========================================================= */
+
+function startLocalTimer() {
+
+  if (timerInterval !== null) {
+
+    clearInterval(
+      timerInterval
+    );
+
+  }
+
+
+  timerInterval =
+    setInterval(
+      async () => {
 
         if (!game) {
+          return;
+        }
 
-          document.getElementById(
-            "status"
-          ).textContent =
-            "Game not found.";
+
+        if (
+          game.timerSeconds === null ||
+          game.timerSeconds === undefined
+        ) {
+          return;
+        }
+
+
+        if (
+          game.timerSeconds <= 0
+        ) {
+
+          clearInterval(
+            timerInterval
+          );
+
+          timerInterval = null;
 
           return;
 
         }
 
 
-        document.getElementById(
-          "status"
-        ).textContent =
-          "Connected";
+        const next =
+          game.timerSeconds - 1;
 
 
-        renderGame(game);
+        await update(
+          gameRef,
+          {
+            timerSeconds: next
+          }
+        );
 
-      }
+      },
+      1000
+    );
 
+}
+
+
+/* =========================================================
+   STOP TIMER
+   ========================================================= */
+
+document
+  .getElementById("stopTimer")
+  .addEventListener(
+    "click",
+    stopTimer
+  );
+
+
+async function stopTimer() {
+
+  if (
+    timerInterval !== null
+  ) {
+
+    clearInterval(
+      timerInterval
+    );
+
+    timerInterval = null;
+
+  }
+
+
+  await update(
+    gameRef,
+    {
+      timerSeconds: null
+    }
+  );
+
+}
+
+
+/* =========================================================
+   FINISH GAME
+   ========================================================= */
+
+document
+  .getElementById("finishGame")
+  .addEventListener(
+    "click",
+    finishGame
+  );
+
+
+async function finishGame() {
+
+  if (!game) {
+    return;
+  }
+
+
+  if (
+    !confirm(
+      "Finish the game?"
+    )
+  ) {
+    return;
+  }
+
+
+  if (
+    timerInterval !== null
+  ) {
+
+    clearInterval(
+      timerInterval
+    );
+
+    timerInterval = null;
+
+  }
+
+
+  await update(
+    gameRef,
+    {
+      started: false,
+
+      timerSeconds: null
+    }
+  );
+
+}
+
+
+/* =========================================================
+   NEW GAME
+   ========================================================= */
+
+document
+  .getElementById("newGame")
+  .addEventListener(
+    "click",
+    () => {
+
+      alert(
+        "We'll build the new-game setup next."
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   FORMATTING
+   ========================================================= */
+
+function formatScore(value) {
+
+  if (value > 0) {
+
+    return "+" + value;
+
+  }
+
+  return String(value);
+
+}
+
+
+function formatTime(totalSeconds) {
+
+  const minutes =
+    Math.floor(
+      totalSeconds / 60
     );
 
 
-    function renderGame(game) {
-
-      /*
-        Current value
-      */
-
-      const value =
-        document.getElementById(
-          "currentValue"
-        );
+  const seconds =
+    totalSeconds % 60;
 
 
-      if (
-        game.currentValue === null ||
-        game.currentValue === undefined
-      ) {
+  return (
+    String(minutes).padStart(2, "0") +
+    ":" +
+    String(seconds).padStart(2, "0")
+  );
 
-        value.textContent = "—";
-
-      }
-
-      else {
-
-        value.textContent =
-          formatScore(
-            game.currentValue
-          );
-
-      }
+}
 
 
-      /*
-        Teams
-      */
-
-      const container =
-        document.getElementById(
-          "teams"
-        );
-
-
-      container.innerHTML = "";
-
-
-      if (!game.teams) {
-        return;
-      }
-
-
-      game.teams.forEach(team => {
-
-        const element =
-          document.createElement("div");
-
-
-        element.className =
-          "team";
-
-
-        element.innerHTML = `
-
-          <div class="team-left">
-
-            <span class="animal">
-              ${team.emoji}
-            </span>
-
-            <span>
-              ${team.name}
-            </span>
-
-          </div>
-
-          <div class="score">
-            ${formatScore(team.score)}
-          </div>
-
-        `;
-
-
-        container.appendChild(
-          element
-        );
-
-      });
-
-    }
-
-
-    function formatScore(value) {
-
-      if (value > 0) {
-        return "+" + value;
-      }
-
-      return String(value);
-
-    }
-
-  </script>
+</script>
 
 </body>
-
 </html>
