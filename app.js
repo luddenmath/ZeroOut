@@ -221,20 +221,38 @@ let firebaseGameId = null;
 async function saveGameToFirebase() {
 
   if (!firebaseGameId) {
+    console.error("No Firebase game ID.");
     return;
   }
 
+  if (!db) {
+    console.error("Firebase database is not available.");
+    return;
+  }
+
+  const gameData = {
+    started: game.started,
+    currentValue: game.currentValue,
+    lastValue: game.lastValue,
+    lastTeamId: game.lastTeamId,
+    teams: game.teams,
+    timerSeconds: game.timerSeconds,
+    timerRunning: game.timerRunning
+  };
+
+  console.log(
+    "Saving to Firebase:",
+    firebaseGameId,
+    gameData
+  );
+
   await set(
     ref(db, "games/" + firebaseGameId),
-    {
-      started: game.started,
-      currentValue: game.currentValue,
-      lastValue: game.lastValue,
-      lastTeamId: game.lastTeamId,
-      teams: game.teams,
-      timerSeconds: game.timerSeconds,
-      timerRunning: game.timerRunning
-    }
+    gameData
+  );
+
+  console.log(
+    "Firebase save complete."
   );
 }
 
@@ -631,56 +649,75 @@ renderValue();
 AWARD POINTS
 ========================================================= */
 
-function awardPoints(teamId) {
+async function awardPoints(teamId) {
 
-if (
-!game.started ||
-game.currentValue === null
-) {
-return;
-}
+  if (
+    !game.started ||
+    game.currentValue === null
+  ) {
+    return;
+  }
 
-const team =
-game.teams.find(
-t => t.id === teamId
-);
+  const team =
+    game.teams.find(
+      t => t.id === teamId
+    );
 
-if (!team) {
-return;
-}
+  if (!team) {
+    return;
+  }
 
-/*
-Save transaction for reassignment.
-*/
+  /*
+  Save transaction for reassignment.
+  */
 
-game.lastValue =
-game.currentValue;
+  game.lastValue =
+    game.currentValue;
 
-game.lastTeamId =
-team.id;
+  game.lastTeamId =
+    team.id;
 
-/*
-Apply points.
-*/
+  /*
+  Apply points.
+  */
 
-team.score +=
-game.currentValue;
+  team.score +=
+    game.currentValue;
 
-/*
-IMPORTANT:
-Immediately create the next value.
-*/
+  /*
+  Immediately create the next value.
+  */
 
-game.currentValue =
-generatePointValue();
+  game.currentValue =
+    generatePointValue();
 
-reassignButton.disabled = false;
+  reassignButton.disabled = false;
 
-saveGameToFirebase();
-  
-renderEverything();
+  /*
+  Save the NEW state to Firebase.
+  */
 
-highlightTeam(team.id);
+  try {
+
+    await saveGameToFirebase();
+
+    console.log(
+      "Game saved to Firebase:",
+      game
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Firebase save failed:",
+      error
+    );
+
+  }
+
+  renderEverything();
+
+  highlightTeam(team.id);
 }
 
 /* =========================================================
