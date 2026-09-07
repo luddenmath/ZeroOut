@@ -410,6 +410,22 @@
   display: none !important;
 }
 
+
+    /* =========================================================
+   REASSIGN MODE
+   ========================================================= */
+
+.team-button.reassign-mode {
+    background: #d32f2f !important;
+    border-color: #ff6666 !important;
+    color: white !important;
+}
+
+.team-button.reassign-selected {
+    background: #d32f2f !important;
+    border-color: #ff6666 !important;
+    color: white !important;
+}
   </style>
 
 </head>
@@ -1477,10 +1493,37 @@ function renderTeams() {
       `;
 
 
-      button.addEventListener(
-        "click",
-        () => awardPoints(team.id)
-      );
+      if (reassignMode) {
+
+        button.classList.add(
+          "reassign-mode"
+        );
+
+        if (
+          team.id ===
+          reassignSelectedTeamId
+        ) {
+
+          button.classList.add(
+            "reassign-selected"
+          );
+
+        }
+
+
+        button.addEventListener(
+          "click",
+          () => handleReassignTeam(team.id)
+        );
+
+      } else {
+
+        button.addEventListener(
+          "click",
+          () => awardPoints(team.id)
+        );
+
+      }
 
 
       container.appendChild(
@@ -1653,10 +1696,6 @@ async function reassignLastValue() {
   }
 
 
-  const value =
-    game.lastValue;
-
-
   const oldIndex =
     game.teams.findIndex(
       team =>
@@ -1669,44 +1708,67 @@ async function reassignLastValue() {
   }
 
 
-  const choices =
-    game.teams
-      .filter(
-        team =>
-          team.id !== game.lastTeamId
-      )
-      .map(
-        (team, index) =>
-          `${index + 1}. ${team.emoji} ${team.name}`
-      )
-      .join("\n");
+  reassignMode = true;
+  reassignSelectedTeamId = null;
 
 
-  const answer =
-    prompt(
-      `Reassign ${formatScore(value)} to:\n\n${choices}\n\nEnter the team number:`
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+
+  const reassignButton =
+    document.getElementById(
+      "reassign"
     );
 
 
-  if (!answer) {
+  if (reassignButton) {
+
+    reassignButton.textContent =
+      "CANCEL?";
+
+    reassignButton.onclick =
+      cancelReassign;
+
+  }
+
+
+  renderTeams();
+
+}
+
+function restoreReassignButton() {
+
+  const reassignButton =
+    document.getElementById(
+      "reassign"
+    );
+
+
+  if (!reassignButton) {
     return;
   }
 
 
-  const choice =
-    Number(answer) - 1;
+  reassignButton.textContent =
+    "REASSIGN LAST VALUE";
 
 
-  const availableTeams =
-    game.teams.filter(
-      team =>
-        team.id !== game.lastTeamId
-    );
+  reassignButton.onclick =
+    reassignLastValue;
 
+}
+
+  async function handleReassignTeam(
+  newTeamId
+) {
 
   if (
-    choice < 0 ||
-    choice >= availableTeams.length
+    !reassignMode ||
+    !game ||
+    !gameRef
   ) {
 
     return;
@@ -1714,15 +1776,76 @@ async function reassignLastValue() {
   }
 
 
-  const newTeam =
-    availableTeams[choice];
+  const oldTeamId =
+    game.lastTeamId;
+
+
+  const value =
+    game.lastValue;
+
+
+  if (
+    oldTeamId === null ||
+    oldTeamId === undefined ||
+    value === null ||
+    value === undefined
+  ) {
+
+    cancelReassign();
+    return;
+
+  }
+
+
+  // Selecting the team that already has
+  // the value being reassigned does nothing.
+  if (
+    newTeamId === oldTeamId
+  ) {
+
+    reassignMode = false;
+    reassignSelectedTeamId = null;
+
+    restoreReassignButton();
+    renderTeams();
+
+    return;
+
+  }
+
+
+  const oldIndex =
+    game.teams.findIndex(
+      team =>
+        team.id === oldTeamId
+    );
 
 
   const newIndex =
     game.teams.findIndex(
       team =>
-        team.id === newTeam.id
+        team.id === newTeamId
     );
+
+
+  if (
+    oldIndex === -1 ||
+    newIndex === -1
+  ) {
+
+    cancelReassign();
+    return;
+
+  }
+
+
+  // Remember which team was selected
+  // so it stays red.
+  reassignSelectedTeamId =
+    newTeamId;
+
+
+  renderTeams();
 
 
   const updates = {};
@@ -1755,16 +1878,45 @@ async function reassignLastValue() {
     gameId +
     "/lastTeamId"
   ] =
-    newTeam.id;
+    newTeamId;
 
 
-  await update(
-    ref(db),
-    updates
-  );
+  try {
+
+    await update(
+      ref(db),
+      updates
+    );
+
+
+    // Leave the selected team red
+    // for half a second.
+    await new Promise(
+      resolve =>
+        setTimeout(
+          resolve,
+          500
+        )
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Error reassigning value:",
+      error
+    );
+
+  }
+
+
+  reassignMode = false;
+  reassignSelectedTeamId = null;
+
+  restoreReassignButton();
+  renderTeams();
 
 }
-
 
 /* =========================================================
    RANDOM VALUE
@@ -2218,6 +2370,9 @@ function startNewGame() {
   gameRef = null;
 
   selectedLetters = [];
+
+  reassignMode = false;
+reassignSelectedTeamId = null;
 
 
   document
