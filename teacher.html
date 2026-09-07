@@ -624,7 +624,13 @@
         FINISH GAME
 
       </button>
+  <button
+        id="newRound"
+        class="control-button">
 
+        NEW ROUND (Same Teams)
+
+      </button>
 
       <button
         id="newGame"
@@ -2334,6 +2340,73 @@ document
     }
   );
 
+/* =========================================================
+New Round
+========================================================= */
+
+document
+  .getElementById("newRound")
+  .addEventListener(
+    "click",
+    startNewRound
+  );
+  
+async function startNewRound() {
+
+  if (
+    !game ||
+    !gameRef ||
+    !Array.isArray(game.teams)
+  ) {
+    return;
+  }
+
+  // Stop any active timer.
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+
+  // Cancel any open reassign mode.
+  reassignMode = false;
+  reassignSelectedTeamId = null;
+  restoreReassignButton();
+
+  // Keep the same teams, but reset their scores.
+  const teams = game.teams.map(team => ({
+    ...team,
+    score: 0
+  }));
+
+const newValue = generatePointValue();
+  
+  try {
+
+    await update(
+      gameRef,
+      {
+        teams: teams,
+        currentValue: newValue,
+        lastValue: null,
+        lastTeamId: null,
+        timerSeconds: null,
+        timerRunning: false,
+        started: true
+      }
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Error starting new round:",
+      error
+    );
+
+  }
+
+}
+  
+  
 /* =========================================================
    NEW GAME
    ========================================================= */
