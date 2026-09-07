@@ -1768,6 +1768,17 @@ function restoreReassignButton() {
 
 }
 
+
+function cancelReassign() {
+
+  reassignMode = false;
+  reassignSelectedTeamId = null;
+
+  restoreReassignButton();
+  renderTeams();
+
+}
+  
   async function handleReassignTeam(
   newTeamId
 ) {
