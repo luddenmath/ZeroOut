@@ -1677,7 +1677,19 @@ document
   .getElementById("reassign")
   .addEventListener(
     "click",
-    reassignLastValue
+    () => {
+
+      if (reassignMode) {
+
+        cancelReassign();
+
+      } else {
+
+        reassignLastValue();
+
+      }
+
+    }
   );
 
 
@@ -1729,8 +1741,6 @@ async function reassignLastValue() {
     reassignButton.textContent =
       "CANCEL?";
 
-    reassignButton.onclick =
-      cancelReassign;
 
   }
 
@@ -1755,9 +1765,6 @@ function restoreReassignButton() {
   reassignButton.textContent =
     "REASSIGN LAST VALUE";
 
-
-  reassignButton.onclick =
-    reassignLastValue;
 
 }
 
