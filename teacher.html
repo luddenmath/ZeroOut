@@ -2353,6 +2353,14 @@ document
   
 async function startNewRound() {
 
+if (
+  !confirm(
+    "Start a new round? Scores will be reset to zero."
+  )
+) {
+  return;
+}
+  
   if (
     !game ||
     !gameRef ||
