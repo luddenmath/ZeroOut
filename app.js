@@ -1,3 +1,4 @@
+```javascript
 /* =========================================================
 ZERO OUT
 First working version + timer
@@ -10,176 +11,178 @@ ANIMAL DATABASE
 const animals = {
 
 A: [
-{ name: "Alligator", emoji: "🐊" },
-{ name: "Ant", emoji: "🐜" },
-{ name: "Antelope", emoji: "🦌" },
-{ name: "Armadillo", emoji: "🦔" },
-{ name: "Axolotl", emoji: "🦎" }
+{ name: "Aardvark" },
+{ name: "Alpaca" },
+{ name: "Axolotl" }
 ],
 
 B: [
-{ name: "Bear", emoji: "🐻" },
-{ name: "Beaver", emoji: "🦫" },
-{ name: "Bee", emoji: "🐝" },
-{ name: "Buffalo", emoji: "🦬" },
-{ name: "Butterfly", emoji: "🦋" }
+{ name: "Baboon" },
+{ name: "Badger" },
+{ name: "Beaver" }
 ],
 
 C: [
-{ name: "Cat", emoji: "🐱" },
-{ name: "Cheetah", emoji: "🐆" },
-{ name: "Chicken", emoji: "🐔" },
-{ name: "Crab", emoji: "🦀" },
-{ name: "Crocodile", emoji: "🐊" }
+{ name: "Capybara" },
+{ name: "Caterpillar" },
+{ name: "Chameleon" },
+{ name: "Cheetah" },
+{ name: "Cobra" }
 ],
 
 D: [
-{ name: "Deer", emoji: "🦌" },
-{ name: "Dolphin", emoji: "🐬" },
-{ name: "Donkey", emoji: "🫏" },
-{ name: "Duck", emoji: "🦆" },
-{ name: "Dragonfly", emoji: "🪰" }
+{ name: "Deer" },
+{ name: "Dodo" }
 ],
 
 E: [
-{ name: "Eagle", emoji: "🦅" },
-{ name: "Elephant", emoji: "🐘" },
-{ name: "Elk", emoji: "🦌" },
-{ name: "Eel", emoji: "🐍" }
+{ name: "Echidna" },
+{ name: "Eel" },
+{ name: "Elephant Seal" },
+{ name: "Emu" }
 ],
 
 F: [
-{ name: "Fox", emoji: "🦊" },
-{ name: "Falcon", emoji: "🦅" },
-{ name: "Frog", emoji: "🐸" },
-{ name: "Flamingo", emoji: "🦩" },
-{ name: "Ferret", emoji: "🦦" }
+{ name: "Ferret" },
+{ name: "Fossa" }
 ],
 
 G: [
-{ name: "Giraffe", emoji: "🦒" },
-{ name: "Goat", emoji: "🐐" },
-{ name: "Gorilla", emoji: "🦍" },
-{ name: "Goose", emoji: "🪿" }
+{ name: "Gazelle" },
+{ name: "Gerbil" },
+{ name: "Gibbon" },
+{ name: "Gila Monster" },
+{ name: "Goose" }
 ],
 
 H: [
-{ name: "Hedgehog", emoji: "🦔" },
-{ name: "Hippo", emoji: "🦛" },
-{ name: "Horse", emoji: "🐴" },
-{ name: "Hawk", emoji: "🦅" }
+{ name: "Hyena" }
 ],
 
 I: [
-{ name: "Iguana", emoji: "🦎" },
-{ name: "Impala", emoji: "🦌" },
-{ name: "Ibis", emoji: "🐦" }
+{ name: "Ibex" },
+{ name: "Ibis" },
+{ name: "Impala" }
 ],
 
 J: [
-{ name: "Jaguar", emoji: "🐆" },
-{ name: "Jellyfish", emoji: "🪼" },
-{ name: "Jackal", emoji: "🦊" }
+{ name: "Jackal" },
+{ name: "Jaguarundi" },
+{ name: "Jellyfish" }
 ],
 
 K: [
-{ name: "Kangaroo", emoji: "🦘" },
-{ name: "Koala", emoji: "🐨" },
-{ name: "Kiwi", emoji: "🥝" },
-{ name: "Kingfisher", emoji: "🐦" }
+{ name: "Kingfisher" },
+{ name: "Koala" },
+{ name: "Komodo Dragon" }
 ],
 
 L: [
-{ name: "Lion", emoji: "🦁" },
-{ name: "Leopard", emoji: "🐆" },
-{ name: "Llama", emoji: "🦙" },
-{ name: "Lobster", emoji: "🦞" }
+{ name: "Lemur" },
+{ name: "Lionfish" },
+{ name: "Lobster" }
 ],
 
 M: [
-{ name: "Monkey", emoji: "🐒" },
-{ name: "Moose", emoji: "🫎" },
-{ name: "Mouse", emoji: "🐭" },
-{ name: "Meerkat", emoji: "🦦" }
+{ name: "Manta Ray" },
+{ name: "Marmoset" },
+{ name: "Meerkat" }
 ],
 
 N: [
-{ name: "Narwhal", emoji: "🦄" },
-{ name: "Newt", emoji: "🦎" },
-{ name: "Nightingale", emoji: "🐦" }
+{ name: "Newt" },
+{ name: "Nightingale" },
+{ name: "Nudibranch" }
 ],
 
 O: [
-{ name: "Owl", emoji: "🦉" },
-{ name: "Octopus", emoji: "🐙" },
-{ name: "Otter", emoji: "🦦" },
-{ name: "Ostrich", emoji: "🦤" }
+{ name: "Octopus" },
+{ name: "Orangutan" },
+{ name: "Ox" }
 ],
 
 P: [
-{ name: "Panda", emoji: "🐼" },
-{ name: "Penguin", emoji: "🐧" },
-{ name: "Pig", emoji: "🐷" },
-{ name: "Porcupine", emoji: "🦔" }
+{ name: "Pelican" },
+{ name: "Pigeon" },
+{ name: "Platypus" }
 ],
 
 Q: [
-{ name: "Quail", emoji: "🐦" }
+{ name: "Quetzal" },
+{ name: "Quokka" }
 ],
 
 R: [
-{ name: "Raccoon", emoji: "🦝" },
-{ name: "Rabbit", emoji: "🐰" },
-{ name: "Raven", emoji: "🐦" },
-{ name: "Reindeer", emoji: "🦌" }
+{ name: "Raccoon" },
+{ name: "Raven" },
+{ name: "Red Panda" }
 ],
 
 S: [
-{ name: "Snake", emoji: "🐍" },
-{ name: "Shark", emoji: "🦈" },
-{ name: "Seal", emoji: "🦭" },
-{ name: "Sloth", emoji: "🦥" },
-{ name: "Squirrel", emoji: "🐿️" }
+{ name: "Scorpion" },
+{ name: "Seahorse" },
+{ name: "Sloth" }
 ],
 
 T: [
-{ name: "Tiger", emoji: "🐯" },
-{ name: "Turtle", emoji: "🐢" },
-{ name: "Toucan", emoji: "🐦" },
-{ name: "Turkey", emoji: "🦃" }
+{ name: "Tapir" },
+{ name: "Toucan" },
+{ name: "Turkey" }
 ],
 
 U: [
-{ name: "Urchin", emoji: "🦔" }
+{ name: "Urchin" },
+{ name: "Urial" }
 ],
 
 V: [
-{ name: "Vulture", emoji: "🦅" },
-{ name: "Viper", emoji: "🐍" }
+{ name: "Vicuna" },
+{ name: "Viper" },
+{ name: "Vole" }
 ],
 
 W: [
-{ name: "Wolf", emoji: "🐺" },
-{ name: "Whale", emoji: "🐋" },
-{ name: "Walrus", emoji: "🦭" },
-{ name: "Wombat", emoji: "🐾" }
+{ name: "Wallaby" },
+{ name: "Wildebeest" },
+{ name: "Wolverine" }
 ],
 
 X: [
-{ name: "Xerus", emoji: "🐿️" }
+{ name: "Xenopus" },
+{ name: "X-ray Tetra" }
 ],
 
 Y: [
-{ name: "Yak", emoji: "🐂" },
-{ name: "Yellowhammer", emoji: "🐦" }
+{ name: "Yellowhammer" },
+{ name: "Yellowjacket" },
+{ name: "Yeti Crab" }
 ],
 
 Z: [
-{ name: "Zebra", emoji: "🦓" },
-{ name: "Zebu", emoji: "🐂" }
+{ name: "Zebu" },
+{ name: "Zorilla" },
+{ name: "Zosterops" }
 ]
 
 };
+
+
+/* =========================================================
+ANIMAL IMAGE PATH
+========================================================= */
+
+function getAnimalImage(name) {
+
+  return (
+    "images/" +
+    name
+      .toLowerCase()
+      .replaceAll(" ", "_") +
+    ".png"
+  );
+
+}
+
 
 /* =========================================================
 GAME STATE
@@ -205,9 +208,10 @@ timerRunning: false
 
 let timerInterval = null;
 
-// =========================================================
-// FIREBASE
-// =========================================================
+
+/* =========================================================
+FIREBASE
+========================================================= */
 
 import {
   ref,
@@ -221,6 +225,7 @@ const db = window.firebaseDB;
 let firebaseGameId = null;
 
 let gameListener = null;
+
 
 async function saveGameToFirebase() {
 
@@ -259,8 +264,6 @@ async function saveGameToFirebase() {
     "Firebase save complete."
   );
 }
-
-
 
 
 /* =========================================================
@@ -472,53 +475,53 @@ async function joinGame() {
     }
 
 
-gameListener =
-  onValue(
-    gameRef,
-    snapshot => {
+    gameListener =
+      onValue(
+        gameRef,
+        snapshot => {
 
-      const firebaseGame =
-        snapshot.val();
+          const firebaseGame =
+            snapshot.val();
 
-      if (!firebaseGame) {
-        return;
-      }
+          if (!firebaseGame) {
+            return;
+          }
 
-      /*
-        Remember whether the game was
-        previously running.
-      */
+          /*
+            Remember whether the game was
+            previously running.
+          */
 
-      const wasStarted =
-        game.started;
+          const wasStarted =
+            game.started;
 
-      /*
-        Update local game state.
-      */
+          /*
+            Update local game state.
+          */
 
-      game =
-        firebaseGame;
+          game =
+            firebaseGame;
 
-      /*
-        Render the scoreboard.
-      */
+          /*
+            Render the scoreboard.
+          */
 
-      renderEverything();
+          renderEverything();
 
-      /*
-        If the teacher just ended the game,
-        show the winner screen.
-      */
+          /*
+            If the teacher just ended the game,
+            show the winner screen.
+          */
 
-      if (
-        wasStarted === true &&
-        game.started === false
-      ) {
-        showWinner();
-      }
+          if (
+            wasStarted === true &&
+            game.started === false
+          ) {
+            showWinner();
+          }
 
-    }
-  );
+        }
+      );
 
 
   } catch (error) {
@@ -542,7 +545,9 @@ gameListener =
 }
 
 
-/* TIMER ELEMENTS */
+/* =========================================================
+TIMER ELEMENTS
+========================================================= */
 
 const gameTimerElement =
 document.getElementById("gameTimer");
@@ -571,94 +576,97 @@ document.getElementById("stopTimerButton");
 const finishGameButton =
 document.getElementById("finishGameButton");
 
+
 /* =========================================================
 TEAM SELECTION
 ========================================================= */
 
 let selectedLetters = [];
 
+
 function createAlphabet() {
 
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-alphabetElement.innerHTML = "";
+  alphabetElement.innerHTML = "";
 
-for (const letter of letters) {
+  for (const letter of letters) {
 
+    const button =
+      document.createElement("button");
 
-const button =
-  document.createElement("button");
+    button.className =
+      "letter-button";
 
-button.className = "letter-button";
+    button.textContent =
+      letter;
 
-button.textContent = letter;
+    button.dataset.letter =
+      letter;
 
-button.dataset.letter = letter;
+    button.addEventListener(
+      "click",
+      () => toggleLetter(letter, button)
+    );
 
-button.addEventListener(
-  "click",
-  () => toggleLetter(letter, button)
-);
+    alphabetElement.appendChild(button);
 
-alphabetElement.appendChild(button);
-
+  }
 
 }
-}
+
 
 function toggleLetter(letter, button) {
 
-const index =
-selectedLetters.indexOf(letter);
+  const index =
+    selectedLetters.indexOf(letter);
 
-if (index === -1) {
+  if (index === -1) {
 
+    selectedLetters.push(letter);
 
-selectedLetters.push(letter);
+    button.classList.add("selected");
 
-button.classList.add("selected");
+  } else {
 
+    selectedLetters.splice(index, 1);
 
-} else {
+    button.classList.remove("selected");
 
+  }
 
-selectedLetters.splice(index, 1);
-
-button.classList.remove("selected");
-
+  updateTeamSelectionDisplay();
 
 }
 
-updateTeamSelectionDisplay();
-}
 
 function updateTeamSelectionDisplay() {
 
-selectedCountElement.textContent =
-selectedLetters.length;
+  selectedCountElement.textContent =
+    selectedLetters.length;
 
-selectedLettersElement.innerHTML = "";
+  selectedLettersElement.innerHTML = "";
 
-selectedLetters.forEach(letter => {
+  selectedLetters.forEach(letter => {
 
+    const element =
+      document.createElement("span");
 
-const element =
-  document.createElement("span");
+    element.className =
+      "selected-letter";
 
-element.className =
-  "selected-letter";
+    element.textContent =
+      letter;
 
-element.textContent =
-  letter;
+    selectedLettersElement.appendChild(element);
 
-selectedLettersElement.appendChild(element);
+  });
 
+  startGameButton.disabled =
+    selectedLetters.length === 0;
 
-});
-
-startGameButton.disabled =
-selectedLetters.length === 0;
 }
+
 
 /* =========================================================
 RANDOM ANIMAL ASSIGNMENT
@@ -695,106 +703,116 @@ function assignAnimals(letters) {
       id:
         `${letter}-${index}-${Date.now()}`,
 
-      letter: letter,
+      letter:
+        letter,
 
-      name: animal.name,
+      name:
+        animal.name,
 
-      emoji: animal.emoji,
+      image:
+        getAnimalImage(animal.name),
 
-      score: 0,
+      score:
+        0,
 
-      position: index
+      position:
+        index
     };
 
   });
+
 }
+
 
 /* =========================================================
 START GAME
 ========================================================= */
 
 startGameButton.addEventListener(
-"click",
-startGame
+  "click",
+  startGame
 );
+
 
 async function startGame() {
 
-if (selectedLetters.length === 0) {
-return;
-}
-
-stopGameTimer();
-
-game.started = true;
-
-game.currentValue = null;
-
-game.lastValue = null;
-
-game.lastTeamId = null;
-
-game.teams =
-assignAnimals(selectedLetters);
-
-firebaseGameId =
-  Math.random().toString(36).substring(2, 8).toUpperCase();
-
-await set(
-  ref(db, "games/" + firebaseGameId),
-  {
-    started: true,
-    currentValue: null,
-    teams: game.teams
+  if (selectedLetters.length === 0) {
+    return;
   }
-);
-  
 
-setupSection.classList.add("hidden");
+  stopGameTimer();
 
-gameControls.classList.remove("hidden");
+  game.started = true;
 
-renderEverything();
+  game.currentValue = null;
 
-/*
-Generate the first value immediately.
-*/
+  game.lastValue = null;
 
-generateNewValue();
+  game.lastTeamId = null;
 
-/*
-Start optional setup timer.
-*/
+  game.teams =
+    assignAnimals(selectedLetters);
 
-const setupMinutes =
-Number(setupTimerMinutes.value) || 0;
+  firebaseGameId =
+    Math.random()
+      .toString(36)
+      .substring(2, 8)
+      .toUpperCase();
 
-const setupSeconds =
-Number(setupTimerSeconds.value) || 0;
-
-const totalSeconds =
-setupMinutes * 60 +
-setupSeconds;
-
-if (totalSeconds > 0) {
+  await set(
+    ref(db, "games/" + firebaseGameId),
+    {
+      started: true,
+      currentValue: null,
+      teams: game.teams
+    }
+  );
 
 
-game.timerSeconds =
-  totalSeconds;
+  setupSection.classList.add("hidden");
 
-startGameTimer();
+  gameControls.classList.remove("hidden");
 
+  renderEverything();
 
-} else {
+  /*
+  Generate the first value immediately.
+  */
 
+  generateNewValue();
 
-game.timerSeconds = null;
+  /*
+  Start optional setup timer.
+  */
 
-updateTimerDisplay();
+  const setupMinutes =
+    Number(setupTimerMinutes.value) || 0;
 
+  const setupSeconds =
+    Number(setupTimerSeconds.value) || 0;
+
+  const totalSeconds =
+    setupMinutes * 60 +
+    setupSeconds;
+
+  if (totalSeconds > 0) {
+
+    game.timerSeconds =
+      totalSeconds;
+
+    startGameTimer();
+
+  } else {
+
+    game.timerSeconds =
+      null;
+
+    updateTimerDisplay();
+
+  }
 
 }
-}
+
 
 /* =========================================================
 RANDOM POINT VALUE
@@ -802,49 +820,52 @@ RANDOM POINT VALUE
 
 function generatePointValue() {
 
-let value = 0;
+  let value = 0;
 
-while (value === 0) {
+  while (value === 0) {
 
+    value =
+      Math.floor(
+        Math.random() * 201
+      ) - 100;
 
-value =
-  Math.floor(
-    Math.random() * 201
-  ) - 100;
+  }
 
+  return value;
 
 }
 
-return value;
-}
 
 newValueButton.addEventListener(
-"click",
-generateNewValue
+  "click",
+  generateNewValue
 );
+
 
 function generateNewValue() {
 
-if (!game.started) {
-return;
+  if (!game.started) {
+    return;
+  }
+
+  game.currentValue =
+    generatePointValue();
+
+  /*
+  A manually generated value starts
+  a new assignment cycle.
+  */
+
+  game.lastValue = null;
+
+  game.lastTeamId = null;
+
+  reassignButton.disabled = true;
+
+  renderValue();
+
 }
 
-game.currentValue =
-generatePointValue();
-
-/*
-A manually generated value starts
-a new assignment cycle.
-*/
-
-game.lastValue = null;
-
-game.lastTeamId = null;
-
-reassignButton.disabled = true;
-
-renderValue();
-}
 
 /* =========================================================
 AWARD POINTS
@@ -919,103 +940,115 @@ async function awardPoints(teamId) {
   renderEverything();
 
   highlightTeam(team.id);
+
 }
+
 
 /* =========================================================
 REASSIGN LAST VALUE
 ========================================================= */
 
 reassignButton.addEventListener(
-"click",
-beginReassign
+  "click",
+  beginReassign
 );
+
 
 function beginReassign() {
 
-if (
-game.lastValue === null ||
-game.lastTeamId === null
-) {
-return;
+  if (
+    game.lastValue === null ||
+    game.lastTeamId === null
+  ) {
+    return;
+  }
+
+  const value =
+    game.lastValue;
+
+  teamButtonsElement.innerHTML = "";
+
+  game.teams.forEach(team => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "team-select-button";
+
+    button.innerHTML = `
+      <span>
+        <img
+          src="${team.image}"
+          alt=""
+        >
+        ${team.name}
+      </span>
+
+      <span class="button-score">
+        ${formatScore(team.score)}
+      </span>
+    `;
+
+    button.addEventListener(
+      "click",
+      () => reassignValue(team.id)
+    );
+
+    if (
+      team.id === game.lastTeamId
+    ) {
+
+      button.disabled = true;
+
+      button.style.opacity = "0.35";
+    }
+
+    teamButtonsElement.appendChild(button);
+
+  });
+
 }
 
-const value =
-game.lastValue;
 
-teamButtonsElement.innerHTML = "";
-
-game.teams.forEach(team => {
-
-
-const button =
-  document.createElement("button");
-
-button.className =
-  "team-select-button";
-
-button.innerHTML = `
-  <span>
-    ${team.emoji}
-    ${team.name}
-  </span>
-
-  <span class="button-score">
-    ${formatScore(team.score)}
-  </span>
-`;
-
-button.addEventListener(
-  "click",
-  () => reassignValue(team.id)
-);
-
-if (
-  team.id === game.lastTeamId
-) {
-
-  button.disabled = true;
-
-  button.style.opacity = "0.35";
-}
-
-teamButtonsElement.appendChild(button);
-
-
-});
-
-}
+/*
+The value variable above is retained from
+the original working logic.
+*/
 
 function reassignValue(newTeamId) {
 
-const oldTeam =
-game.teams.find(
-team =>
-team.id === game.lastTeamId
-);
+  const oldTeam =
+    game.teams.find(
+      team =>
+        team.id === game.lastTeamId
+    );
 
-const newTeam =
-game.teams.find(
-team =>
-team.id === newTeamId
-);
+  const newTeam =
+    game.teams.find(
+      team =>
+        team.id === newTeamId
+    );
 
-if (!oldTeam || !newTeam) {
-return;
+  if (!oldTeam || !newTeam) {
+    return;
+  }
+
+  oldTeam.score -=
+    game.lastValue;
+
+  newTeam.score +=
+    game.lastValue;
+
+  game.lastTeamId =
+    newTeam.id;
+
+  renderEverything();
+
+  highlightTeam(newTeam.id);
+
 }
 
-oldTeam.score -=
-game.lastValue;
-
-newTeam.score +=
-game.lastValue;
-
-game.lastTeamId =
-newTeam.id;
-
-renderEverything();
-
-highlightTeam(newTeam.id);
-}
 
 /* =========================================================
 RENDER SCOREBOARD
@@ -1023,65 +1056,68 @@ RENDER SCOREBOARD
 
 function renderScoreboard() {
 
-teamsElement.innerHTML = "";
+  teamsElement.innerHTML = "";
 
-game.teams.forEach(team => {
+  game.teams.forEach(team => {
 
+    const card =
+      document.createElement("div");
 
-const card =
-  document.createElement("div");
+    card.className =
+      "team-card";
 
-card.className =
-  "team-card";
+    card.dataset.teamId =
+      team.id;
 
-card.dataset.teamId =
-  team.id;
+    card.innerHTML = `
 
-card.innerHTML = `
+      <div class="team-animal">
+        <img
+          src="${team.image}"
+          alt="${team.name}"
+        >
+      </div>
 
-  <div class="team-animal">
-    ${team.emoji}
-  </div>
+      <div class="team-name">
+        ${team.name}
+      </div>
 
-  <div class="team-name">
-    ${team.name}
-  </div>
+      <div class="team-score">
+        ${formatScore(team.score)}
+      </div>
 
-  <div class="team-score">
-    ${formatScore(team.score)}
-  </div>
+    `;
 
-`;
+    teamsElement.appendChild(card);
 
-teamsElement.appendChild(card);
+  });
 
+  const count =
+    game.teams.length;
 
-});
+  let columns = 2;
 
-const count =
-game.teams.length;
+  if (count === 1) {
+    columns = 1;
+  }
 
-let columns = 2;
+  else if (count <= 4) {
+    columns = 2;
+  }
 
-if (count === 1) {
-columns = 1;
+  else if (count <= 9) {
+    columns = 3;
+  }
+
+  else {
+    columns = 4;
+  }
+
+  teamsElement.style.gridTemplateColumns =
+    `repeat(${columns}, 1fr)`;
+
 }
 
-else if (count <= 4) {
-columns = 2;
-}
-
-else if (count <= 9) {
-columns = 3;
-}
-
-else {
-columns = 4;
-}
-
-teamsElement.style.gridTemplateColumns =
-`repeat(${columns}, 1fr)`;
-}
 
 /* =========================================================
 RENDER TEACHER TEAM BUTTONS
@@ -1089,40 +1125,43 @@ RENDER TEACHER TEAM BUTTONS
 
 function renderTeamButtons() {
 
-teamButtonsElement.innerHTML = "";
+  teamButtonsElement.innerHTML = "";
 
-game.teams.forEach(team => {
+  game.teams.forEach(team => {
 
+    const button =
+      document.createElement("button");
 
-const button =
-  document.createElement("button");
+    button.className =
+      "team-select-button";
 
-button.className =
-  "team-select-button";
+    button.innerHTML = `
 
-button.innerHTML = `
+      <span>
+        <img
+          src="${team.image}"
+          alt=""
+        >
+        ${team.name}
+      </span>
 
-  <span>
-    ${team.emoji}
-    ${team.name}
-  </span>
+      <span class="button-score">
+        ${formatScore(team.score)}
+      </span>
 
-  <span class="button-score">
-    ${formatScore(team.score)}
-  </span>
+    `;
 
-`;
+    button.addEventListener(
+      "click",
+      () => awardPoints(team.id)
+    );
 
-button.addEventListener(
-  "click",
-  () => awardPoints(team.id)
-);
+    teamButtonsElement.appendChild(button);
 
-teamButtonsElement.appendChild(button);
+  });
 
-
-});
 }
+
 
 /* =========================================================
 RENDER VALUE
@@ -1130,20 +1169,22 @@ RENDER VALUE
 
 function renderValue() {
 
-const value =
-game.currentValue;
+  const value =
+    game.currentValue;
 
-const display =
-value === null
-? "—"
-: formatScore(value);
+  const display =
+    value === null
+      ? "—"
+      : formatScore(value);
 
-currentValueElement.textContent =
-display;
+  currentValueElement.textContent =
+    display;
 
-teacherCurrentValueElement.textContent =
-display;
+  teacherCurrentValueElement.textContent =
+    display;
+
 }
+
 
 /* =========================================================
 RENDER EVERYTHING
@@ -1151,14 +1192,16 @@ RENDER EVERYTHING
 
 function renderEverything() {
 
-renderScoreboard();
+  renderScoreboard();
 
-renderTeamButtons();
+  renderTeamButtons();
 
-renderValue();
+  renderValue();
 
-updateTimerDisplay();
+  updateTimerDisplay();
+
 }
+
 
 /* =========================================================
 SCORE FORMATTING
@@ -1166,12 +1209,14 @@ SCORE FORMATTING
 
 function formatScore(value) {
 
-if (value > 0) {
-return `+${value}`;
+  if (value > 0) {
+    return `+${value}`;
+  }
+
+  return String(value);
+
 }
 
-return String(value);
-}
 
 /* =========================================================
 HIGHLIGHT TEAM
@@ -1179,43 +1224,45 @@ HIGHLIGHT TEAM
 
 function highlightTeam(teamId) {
 
-const card =
-document.querySelector(
-`.team-card[data-team-id="${teamId}"]`
-);
+  const card =
+    document.querySelector(
+      `.team-card[data-team-id="${teamId}"]`
+    );
 
-if (!card) {
-return;
+  if (!card) {
+    return;
+  }
+
+  card.classList.add("highlight");
+
+  setTimeout(() => {
+
+    card.classList.remove("highlight");
+
+  }, 700);
+
 }
 
-card.classList.add("highlight");
-
-setTimeout(() => {
-
-
-card.classList.remove("highlight");
-
-
-}, 700);
-}
 
 /* =========================================================
 CONTROL PANEL
 ========================================================= */
 
 controlsToggle.addEventListener(
-"click",
-() => {
-controlPanel.classList.add("open");
-}
+  "click",
+  () => {
+    controlPanel.classList.add("open");
+  }
 );
 
+
 closeControls.addEventListener(
-"click",
-() => {
-controlPanel.classList.remove("open");
-}
+  "click",
+  () => {
+    controlPanel.classList.remove("open");
+  }
 );
+
 
 /* =========================================================
 TIMER
@@ -1223,25 +1270,27 @@ TIMER
 
 function formatTime(totalSeconds) {
 
-if (
-totalSeconds === null ||
-totalSeconds === undefined
-) {
-return "00:00";
+  if (
+    totalSeconds === null ||
+    totalSeconds === undefined
+  ) {
+    return "00:00";
+  }
+
+  const minutes =
+    Math.floor(totalSeconds / 60);
+
+  const seconds =
+    totalSeconds % 60;
+
+  return (
+    String(minutes).padStart(2, "0") +
+    ":" +
+    String(seconds).padStart(2, "0")
+  );
+
 }
 
-const minutes =
-Math.floor(totalSeconds / 60);
-
-const seconds =
-totalSeconds % 60;
-
-return (
-String(minutes).padStart(2, "0") +
-":" +
-String(seconds).padStart(2, "0")
-);
-}
 
 function updateTimerDisplay() {
 
@@ -1284,319 +1333,317 @@ function updateTimerDisplay() {
     teacherTimerElement.classList.remove("warning");
 
   }
+
 }
+
 
 function startGameTimer() {
 
-stopGameTimer();
+  stopGameTimer();
 
-if (
-!game.timerSeconds ||
-game.timerSeconds <= 0
-) {
-return;
-}
-
-game.timerRunning = true;
-
-stopTimerButton.disabled = false;
-
-updateTimerDisplay();
-
-timerInterval =
-setInterval(() => {
-
-
-  if (!game.started) {
-    stopGameTimer();
+  if (
+    !game.timerSeconds ||
+    game.timerSeconds <= 0
+  ) {
     return;
   }
 
-  game.timerSeconds--;
+  game.timerRunning = true;
+
+  stopTimerButton.disabled = false;
 
   updateTimerDisplay();
 
-  if (game.timerSeconds <= 0) {
+  timerInterval =
+    setInterval(() => {
 
-    game.timerSeconds = 0;
+      if (!game.started) {
+        stopGameTimer();
+        return;
+      }
 
-    updateTimerDisplay();
+      game.timerSeconds--;
 
-    stopGameTimer();
+      updateTimerDisplay();
 
-    finishGame();
+      if (game.timerSeconds <= 0) {
 
-  }
+        game.timerSeconds = 0;
 
-}, 1000);
+        updateTimerDisplay();
 
+        stopGameTimer();
+
+        finishGame();
+
+      }
+
+    }, 1000);
 
 }
 
-function stopGameTimer() {
-
-if (timerInterval !== null) {
-
-
-clearInterval(timerInterval);
-
-timerInterval = null;
-
-
-}
-
-game.timerRunning = false;
-
-if (stopTimerButton) {
-stopTimerButton.disabled = true;
-}
-}
 
 /*
 Set/start timer during the game.
 */
 
 setTimerButton.addEventListener(
-"click",
-setGameTimer
+  "click",
+  setGameTimer
 );
+
 
 function setGameTimer() {
 
-const minutes =
-Number(gameTimerMinutes.value) || 0;
+  const minutes =
+    Number(gameTimerMinutes.value) || 0;
 
-const seconds =
-Number(gameTimerSeconds.value) || 0;
+  const seconds =
+    Number(gameTimerSeconds.value) || 0;
 
-if (
-minutes === 0 &&
-seconds === 0
-) {
-return;
+  if (
+    minutes === 0 &&
+    seconds === 0
+  ) {
+    return;
+  }
+
+  const totalSeconds =
+    minutes * 60 +
+    seconds;
+
+  game.timerSeconds =
+    totalSeconds;
+
+  startGameTimer();
+
 }
 
-const totalSeconds =
-minutes * 60 +
-seconds;
-
-game.timerSeconds =
-totalSeconds;
-
-startGameTimer();
-}
 
 /*
 Stop timer during the game.
 */
 
 stopTimerButton.addEventListener(
-"click",
-stopGameTimer
+  "click",
+  stopGameTimer
 );
+
 
 /* =========================================================
 FINISH GAME
 ========================================================= */
 
 finishGameButton.addEventListener(
-"click",
-finishGame
+  "click",
+  finishGame
 );
+
 
 async function finishGame() {
 
-if (
-!game.started ||
-game.teams.length === 0
-) {
-return;
+  if (
+    !game.started ||
+    game.teams.length === 0
+  ) {
+    return;
+  }
+
+  stopGameTimer();
+
+  game.started = false;
+
+  await saveGameToFirebase();
+
+  showWinner();
+
 }
 
-stopGameTimer();
-
-game.started = false;
-
-await saveGameToFirebase();
-
-showWinner();
-}
 
 /* =========================================================
 EDIT SCORES
 ========================================================= */
 
 editScoresButton.addEventListener(
-"click",
-openScoreEditor
+  "click",
+  openScoreEditor
 );
+
 
 function openScoreEditor() {
 
-scoreEditors.innerHTML = "";
+  scoreEditors.innerHTML = "";
 
-game.teams.forEach(team => {
+  game.teams.forEach(team => {
 
+    const editor =
+      document.createElement("div");
 
-const editor =
-  document.createElement("div");
+    editor.className =
+      "score-editor";
 
-editor.className =
-  "score-editor";
+    editor.innerHTML = `
 
-editor.innerHTML = `
+      <label>
+        ${team.name}
+      </label>
 
-  <label>
-    ${team.name}
-  </label>
+      <div class="score-editor-row">
 
-  <div class="score-editor-row">
+        <div class="score-editor-animal">
+          <img
+            src="${team.image}"
+            alt="${team.name}"
+          >
+        </div>
 
-    <div class="score-editor-animal">
-      ${team.emoji}
-    </div>
+        <input
+          type="number"
+          data-team-id="${team.id}"
+          value="${team.score}"
+        >
 
-    <input
-      type="number"
-      data-team-id="${team.id}"
-      value="${team.score}"
-    >
+      </div>
 
-  </div>
+    `;
 
-`;
+    scoreEditors.appendChild(editor);
 
-scoreEditors.appendChild(editor);
+  });
 
+  editModal.classList.remove("hidden");
 
-});
-
-editModal.classList.remove("hidden");
 }
 
+
 saveScoresButton.addEventListener(
-"click",
-saveEditedScores
+  "click",
+  saveEditedScores
 );
+
 
 function saveEditedScores() {
 
-const inputs =
-scoreEditors.querySelectorAll("input");
+  const inputs =
+    scoreEditors.querySelectorAll("input");
 
-inputs.forEach(input => {
+  inputs.forEach(input => {
 
+    const team =
+      game.teams.find(
+        t =>
+          t.id === input.dataset.teamId
+      );
 
-const team =
-  game.teams.find(
-    t =>
-      t.id === input.dataset.teamId
-  );
+    if (!team) {
+      return;
+    }
 
-if (!team) {
-  return;
+    const value =
+      Number(input.value);
+
+    if (Number.isFinite(value)) {
+
+      team.score = value;
+
+    }
+
+  });
+
+  closeScoreEditor();
+
+  renderEverything();
+
 }
 
-const value =
-  Number(input.value);
-
-if (Number.isFinite(value)) {
-
-  team.score = value;
-
-}
-
-
-});
-
-closeScoreEditor();
-
-renderEverything();
-}
 
 function closeScoreEditor() {
 
-editModal.classList.add("hidden");
+  editModal.classList.add("hidden");
+
 }
 
+
 closeEditModal.addEventListener(
-"click",
-closeScoreEditor
+  "click",
+  closeScoreEditor
 );
 
+
 cancelScoreEdit.addEventListener(
-"click",
-closeScoreEditor
+  "click",
+  closeScoreEditor
 );
+
 
 /* =========================================================
 NEW GAME
 ========================================================= */
 
 resetGameButton.addEventListener(
-"click",
-resetGame
+  "click",
+  resetGame
 );
+
 
 function resetGame() {
 
-const confirmed =
-confirm(
-"Start a new game? The current game will be lost."
-);
+  const confirmed =
+    confirm(
+      "Start a new game? The current game will be lost."
+    );
 
-if (!confirmed) {
-return;
+  if (!confirmed) {
+    return;
+  }
+
+  stopGameTimer();
+
+  game = {
+
+    started: false,
+
+    currentValue: null,
+
+    lastValue: null,
+
+    lastTeamId: null,
+
+    teams: [],
+
+    timerSeconds: null,
+
+    timerRunning: false
+
+  };
+
+  selectedLetters = [];
+
+  document
+    .querySelectorAll(".letter-button")
+    .forEach(button => {
+
+      button.classList.remove("selected");
+
+    });
+
+
+  setupSection.classList.remove("hidden");
+
+  gameControls.classList.add("hidden");
+
+  reassignButton.disabled = true;
+
+  updateTeamSelectionDisplay();
+
+  teamsElement.innerHTML = "";
+
+  renderValue();
+
+  updateTimerDisplay();
+
 }
 
-stopGameTimer();
-
-game = {
-
-
-started: false,
-
-currentValue: null,
-
-lastValue: null,
-
-lastTeamId: null,
-
-teams: [],
-
-timerSeconds: null,
-
-timerRunning: false
-
-
-};
-
-selectedLetters = [];
-
-document
-.querySelectorAll(".letter-button")
-.forEach(button => {
-
-
-  button.classList.remove("selected");
-
-});
-
-
-setupSection.classList.remove("hidden");
-
-gameControls.classList.add("hidden");
-
-reassignButton.disabled = true;
-
-updateTeamSelectionDisplay();
-
-teamsElement.innerHTML = "";
-
-renderValue();
-
-updateTimerDisplay();
-}
 
 /* =========================================================
 WINNER
@@ -1619,7 +1666,9 @@ function determineWinners() {
     team =>
       Math.abs(team.score) === winningScore
   );
+
 }
+
 
 function showWinner() {
 
@@ -1634,10 +1683,15 @@ function showWinner() {
   Display all tied winners.
   */
 
-  winnerAnimal.textContent =
+  winnerAnimal.innerHTML =
     winners.map(
-      winner => winner.emoji
-    ).join(" ");
+      winner => `
+        <img
+          src="${winner.image}"
+          alt="${winner.name}"
+        >
+      `
+    ).join("");
 
   winnerName.textContent =
     winners.map(
@@ -1650,20 +1704,21 @@ function showWinner() {
   winnerScreen.classList.remove(
     "hidden"
   );
+
 }
+
 
 closeWinner.addEventListener(
-"click",
-() => {
+  "click",
+  () => {
 
+    winnerScreen.classList.add(
+      "hidden"
+    );
 
-winnerScreen.classList.add(
-  "hidden"
+  }
 );
 
-
-}
-);
 
 /* =========================================================
 INITIALIZATION
@@ -1676,3 +1731,4 @@ updateTeamSelectionDisplay();
 renderValue();
 
 updateTimerDisplay();
+```
