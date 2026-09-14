@@ -1,4 +1,4 @@
-```javascript
+javascript
 /* =========================================================
 ZERO OUT
 First working version + timer
@@ -1731,4 +1731,4 @@ updateTeamSelectionDisplay();
 renderValue();
 
 updateTimerDisplay();
-```
+
