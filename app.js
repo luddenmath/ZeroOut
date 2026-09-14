@@ -1,4 +1,4 @@
-javascript
+
 /* =========================================================
 ZERO OUT
 First working version + timer
