@@ -734,6 +734,19 @@ startGameButton.addEventListener(
 );
 
 
+function stopGameTimer() {
+
+  if (timerInterval !== null) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+
+  game.timerRunning = false;
+
+  stopTimerButton.disabled = true;
+
+}
+
 async function startGame() {
 
   if (selectedLetters.length === 0) {
@@ -1335,18 +1348,7 @@ function updateTimerDisplay() {
   }
 
 }
-function stopGameTimer() {
 
-  if (timerInterval !== null) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-  }
-
-  game.timerRunning = false;
-
-  stopTimerButton.disabled = true;
-
-}
 
 function startGameTimer() {
 
