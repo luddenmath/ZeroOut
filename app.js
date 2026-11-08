@@ -1335,7 +1335,18 @@ function updateTimerDisplay() {
   }
 
 }
+function stopGameTimer() {
 
+  if (timerInterval !== null) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+
+  game.timerRunning = false;
+
+  stopTimerButton.disabled = true;
+
+}
 
 function startGameTimer() {
 
